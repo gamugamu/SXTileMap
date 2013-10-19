@@ -1,5 +1,5 @@
 //
-//  SXMapAtlas.h
+//  SXMapTile.h
 //  SX_Test
 //
 //  Created by Abadie Loic on 19/10/13.
@@ -8,17 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class SXMapTile;
 //----------------------------------------------------------------------------//
-// SXMapAtlas holds collection of tiles.
+// SXMapTile define what is a tile.
 //----------------------------------------------------------------------------//
-@interface SXMapAtlas : NSObject
-
-- (SXMapAtlas*)mapAtlas;
-- (SXMapAtlas*)mapAtlasWithDescription:(void*)data;
-
-- (SXMapTile*)mapTileAtPoint:(void*)pnt;
-- (NSArray*)mapTiles;
-- (NSArray*)mapTilesFromRegion;
+@interface SXMapTile : NSObject
 
 @end
