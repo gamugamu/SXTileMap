@@ -8,6 +8,7 @@
 
 #import "MyScene.h"
 #import "SXMapAtlas.h"
+#import "SXMapAtlasDescription.h"
 
 @interface MyScene()
 @property(nonatomic, strong)SXMapAtlas* mapAtlas;
@@ -42,7 +43,8 @@
 #pragma mark - setup
 
 - (SXMapAtlas*)createMapAtlas{
-   return [SXMapAtlas mapAtlasWithDescription: nil];
+    // note that rgb.png is not what a file is. For the moment we are still under development.
+    return [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"rgb.png"]];
 }
 
 #pragma mark - logic

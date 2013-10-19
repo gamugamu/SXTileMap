@@ -26,6 +26,9 @@
 		D3C33B081812B316008AED54 /* SXMapAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B071812B316008AED54 /* SXMapAtlas.m */; };
 		D3C33B0B1812B8F5008AED54 /* SXMapTile.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B0A1812B8F5008AED54 /* SXMapTile.m */; };
 		D3C33B0E1812C0C9008AED54 /* SXMutableMapAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B0D1812C0C9008AED54 /* SXMutableMapAtlas.m */; };
+		D3C33B161812C947008AED54 /* SXMapAtlasDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B151812C947008AED54 /* SXMapAtlasDescription.m */; };
+		D3C33B191812CAA0008AED54 /* rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = D3C33B181812CAA0008AED54 /* rgb.png */; };
+		D3C33B1C1812CB17008AED54 /* SXMapTileBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B1B1812CB17008AED54 /* SXMapTileBuilder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,11 @@
 		D3C33B0A1812B8F5008AED54 /* SXMapTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMapTile.m; path = SXTileMap/SXLib/SXMapTile.m; sourceTree = "<group>"; };
 		D3C33B0C1812C0C9008AED54 /* SXMutableMapAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMutableMapAtlas.h; path = SXTileMap/SXLib/SXMutableMapAtlas.h; sourceTree = "<group>"; };
 		D3C33B0D1812C0C9008AED54 /* SXMutableMapAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMutableMapAtlas.m; path = SXTileMap/SXLib/SXMutableMapAtlas.m; sourceTree = "<group>"; };
+		D3C33B141812C947008AED54 /* SXMapAtlasDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXMapAtlasDescription.h; sourceTree = "<group>"; };
+		D3C33B151812C947008AED54 /* SXMapAtlasDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXMapAtlasDescription.m; sourceTree = "<group>"; };
+		D3C33B181812CAA0008AED54 /* rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rgb.png; sourceTree = "<group>"; };
+		D3C33B1A1812CB17008AED54 /* SXMapTileBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXMapTileBuilder.h; sourceTree = "<group>"; };
+		D3C33B1B1812CB17008AED54 /* SXMapTileBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXMapTileBuilder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,7 @@
 			children = (
 				D3C33B121812C57A008AED54 /* SXLib */,
 				D3C33ACF1812B2AA008AED54 /* SXTileMap */,
+				D3C33B171812CA8D008AED54 /* SXFile */,
 				D3C33AF61812B2AB008AED54 /* SX_Tests */,
 				D3C33AC61812B2AA008AED54 /* Frameworks */,
 				D3C33AC51812B2AA008AED54 /* Products */,
@@ -184,6 +193,8 @@
 		D3C33B101812C557008AED54 /* SXMapAtlas */ = {
 			isa = PBXGroup;
 			children = (
+				D3C33B141812C947008AED54 /* SXMapAtlasDescription.h */,
+				D3C33B151812C947008AED54 /* SXMapAtlasDescription.m */,
 				D3C33B061812B316008AED54 /* SXMapAtlas.h */,
 				D3C33B071812B316008AED54 /* SXMapAtlas.m */,
 				D3C33B0C1812C0C9008AED54 /* SXMutableMapAtlas.h */,
@@ -213,8 +224,19 @@
 		D3C33B131812C582008AED54 /* SXPrivate */ = {
 			isa = PBXGroup;
 			children = (
+				D3C33B1A1812CB17008AED54 /* SXMapTileBuilder.h */,
+				D3C33B1B1812CB17008AED54 /* SXMapTileBuilder.m */,
 			);
 			name = SXPrivate;
+			sourceTree = "<group>";
+		};
+		D3C33B171812CA8D008AED54 /* SXFile */ = {
+			isa = PBXGroup;
+			children = (
+				D3C33B181812CAA0008AED54 /* rgb.png */,
+			);
+			name = SXFile;
+			path = SXTileMap;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3C33AE01812B2AB008AED54 /* Main_iPad.storyboard in Resources */,
+				D3C33B191812CAA0008AED54 /* rgb.png in Resources */,
 				D3C33ADD1812B2AB008AED54 /* Main_iPhone.storyboard in Resources */,
 				D3C33AD41812B2AB008AED54 /* InfoPlist.strings in Resources */,
 			);
@@ -315,9 +338,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3C33AE61812B2AB008AED54 /* MyScene.m in Sources */,
+				D3C33B1C1812CB17008AED54 /* SXMapTileBuilder.m in Sources */,
 				D3C33B0B1812B8F5008AED54 /* SXMapTile.m in Sources */,
 				D3C33AE31812B2AB008AED54 /* ViewController.m in Sources */,
 				D3C33ADA1812B2AB008AED54 /* AppDelegate.m in Sources */,
+				D3C33B161812C947008AED54 /* SXMapAtlasDescription.m in Sources */,
 				D3C33AD61812B2AB008AED54 /* main.m in Sources */,
 				D3C33B081812B316008AED54 /* SXMapAtlas.m in Sources */,
 				D3C33B0E1812C0C9008AED54 /* SXMutableMapAtlas.m in Sources */,

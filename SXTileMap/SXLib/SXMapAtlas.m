@@ -7,17 +7,18 @@
 //
 
 #import "SXMapAtlas.h"
+#import "SXMapTileBuilder.h"
 
 @implementation SXMapAtlas
 
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
 
-+ (SXMapAtlas*)mapAtlasWithDescription:(void*)data{
++ (SXMapAtlas*)mapAtlasWithDescription:(SXMapAtlasDescription*)data{
     return [[SXMapAtlas alloc] initWithDescription: data];
 }
 
-- (id)initWithDescription:(void*)data{
+- (id)initWithDescription:(SXMapAtlasDescription*)data{
     if(self = [super init]){
     
     }
@@ -35,5 +36,9 @@
 - (NSArray*)mapTilesFromRegion:(void*)region{
     return nil;
 }
+
+#pragma mark ============================ private ==============================
+#pragma mark ===================================================================
+
 
 @end
