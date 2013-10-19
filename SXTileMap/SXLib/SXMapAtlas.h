@@ -7,15 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <SpriteKit/SKNode.h>
 
 @class SXMapTile;
+
 //----------------------------------------------------------------------------//
 // SXMapAtlas holds collection of tiles.
 //----------------------------------------------------------------------------//
-@interface SXMapAtlas : NSObject
+@interface SXMapAtlas : SKNode
 
-- (SXMapAtlas*)mapAtlas;
-- (SXMapAtlas*)mapAtlasWithDescription:(void*)data;
++ (SXMapAtlas*)mapAtlasWithDescription:(void*)data;
+- (id)initWithDescription:(void*)data;
 
 - (SXMapTile*)mapTileAtPoint:(void*)pnt;
 - (NSArray*)mapTiles;

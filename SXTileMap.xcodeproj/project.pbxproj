@@ -97,12 +97,7 @@
 		D3C33ABB1812B2AA008AED54 = {
 			isa = PBXGroup;
 			children = (
-				D3C33B061812B316008AED54 /* SXMapAtlas.h */,
-				D3C33B071812B316008AED54 /* SXMapAtlas.m */,
-				D3C33B0C1812C0C9008AED54 /* SXMutableMapAtlas.h */,
-				D3C33B0D1812C0C9008AED54 /* SXMutableMapAtlas.m */,
-				D3C33B091812B8F5008AED54 /* SXMapTile.h */,
-				D3C33B0A1812B8F5008AED54 /* SXMapTile.m */,
+				D3C33B121812C57A008AED54 /* SXLib */,
 				D3C33ACF1812B2AA008AED54 /* SXTileMap */,
 				D3C33AF61812B2AB008AED54 /* SX_Tests */,
 				D3C33AC61812B2AA008AED54 /* Frameworks */,
@@ -175,6 +170,51 @@
 				D3C33AF91812B2AB008AED54 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3C33B0F1812C541008AED54 /* SXMapObject */ = {
+			isa = PBXGroup;
+			children = (
+				D3C33B101812C557008AED54 /* SXMapAtlas */,
+				D3C33B111812C562008AED54 /* SWMapTile */,
+			);
+			name = SXMapObject;
+			sourceTree = "<group>";
+		};
+		D3C33B101812C557008AED54 /* SXMapAtlas */ = {
+			isa = PBXGroup;
+			children = (
+				D3C33B061812B316008AED54 /* SXMapAtlas.h */,
+				D3C33B071812B316008AED54 /* SXMapAtlas.m */,
+				D3C33B0C1812C0C9008AED54 /* SXMutableMapAtlas.h */,
+				D3C33B0D1812C0C9008AED54 /* SXMutableMapAtlas.m */,
+			);
+			name = SXMapAtlas;
+			sourceTree = "<group>";
+		};
+		D3C33B111812C562008AED54 /* SWMapTile */ = {
+			isa = PBXGroup;
+			children = (
+				D3C33B091812B8F5008AED54 /* SXMapTile.h */,
+				D3C33B0A1812B8F5008AED54 /* SXMapTile.m */,
+			);
+			name = SWMapTile;
+			sourceTree = "<group>";
+		};
+		D3C33B121812C57A008AED54 /* SXLib */ = {
+			isa = PBXGroup;
+			children = (
+				D3C33B131812C582008AED54 /* SXPrivate */,
+				D3C33B0F1812C541008AED54 /* SXMapObject */,
+			);
+			name = SXLib;
+			sourceTree = "<group>";
+		};
+		D3C33B131812C582008AED54 /* SXPrivate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SXPrivate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
