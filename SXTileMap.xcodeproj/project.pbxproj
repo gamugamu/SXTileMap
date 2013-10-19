@@ -64,10 +64,10 @@
 		D3C33AF81812B2AB008AED54 /* SXTileMapTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SXTileMapTests-Info.plist"; sourceTree = "<group>"; };
 		D3C33AFA1812B2AB008AED54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D3C33AFC1812B2AB008AED54 /* SX_TestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SX_TestTests.m; sourceTree = "<group>"; };
-		D3C33B061812B316008AED54 /* SXMapAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapAtlas.h; path = SX_Test/SXLib/SXMapAtlas.h; sourceTree = "<group>"; };
-		D3C33B071812B316008AED54 /* SXMapAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMapAtlas.m; path = SX_Test/SXLib/SXMapAtlas.m; sourceTree = "<group>"; };
-		D3C33B091812B8F5008AED54 /* SXMapTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapTile.h; path = SX_Test/SXLib/SXMapTile.h; sourceTree = "<group>"; };
-		D3C33B0A1812B8F5008AED54 /* SXMapTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMapTile.m; path = SX_Test/SXLib/SXMapTile.m; sourceTree = "<group>"; };
+		D3C33B061812B316008AED54 /* SXMapAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapAtlas.h; path = SXTileMap/SXLib/SXMapAtlas.h; sourceTree = "<group>"; };
+		D3C33B071812B316008AED54 /* SXMapAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMapAtlas.m; path = SXTileMap/SXLib/SXMapAtlas.m; sourceTree = "<group>"; };
+		D3C33B091812B8F5008AED54 /* SXMapTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapTile.h; path = SXTileMap/SXLib/SXMapTile.h; sourceTree = "<group>"; };
+		D3C33B0A1812B8F5008AED54 /* SXMapTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMapTile.m; path = SXTileMap/SXLib/SXMapTile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,7 +103,7 @@
 				D3C33B091812B8F5008AED54 /* SXMapTile.h */,
 				D3C33B0A1812B8F5008AED54 /* SXMapTile.m */,
 				D3C33ACF1812B2AA008AED54 /* SXTileMap */,
-				D3C33AF61812B2AB008AED54 /* SX_TestTests */,
+				D3C33AF61812B2AB008AED54 /* SX_Tests */,
 				D3C33AC61812B2AA008AED54 /* Frameworks */,
 				D3C33AC51812B2AA008AED54 /* Products */,
 			);
@@ -145,8 +145,7 @@
 				D3C33AE91812B2AB008AED54 /* Images.xcassets */,
 				D3C33AD01812B2AB008AED54 /* Supporting Files */,
 			);
-			name = SXTileMap;
-			path = SX_Test;
+			path = SXTileMap;
 			sourceTree = "<group>";
 		};
 		D3C33AD01812B2AB008AED54 /* Supporting Files */ = {
@@ -160,12 +159,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D3C33AF61812B2AB008AED54 /* SX_TestTests */ = {
+		D3C33AF61812B2AB008AED54 /* SX_Tests */ = {
 			isa = PBXGroup;
 			children = (
 				D3C33AFC1812B2AB008AED54 /* SX_TestTests.m */,
 				D3C33AF71812B2AB008AED54 /* Supporting Files */,
 			);
+			name = SX_Tests;
 			path = SX_TestTests;
 			sourceTree = "<group>";
 		};
@@ -420,8 +420,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SX_Test/SXTileMap-Prefix.pch";
-				INFOPLIST_FILE = "SX_Test/SXTileMap-Info.plist";
+				GCC_PREFIX_HEADER = "SXTileMap/SXTileMap-Prefix.pch";
+				INFOPLIST_FILE = "SXTileMap/SXTileMap-Info.plist";
 				PRODUCT_NAME = SXTileMap;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
@@ -434,8 +434,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "SX_Test/SXTileMap-Prefix.pch";
-				INFOPLIST_FILE = "SX_Test/SXTileMap-Info.plist";
+				GCC_PREFIX_HEADER = "SXTileMap/SXTileMap-Prefix.pch";
+				INFOPLIST_FILE = "SXTileMap/SXTileMap-Info.plist";
 				PRODUCT_NAME = SXTileMap;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
@@ -503,6 +503,7 @@
 				D3C33B021812B2AB008AED54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3C33B031812B2AB008AED54 /* Build configuration list for PBXNativeTarget "SXTileMapTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +512,7 @@
 				D3C33B051812B2AB008AED54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
