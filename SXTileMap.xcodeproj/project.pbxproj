@@ -25,6 +25,7 @@
 		D3C33AFD1812B2AB008AED54 /* SX_TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33AFC1812B2AB008AED54 /* SX_TestTests.m */; };
 		D3C33B081812B316008AED54 /* SXMapAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B071812B316008AED54 /* SXMapAtlas.m */; };
 		D3C33B0B1812B8F5008AED54 /* SXMapTile.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B0A1812B8F5008AED54 /* SXMapTile.m */; };
+		D3C33B0E1812C0C9008AED54 /* SXMutableMapAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B0D1812C0C9008AED54 /* SXMutableMapAtlas.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		D3C33B071812B316008AED54 /* SXMapAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMapAtlas.m; path = SXTileMap/SXLib/SXMapAtlas.m; sourceTree = "<group>"; };
 		D3C33B091812B8F5008AED54 /* SXMapTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapTile.h; path = SXTileMap/SXLib/SXMapTile.h; sourceTree = "<group>"; };
 		D3C33B0A1812B8F5008AED54 /* SXMapTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMapTile.m; path = SXTileMap/SXLib/SXMapTile.m; sourceTree = "<group>"; };
+		D3C33B0C1812C0C9008AED54 /* SXMutableMapAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMutableMapAtlas.h; path = SXTileMap/SXLib/SXMutableMapAtlas.h; sourceTree = "<group>"; };
+		D3C33B0D1812C0C9008AED54 /* SXMutableMapAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMutableMapAtlas.m; path = SXTileMap/SXLib/SXMutableMapAtlas.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 			isa = PBXGroup;
 			children = (
 				D3C33B061812B316008AED54 /* SXMapAtlas.h */,
+				D3C33B0C1812C0C9008AED54 /* SXMutableMapAtlas.h */,
+				D3C33B0D1812C0C9008AED54 /* SXMutableMapAtlas.m */,
 				D3C33B071812B316008AED54 /* SXMapAtlas.m */,
 				D3C33B091812B8F5008AED54 /* SXMapTile.h */,
 				D3C33B0A1812B8F5008AED54 /* SXMapTile.m */,
@@ -275,6 +280,7 @@
 				D3C33ADA1812B2AB008AED54 /* AppDelegate.m in Sources */,
 				D3C33AD61812B2AB008AED54 /* main.m in Sources */,
 				D3C33B081812B316008AED54 /* SXMapAtlas.m in Sources */,
+				D3C33B0E1812C0C9008AED54 /* SXMutableMapAtlas.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

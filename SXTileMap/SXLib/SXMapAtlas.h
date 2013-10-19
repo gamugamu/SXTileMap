@@ -19,6 +19,6 @@
 
 - (SXMapTile*)mapTileAtPoint:(void*)pnt;
 - (NSArray*)mapTiles;
-- (NSArray*)mapTilesFromRegion;
+- (NSArray*)mapTilesFromRegion:(void*)region;
 
 @end
