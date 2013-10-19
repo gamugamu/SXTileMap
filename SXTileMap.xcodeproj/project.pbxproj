@@ -193,12 +193,12 @@
 		D3C33B101812C557008AED54 /* SXMapAtlas */ = {
 			isa = PBXGroup;
 			children = (
-				D3C33B141812C947008AED54 /* SXMapAtlasDescription.h */,
-				D3C33B151812C947008AED54 /* SXMapAtlasDescription.m */,
 				D3C33B061812B316008AED54 /* SXMapAtlas.h */,
 				D3C33B071812B316008AED54 /* SXMapAtlas.m */,
 				D3C33B0C1812C0C9008AED54 /* SXMutableMapAtlas.h */,
 				D3C33B0D1812C0C9008AED54 /* SXMutableMapAtlas.m */,
+				D3C33B141812C947008AED54 /* SXMapAtlasDescription.h */,
+				D3C33B151812C947008AED54 /* SXMapAtlasDescription.m */,
 			);
 			name = SXMapAtlas;
 			sourceTree = "<group>";

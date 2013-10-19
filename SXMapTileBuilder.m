@@ -7,14 +7,16 @@
 //
 
 #import "SXMapTileBuilder.h"
+#import "SXMapTile.h"
 
 @implementation SXMapTileBuilder
 
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
 
-- (NSArray*)tilesFromDescription:(SXMapAtlasDescription*)mapDescription{
-    return nil;
++ (NSArray*)tilesFromDescription:(SXMapAtlasDescription*)mapDescription{
+    SXMapTile* test = [SXMapTile new];
+    return @[test];
 }
 
 @end

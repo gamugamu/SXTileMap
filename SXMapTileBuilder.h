@@ -16,6 +16,6 @@
 //----------------------------------------------------------------------------//
 @interface SXMapTileBuilder : NSObject
 
-- (NSArray*)tilesFromDescription:(SXMapAtlasDescription*)mapDescription;
++ (NSArray*)tilesFromDescription:(SXMapAtlasDescription*)mapDescription;
 
 @end

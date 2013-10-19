@@ -24,7 +24,7 @@
         /* Setup your scene here */
         self.mapAtlas = [self createMapAtlas];
         [self testMapAtlas: _mapAtlas];
-        
+        NSLog(@"--%@", self.children);
         self.backgroundColor = [SKColor whiteColor];
     }
     return self;
