@@ -7,10 +7,7 @@
 //
 
 #import "SXMapTile.h"
-
-@interface SXMapTile()
-@property(nonatomic, strong)SKSpriteNode* sprite;
-@end
+#import "SXMapTile_hidden.h"
 
 @implementation SXMapTile
 @synthesize  sprite = _sprite;
@@ -19,12 +16,5 @@
 #pragma mark ===================================================================
 
 #pragma mark - alloc / dealloc
-
-- (id)init{
-    if(self = [super init]){
-        self.sprite = [SKSpriteNode spriteNodeWithColor: [UIColor redColor] size: (CGSize){100, 100}];
-    }
-    return self;
-}
 
 @end
