@@ -37,7 +37,7 @@
 
 - (SXMapTile*)tileAtPoint:(SXPoint)pnt{
     NSUInteger index = [_mapBuilder indexArrayForPoint: pnt];
-    NSLog(@"get index %u %u", index, _tiles.count);
+
     if(index < _tiles.count)
         return _tiles[index];
     else
