@@ -16,5 +16,5 @@
 
 + (id)mapAtlasDescription:(NSString*)fileName;
 // opaque data
-@property(nonatomic, readonly)void* data;
+@property(nonatomic, assign /* readonly en prod */)void* data;
 @end

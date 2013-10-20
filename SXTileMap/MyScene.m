@@ -11,7 +11,6 @@
 #import "SXMapAtlasDescription.h"
 
 @interface MyScene()
-@property(nonatomic, strong)SXMapAtlas* mapAtlas;
 @end
 
 @implementation MyScene
@@ -22,9 +21,7 @@
 - (id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        self.mapAtlas = [self createMapAtlas];
-        [self testMapAtlas: _mapAtlas];
-        NSLog(@"--%@", self.children);
+        [self testMapAtlas];
         self.backgroundColor = [SKColor whiteColor];
     }
     return self;
@@ -42,15 +39,13 @@
 
 #pragma mark - setup
 
-- (SXMapAtlas*)createMapAtlas{
+- (void)testMapAtlas{
     // note that rgb.png is not what a file is. For the moment we are still under development.
-    return [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"rgb.png"]];
+    SXMapAtlas* mapAtlas = [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"rgb.png"]];
+    [self addChild: mapAtlas];
 }
 
 #pragma mark - logic
 
-- (void)testMapAtlas:(SXMapAtlas*)mapAtlas{
-    [self addChild: mapAtlas];
-}
 
 @end

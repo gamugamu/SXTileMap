@@ -11,11 +11,13 @@
 #import "SXMapTile.h"
 
 @interface SXMapAtlas()
+@property(nonatomic, strong)SXMapTileBuilder* mapBuilder;
 @property(nonatomic, strong)NSArray* tiles;
 @end
 
 @implementation SXMapAtlas
-@synthesize tiles = _tiles;
+@synthesize tiles       = _tiles,
+            mapBuilder  = _mapBuilder;
 
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
@@ -26,7 +28,8 @@
 
 - (id)initWithDescription:(SXMapAtlasDescription*)description{
     if(self = [super init]){
-        [self setUpTiles: description];
+        [self setUpMapBuilder: description];
+        [self setUpTiles: description fromBuilder: _mapBuilder];
         [self displayTiles: _tiles];
     }
     return self;
@@ -47,8 +50,8 @@
 #pragma mark - override
 
 - (CGRect)calculateAccumulatedFrame{
-    // note: should take care
-    return CGRectMake(0, 0, 10, 10);
+    // note: should take care. Not implemented Yet.
+    return CGRectMake(0, 0, 0, 0);
 }
 
 
@@ -57,8 +60,13 @@
 
 #pragma mark - setUp
 
-- (void)setUpTiles:(SXMapAtlasDescription*)description{
-    self.tiles = [SXMapTileBuilder tilesFromDescription: description];
+- (void)setUpMapBuilder:(SXMapAtlasDescription*)description{
+    self.mapBuilder = [[SXMapTileBuilder alloc] initFromDescription: description];
+}
+
+- (void)setUpTiles:(SXMapAtlasDescription*)description
+       fromBuilder:(SXMapTileBuilder*)builder{
+    self.tiles = [builder generateTile];
 }
 
 #pragma mark - displayLogic
