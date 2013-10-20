@@ -29,12 +29,12 @@ typedef struct{
 typedef struct{
     uint_fast8_t x;
     uint_fast8_t y;
-}_SXPoint;
+}SXPoint;
 
 typedef struct{
     UInt32 tid;         // a unique id for each tile.
-    _SXPoint position;   // where the tile is into the map coordinate.
-}_SXTile;
+    SXPoint position;   // where the tile is into the map coordinate.
+}SXTile;
 
 typedef struct{
     _SXGridSize sizeGrid;

@@ -7,6 +7,7 @@
 //
 
 #import <SpriteKit/SKNode.h>
+#import "SXMapAtlasDescription.h" // for SXPoint
 
 @class SXMapTile;
 @class SXMapAtlasDescription;
@@ -19,7 +20,7 @@
 + (SXMapAtlas*)mapAtlasWithDescription:(SXMapAtlasDescription*)data;
 - (id)initWithDescription:(SXMapAtlasDescription*)data;
 
-- (SXMapTile*)mapTileAtPoint:(void*)pnt;
+- (SXMapTile*)tileAtPoint:(SXPoint)pnt;
 - (NSArray*)mapTiles;
 - (NSArray*)mapTilesFromRegion:(void*)region;
 

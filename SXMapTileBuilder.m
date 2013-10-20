@@ -34,6 +34,11 @@
     return [self createTilesFromMapAtlasDesctiptor: _mapDescription];
 }
 
+- (NSUInteger)indexArrayForPoint:(SXPoint)pnt{
+    _SXMapDescription* des = (_SXMapDescription*)_mapDescription.data;
+    return pnt.x + pnt.y * des->sizeGrid.column;
+}
+
 #pragma mark ============================ private ==============================
 #pragma mark ===================================================================
 
@@ -55,7 +60,8 @@
     float g_h   = 1.f / des->sizeGrid.row;      // grid height
     float t_w   = des->sizeTile.width;          // tile width
     float t_h   = des->sizeTile.width;          // tile height
-
+    NSLog(@"----> %u %u", des->sizeGrid.column, des->sizeGrid.row);
+    
     for (int i = 0; i < des->sizeGrid.column; ++i){
         for (int j = 0; j < des->sizeGrid.row; ++j){
             SXMapTile* tiles    = [SXMapTile new];

@@ -9,6 +9,7 @@
 #import "MyScene.h"
 #import "SXMapAtlas.h"
 #import "SXMapAtlasDescription.h"
+#import "SXMapTile.h"
 
 @interface MyScene()
 @end
@@ -45,6 +46,9 @@
     mapAtlas.xScale = .5f;
     mapAtlas.yScale = .5f;
     mapAtlas.position = CGPointMake(50, 100);
+    [mapAtlas tileAtPoint:(SXPoint){4, 4}].sprite.alpha = .5f;
+    NSLog(@"----> %@", [mapAtlas tileAtPoint:(SXPoint){5, 5}]);
+    
     [self addChild: mapAtlas];
 }
 

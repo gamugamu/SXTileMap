@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SXMapAtlasDescription.h" // for SXPoint
 
 @class SXMapTile;
 @class SXMapAtlasDescription;
@@ -18,5 +19,5 @@
 
 - (SXMapTileBuilder*)initFromDescription:(SXMapAtlasDescription*)mapDescription;
 - (NSArray*)generateTile;
-
+- (NSUInteger)indexArrayForPoint:(SXPoint)pnt;
 @end
