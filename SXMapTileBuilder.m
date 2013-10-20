@@ -17,10 +17,6 @@
 @property(nonatomic, strong)SKTexture* texture;
 @end
 
-@interface SXMapTile()
-
-@end
-
 @implementation SXMapTileBuilder
 @synthesize mapDescription = _mapDescription;
 
@@ -53,29 +49,36 @@
 - (NSArray*)createTilesFromMapAtlasDesctiptor:(SXMapAtlasDescription*)mapDescription{
     _SXMapDescription* des      = (_SXMapDescription*)mapDescription.data;
     NSMutableArray* nodeList    = [NSMutableArray new];
-    float size_W = 1.f / _texture.size.width / des->sizeGrid.column;
-    float size_H = 1.f / _texture.size.height / des->sizeGrid.row;
+    _texture  = [SKTexture textureWithImageNamed: mapDescription.fileName];
+    
+    float g_w   = 1.f / des->sizeGrid.column;   // grid width
+    float g_h   = 1.f / des->sizeGrid.row;      // grid height
+    float t_w   = des->sizeTile.width;          // tile width
+    float t_h   = des->sizeTile.width;          // tile height
 
-    for (int i = 0; i < des->sizeGrid.row; ++i) {
-        for (int j = 0; j < des->sizeGrid.column; ++j) {
-            SXMapTile* tile = [SXMapTile new];
-            
-            CGRect area = (CGRect){ i * des->sizeTile.width,
-                                    j * des->sizeTile.height,
-                                    size_W,
-                                    size_H};
-            
-            SKTexture* crop     = [SKTexture textureWithRect: area
-                                                   inTexture: _texture];
-            SKSpriteNode* node  = [SKSpriteNode spriteNodeWithTexture: crop
-                                                                 size: (CGSize){60, 60}];
-            node.position       = CGPointMake(i * 60, j * 60);
-            tile.sprite         = node;
-            
-            [nodeList addObject: tile];
+    for (int i = 0; i < des->sizeGrid.column; ++i){
+        for (int j = 0; j < des->sizeGrid.row; ++j){
+            SXMapTile* tiles    = [SXMapTile new];
+            CGRect area         = CGRectMake(i * g_w, j * g_h, g_w, g_h);
+                
+            tiles.sprite = [self createNodeFromCrop: area
+                                            atPoint: (_SXGridSize){i, j}
+                                               size: (CGSize){t_w, t_h}];
+            [nodeList addObject: tiles];
         }
     }
+    
     return nodeList;
 }
 
+- (SKSpriteNode*)createNodeFromCrop:(CGRect)rect atPoint:(_SXGridSize)pnt size:(CGSize)size{
+    SKTexture* crop         = [SKTexture textureWithRect: rect
+                                               inTexture: _texture];
+    SKSpriteNode* node      = [SKSpriteNode spriteNodeWithTexture: crop];
+    CGPoint pos             = CGPointMake(node.size.width * pnt.row,
+                                          node.size.height * pnt.column);
+    node.position           = pos;
+    
+    return node;
+}
 @end
