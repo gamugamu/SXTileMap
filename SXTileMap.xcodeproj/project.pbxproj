@@ -107,8 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				D3C33B121812C57A008AED54 /* SXLib */,
-				D3C33ACF1812B2AA008AED54 /* SXTileMap */,
-				D3C33B171812CA8D008AED54 /* SXFile */,
+				D3C33ACF1812B2AA008AED54 /* imp */,
 				D3C33AF61812B2AB008AED54 /* SX_Tests */,
 				D3C33AC61812B2AA008AED54 /* Frameworks */,
 				D3C33AC51812B2AA008AED54 /* Products */,
@@ -136,7 +135,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D3C33ACF1812B2AA008AED54 /* SXTileMap */ = {
+		D3C33ACF1812B2AA008AED54 /* imp */ = {
 			isa = PBXGroup;
 			children = (
 				D3C33AD81812B2AB008AED54 /* AppDelegate.h */,
@@ -149,12 +148,14 @@
 				D3C33AE51812B2AB008AED54 /* MyScene.m */,
 				D3C33AD01812B2AB008AED54 /* Supporting Files */,
 			);
+			name = imp;
 			path = SXTileMap;
 			sourceTree = "<group>";
 		};
 		D3C33AD01812B2AB008AED54 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EB0BCF4A181AA6200026ABD3 /* img */,
 				D3C33AD11812B2AB008AED54 /* SXTileMap-Info.plist */,
 				D3C33AD21812B2AB008AED54 /* InfoPlist.strings */,
 				D3C33AD51812B2AB008AED54 /* main.m */,
@@ -232,13 +233,12 @@
 			name = SXPrivate;
 			sourceTree = "<group>";
 		};
-		D3C33B171812CA8D008AED54 /* SXFile */ = {
+		EB0BCF4A181AA6200026ABD3 /* img */ = {
 			isa = PBXGroup;
 			children = (
 				D3C33B181812CAA0008AED54 /* rgb.png */,
 			);
-			name = SXFile;
-			path = SXTileMap;
+			name = img;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
