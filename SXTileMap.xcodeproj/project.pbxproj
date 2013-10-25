@@ -76,6 +76,7 @@
 		D3C33B1A1812CB17008AED54 /* SXMapTileBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXMapTileBuilder.h; sourceTree = "<group>"; };
 		D3C33B1B1812CB17008AED54 /* SXMapTileBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXMapTileBuilder.m; sourceTree = "<group>"; };
 		D3C33B1D18140D32008AED54 /* SXMapTile_hidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapTile_hidden.h; path = SXTileMap/SXLib/SXMapTile_hidden.h; sourceTree = "<group>"; };
+		EB0BCF4B181AAEF70026ABD3 /* SXTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXTypes.h; path = SXTileMap/SXLib/SXTypes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +196,7 @@
 		D3C33B101812C557008AED54 /* SXMapAtlas */ = {
 			isa = PBXGroup;
 			children = (
+				EB0BCF4B181AAEF70026ABD3 /* SXTypes.h */,
 				D3C33B061812B316008AED54 /* SXMapAtlas.h */,
 				D3C33B071812B316008AED54 /* SXMapAtlas.m */,
 				D3C33B0C1812C0C9008AED54 /* SXMutableMapAtlas.h */,

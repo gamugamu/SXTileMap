@@ -12,5 +12,6 @@
 // SXMapTile define what is a tile.
 //----------------------------------------------------------------------------//
 @interface SXMapTile : NSObject
+
 @property(nonatomic, strong, readonly)SKSpriteNode* sprite;
 @end

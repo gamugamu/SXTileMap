@@ -21,7 +21,7 @@
 - (id)initWithDescription:(SXMapAtlasDescription*)data;
 
 - (SXMapTile*)tileAtPoint:(SXPoint)pnt;
-- (NSArray*)mapTiles;
-- (NSArray*)mapTilesFromRegion:(void*)region;
+- (NSArray*)allTiles;
+- (NSArray*)tilesFromRegion:(void*)region;
 
 @end

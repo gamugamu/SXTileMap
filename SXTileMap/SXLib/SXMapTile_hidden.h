@@ -7,7 +7,11 @@
 //
 
 #import "SXMapTile.h"
+#import "SXTypes.h"
 
 @interface SXMapTile()
+
 @property(nonatomic, strong)SKSpriteNode* sprite;
+@property(nonatomic, assign)SXTileDescription tileDescription;
+
 @end

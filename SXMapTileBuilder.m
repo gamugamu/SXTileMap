@@ -60,16 +60,22 @@
     float g_h   = 1.f / des->sizeGrid.row;      // grid height
     float t_w   = des->sizeTile.width;          // tile width
     float t_h   = des->sizeTile.width;          // tile height
-    NSLog(@"----> %u %u", des->sizeGrid.column, des->sizeGrid.row);
     
-    for (int i = 0; i < des->sizeGrid.column; ++i){
-        for (int j = 0; j < des->sizeGrid.row; ++j){
+    for (int i = 0; i < des->sizeGrid.row; ++i){
+        for (int j = 0; j < des->sizeGrid.column; ++j){
             SXMapTile* tiles    = [SXMapTile new];
             CGRect area         = CGRectMake(i * g_w, j * g_h, g_w, g_h);
-                
+            //printf("[x:%u, y:%u] - id: %u (%u)\n", j, i, i * des->sizeGrid.column + j, des->sizeGrid.column);
             tiles.sprite = [self createNodeFromCrop: area
                                             atPoint: (_SXGridSize){i, j}
                                                size: (CGSize){t_w, t_h}];
+            
+            UInt32 tid = i * des->sizeGrid.column + j;
+            UInt32 rid = tid /* should be taken from mapAtlasDescription */;
+            
+            SXTileDescription tDescription = {tid, rid, {j, i}};
+            tiles.tileDescription = tDescription;
+            NSLog(@"--> %@", tiles);
             [nodeList addObject: tiles];
         }
     }

@@ -44,11 +44,11 @@
         return nil;
 }
 
-- (NSArray*)mapTiles{
+- (NSArray*)allTiles{
     return nil;
 }
 
-- (NSArray*)mapTilesFromRegion:(void*)region{
+- (NSArray*)tilesFromRegion:(void*)region{
     return nil;
 }
 
