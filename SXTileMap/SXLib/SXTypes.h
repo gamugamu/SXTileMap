@@ -34,7 +34,7 @@ typedef struct{
     UInt32 tileId;              // a unique id for each tile.
     UInt32 textureRegionId;     // an id representing the region of the texture.
     SXPoint position;           // where the tile is into the map coordinate.
-}SXTileDescription;
+}_SXTileDescription;
 
 typedef struct{
     _SXGridSize sizeGrid;

@@ -12,6 +12,10 @@
 #import "SXMapTile.h"
 #import "SXMapTile_hidden.h"
 
+
+inline SXRect getTextureRectForTileInMap(_SXTileDescription,
+                                         _SXMapDescription* const);
+
 @interface SXMapTileBuilder()
 @property(nonatomic, strong)SXMapAtlasDescription* mapDescription;
 @property(nonatomic, strong)SKTexture* texture;
@@ -34,7 +38,7 @@
     return [self createTilesFromMapAtlasDesctiptor: _mapDescription];
 }
 
-- (NSUInteger)indexArrayForPoint:(SXPoint)pnt{
+- (NSUInteger)indexForPoint:(SXPoint)pnt{
     _SXMapDescription* des = (_SXMapDescription*)_mapDescription.data;
     return pnt.x + pnt.y * des->sizeGrid.column;
 }
@@ -66,16 +70,20 @@
             SXMapTile* tiles    = [SXMapTile new];
             CGRect area         = CGRectMake(i * g_w, j * g_h, g_w, g_h);
             //printf("[x:%u, y:%u] - id: %u (%u)\n", j, i, i * des->sizeGrid.column + j, des->sizeGrid.column);
-            tiles.sprite = [self createNodeFromCrop: area
+            tiles.sprite = [self createNodeFromRect: area
                                             atPoint: (_SXGridSize){i, j}
-                                               size: (CGSize){t_w, t_h}];
+                                               size: (CGSize){t_w, t_h}
+                                            texture: _texture];
             
             UInt32 tid = i * des->sizeGrid.column + j;
             UInt32 rid = tid /* should be taken from mapAtlasDescription */;
             
-            SXTileDescription tDescription = {tid, rid, {j, i}};
+            _SXTileDescription tDescription = {tid, rid, {j, i}};
             tiles.tileDescription = tDescription;
-            NSLog(@"--> %@", tiles);
+            
+            SXRect test = {0, 0, 20, 20};
+            tiles.sprite.texture = [self texture: _texture fromRect: test];
+
             [nodeList addObject: tiles];
         }
     }
@@ -83,13 +91,28 @@
     return nodeList;
 }
 
-- (SKSpriteNode*)createNodeFromCrop:(CGRect)rect atPoint:(_SXGridSize)pnt size:(CGSize)size{
-    SKTexture* crop         = [SKTexture textureWithRect: rect
-                                               inTexture: _texture];
-    SKSpriteNode* node      = [SKSpriteNode spriteNodeWithTexture: crop];
-    CGPoint pos             = CGPointMake(node.size.width * pnt.row,
+SXRect getTextureRectForTileInMap(_SXTileDescription td,
+                                  _SXMapDescription* const md){
+    return (SXRect){ td.position.x * md->sizeTile.width,
+                     td.position.y * md->sizeTile.height,
+                     md->sizeTile.width,
+                     md->sizeTile.height};
+}
+
+- (SKTexture*)texture:(SKTexture*)texture fromRect:(SXRect)rect{
+    return [SKTexture textureWithRect: rect
+                            inTexture: texture];
+}
+
+- (SKSpriteNode*)createNodeFromRect: (SXRect)rect
+                            atPoint: (_SXGridSize)pnt
+                               size: (CGSize)size
+                            texture: (SKTexture*)texture{
+    SKTexture* crop     = [self texture: texture fromRect: rect];
+    SKSpriteNode* node  = [SKSpriteNode spriteNodeWithTexture: crop];
+    CGPoint pos         = CGPointMake(node.size.width * pnt.row,
                                           node.size.height * pnt.column);
-    node.position           = pos;
+    node.position = pos;
     
     return node;
 }

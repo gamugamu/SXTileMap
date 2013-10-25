@@ -12,6 +12,6 @@
 @interface SXMapTile()
 
 @property(nonatomic, strong)SKSpriteNode* sprite;
-@property(nonatomic, assign)SXTileDescription tileDescription;
+@property(nonatomic, assign)_SXTileDescription tileDescription;
 
 @end

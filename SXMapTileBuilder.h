@@ -13,11 +13,11 @@
 @class SXMapAtlasDescription;
 
 //----------------------------------------------------------------------------//
-// SXMapTileBuilder know how to build tile.
+// SXMapTileBuilder know how to build tiles.
 //----------------------------------------------------------------------------//
 @interface SXMapTileBuilder : NSObject
 
 - (SXMapTileBuilder*)initFromDescription:(SXMapAtlasDescription*)mapDescription;
 - (NSArray*)generateTile;
-- (NSUInteger)indexArrayForPoint:(SXPoint)pnt;
+- (NSUInteger)indexForPoint:(SXPoint)pnt;
 @end
