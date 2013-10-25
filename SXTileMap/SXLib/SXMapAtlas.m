@@ -12,12 +12,10 @@
 
 @interface SXMapAtlas()
 @property(nonatomic, strong)SXMapTileBuilder* mapBuilder;
-@property(nonatomic, strong)NSArray* tiles;
 @end
 
 @implementation SXMapAtlas
-@synthesize tiles       = _tiles,
-            mapBuilder  = _mapBuilder;
+@synthesize mapBuilder  = _mapBuilder;
 
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
@@ -30,18 +28,13 @@
     if(self = [super init]){
         [self setUpMapBuilder: description];
         [self setUpTiles: description fromBuilder: _mapBuilder];
-        [self displayTiles: _tiles];
+        [self displayTiles: _mapBuilder.allGeneratedTiles];
     }
     return self;
 }
 
 - (SXMapTile*)tileAtPoint:(SXPoint)pnt{
-    NSUInteger index = [_mapBuilder indexForPoint: pnt];
-
-    if(index < _tiles.count)
-        return _tiles[index];
-    else
-        return nil;
+    return [_mapBuilder tileAtPoint: pnt];
 }
 
 - (NSArray*)allTiles{
@@ -71,7 +64,7 @@
 
 - (void)setUpTiles:(SXMapAtlasDescription*)description
        fromBuilder:(SXMapTileBuilder*)builder{
-    self.tiles = [builder generateTile];
+    [builder generateTile];
 }
 
 #pragma mark - displayLogic

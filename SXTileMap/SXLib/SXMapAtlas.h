@@ -17,11 +17,30 @@
 //----------------------------------------------------------------------------//
 @interface SXMapAtlas : SKNode
 
+/**
+    Create a mapAtlas
+ */
 + (SXMapAtlas*)mapAtlasWithDescription:(SXMapAtlasDescription*)data;
+
+/**
+    Create a mapAtlas
+ */
 - (id)initWithDescription:(SXMapAtlasDescription*)data;
 
+/**
+    Return a tile from the mapAtlas coordinate system.
+    Return nil, if that tile doens't exit.
+ */
 - (SXMapTile*)tileAtPoint:(SXPoint)pnt;
+
+/**
+    Return all Tiles
+ */
 - (NSArray*)allTiles;
+
+/**
+    Return an array of tiles from a region
+ */
 - (NSArray*)tilesFromRegion:(void*)region;
 
 @end

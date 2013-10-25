@@ -17,7 +17,24 @@
 //----------------------------------------------------------------------------//
 @interface SXMapTileBuilder : NSObject
 
+/**
+    Create a MapTile builder
+ */
 - (SXMapTileBuilder*)initFromDescription:(SXMapAtlasDescription*)mapDescription;
-- (NSArray*)generateTile;
-- (NSUInteger)indexForPoint:(SXPoint)pnt;
+
+/**
+    Generate all the tiles from the SXMapAtlasDescription*.
+ */
+- (void)generateTile;
+
+/**
+    Return the indexed 
+ */
+- (SXMapTile*)tileAtPoint:(SXPoint)pnt;
+
+/**
+    All the tiles that the SXMapTileMap has created. Return nil if allGeneratedTiles
+    has not be claaed.
+ */
+@property(nonatomic, readonly)NSArray* allGeneratedTiles;
 @end

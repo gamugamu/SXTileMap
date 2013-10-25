@@ -18,11 +18,13 @@ inline SXRect getTextureRectForTileInMap(_SXTileDescription,
 
 @interface SXMapTileBuilder()
 @property(nonatomic, strong)SXMapAtlasDescription* mapDescription;
+@property(nonatomic, strong)NSArray* allGeneratedTiles;
 @property(nonatomic, strong)SKTexture* texture;
 @end
 
 @implementation SXMapTileBuilder
-@synthesize mapDescription = _mapDescription;
+@synthesize mapDescription      = _mapDescription,
+            allGeneratedTiles   = _tiles;
 
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
@@ -34,8 +36,16 @@ inline SXRect getTextureRectForTileInMap(_SXTileDescription,
     return self;
 }
 
-- (NSArray*)generateTile{
-    return [self createTilesFromMapAtlasDesctiptor: _mapDescription];
+- (void)generateTile{
+    if(!_tiles)
+        self.allGeneratedTiles = [self createTilesFromMapAtlasDesctiptor: _mapDescription];
+}
+
+- (SXMapTile*)tileAtPoint:(SXPoint)pnt{
+    _SXMapDescription* des  = (_SXMapDescription*)_mapDescription.data;
+    NSUInteger idx          =  pnt.x + pnt.y * des->sizeGrid.column;
+    
+    return (idx < _tiles.count)? _tiles[idx] : nil;
 }
 
 - (NSUInteger)indexForPoint:(SXPoint)pnt{
@@ -80,9 +90,6 @@ inline SXRect getTextureRectForTileInMap(_SXTileDescription,
             
             _SXTileDescription tDescription = {tid, rid, {j, i}};
             tiles.tileDescription = tDescription;
-            
-            SXRect test = {0, 0, 20, 20};
-            tiles.sprite.texture = [self texture: _texture fromRect: test];
 
             [nodeList addObject: tiles];
         }
