@@ -7,6 +7,8 @@
 //
 
 #import "SXMapAtlas.h"
+#import "SXMapAtlas_hidden.h"
+#import "SXMapTile_hidden.h"
 #import "SXMapTileBuilder.h"
 #import "SXMapTile.h"
 
@@ -56,6 +58,12 @@
 #pragma mark ============================ private ==============================
 #pragma mark ===================================================================
 
+#pragma mark - hidden
+
+- (void)changeMapTile:(SXMapTile*)mapTile withTextureId:(TRId)textureId{
+    [_mapBuilder changeMapTile: mapTile withTextureId: textureId];
+}
+
 #pragma mark - setUp
 
 - (void)setUpMapBuilder:(SXMapAtlasDescription*)description{
@@ -64,14 +72,17 @@
 
 - (void)setUpTiles:(SXMapAtlasDescription*)description
        fromBuilder:(SXMapTileBuilder*)builder{
+    /* Note that it should be deported elseWhere */
     [builder generateTile];
 }
 
 #pragma mark - displayLogic
 
 - (void)displayTiles:(NSArray*)tilesList{
-    for(SXMapTile* tiles in tilesList)
+    for(SXMapTile* tiles in tilesList){
+        tiles.mapAtlas = self;
         [self addChild: tiles.sprite];
+    }
 }
 
 @end

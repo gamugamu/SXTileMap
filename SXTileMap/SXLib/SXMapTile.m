@@ -8,13 +8,23 @@
 
 #import "SXMapTile.h"
 #import "SXMapTile_hidden.h"
+#import "SXMapAtlas_hidden.h"
 
 @implementation SXMapTile
 @synthesize  sprite             = _sprite,
-             tileDescription    = _tileDescription;
+             tileDescription    = _tileDescription,
+             mapAtlas           = _mapAtlas,
+             textureId          = _textureId;
 
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
+
+#pragma mark - getter / setter
+
+- (void)setTextureId:(TRId)textureId{
+    /* Note that a SXMapAtlas will own one mapBuilder per layer */
+    [_mapAtlas changeMapTile: self withTextureId: textureId];
+}
 
 #pragma mark - alloc / dealloc
 

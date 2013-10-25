@@ -48,6 +48,12 @@ inline SXRect getTextureRectForTileInMap(_SXTileDescription,
     return (idx < _tiles.count)? _tiles[idx] : nil;
 }
 
+- (void)changeMapTile:(SXMapTile*)mapTile withTextureId:(TRId)textureId{
+    SXRect rect = getTextureRectForTileInMap(mapTile.tileDescription,
+                                                 (__bridge _SXMapDescription *)(_mapDescription));
+    mapTile.sprite.texture = [self texture: _texture fromRect: rect];
+}
+
 - (NSUInteger)indexForPoint:(SXPoint)pnt{
     _SXMapDescription* des = (_SXMapDescription*)_mapDescription.data;
     return pnt.x + pnt.y * des->sizeGrid.column;

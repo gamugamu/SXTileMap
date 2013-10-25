@@ -9,9 +9,14 @@
 #import "SXMapTile.h"
 #import "SXTypes.h"
 
+@class SXMapAtlas;
+
 @interface SXMapTile()
 
 @property(nonatomic, strong)SKSpriteNode* sprite;
+
+/* Should only be used by SXTileBuilder */
 @property(nonatomic, assign)_SXTileDescription tileDescription;
+@property(nonatomic, strong)SXMapAtlas* mapAtlas;
 
 @end

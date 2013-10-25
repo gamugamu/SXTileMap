@@ -46,7 +46,10 @@
     mapAtlas.xScale = .5f;
     mapAtlas.yScale = .5f;
     mapAtlas.position = CGPointMake(50, 100);
-    [mapAtlas tileAtPoint:(SXPoint){4, 4}].sprite.alpha = .5f;
+    SXMapTile* tile = [mapAtlas tileAtPoint:(SXPoint){4, 4}];
+    
+    tile.sprite.alpha = .5;
+    tile.textureId = 0;
     
     [self addChild: mapAtlas];
 }

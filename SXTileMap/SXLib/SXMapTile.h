@@ -7,11 +7,18 @@
 //
 
 #import <SpriteKit/SKSpriteNode.h>
+#include "SXTypes.h"
 
+@class SXMapAtlas;
 //----------------------------------------------------------------------------//
 // SXMapTile define what is a tile.
 //----------------------------------------------------------------------------//
 @interface SXMapTile : NSObject
 
+@property(nonatomic, assign)TRId textureId;
+
 @property(nonatomic, strong, readonly)SKSpriteNode* sprite;
+
+@property(nonatomic, strong, readonly)SXMapAtlas* mapAtlas;
+
 @end

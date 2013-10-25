@@ -28,9 +28,15 @@
 - (void)generateTile;
 
 /**
-    Return the indexed 
+    Return the tiles at the Map coordinate system. Return nil if can't be found. 
  */
 - (SXMapTile*)tileAtPoint:(SXPoint)pnt;
+
+/**
+    Change the texture of the tile by another one. Change are made with the same
+    texture file tile sprite. Don't change the texture if the TRId is unknow.
+ */
+- (void)changeMapTile:(SXMapTile*)mapTile withTextureId:(TRId)textureId;
 
 /**
     All the tiles that the SXMapTileMap has created. Return nil if allGeneratedTiles
