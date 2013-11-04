@@ -34,10 +34,16 @@
 
 _SXMapDescription description;
 
+#warning a enlever
 - (void)fakeADescription{
     description.sizeGrid = (_SXGridSize){5, 5};
     description.sizeTile = (_SXTileSize){20, 20};
     _data = &description;
 }
 
+- (NSString*)description{
+    return [NSString stringWithFormat: @"[SXMapDescription %p] size %u %u, tileSize %u %u",
+            self, description.sizeGrid.column, description.sizeGrid.row,
+            description.sizeTile.width, description.sizeTile.height];
+}
 @end

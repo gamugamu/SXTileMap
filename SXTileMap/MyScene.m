@@ -12,9 +12,11 @@
 #import "SXMapTile.h"
 
 @interface MyScene()
+@property(nonatomic, strong)SXMapAtlas* mapAtlas;
 @end
 
 @implementation MyScene
+@synthesize mapAtlas = _mapAtlas;
 
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
@@ -42,16 +44,23 @@
 
 - (void)testMapAtlas{
     // note that rgb.png is not what a file is. For the moment we are still under development.
-    SXMapAtlas* mapAtlas = [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"rgb.png"]];
-    mapAtlas.xScale = .5f;
-    mapAtlas.yScale = .5f;
-    mapAtlas.position = CGPointMake(50, 100);
-    SXMapTile* tile = [mapAtlas tileAtPoint:(SXPoint){4, 4}];
-    
-    tile.sprite.alpha = .5;
-    tile.textureId = 0;
-    
-    [self addChild: mapAtlas];
+    self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"rgb.png"]];
+    _mapAtlas.xScale = .5f;
+    _mapAtlas.yScale = .5f;
+    _mapAtlas.position = CGPointMake(50, 100);
+
+    [self addChild: _mapAtlas];
+    [self changeTexture];
+}
+
+- (void)changeTexture{
+    static int count = 0;
+    SXMapTile* tile = [_mapAtlas tileAtPoint:(SXPoint){4, 4}];
+    tile.textureId = ++count;
+
+    [self performSelector: @selector(changeTexture)
+               withObject: nil
+               afterDelay: 1];
 }
 
 #pragma mark - logic

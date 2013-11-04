@@ -16,6 +16,9 @@
 inline SXRect getTextureRectForTileInMap(_SXTileDescription,
                                          _SXMapDescription* const);
 
+inline SXRect getTextureRectForTRIDInMap(TRId trid,
+                                         _SXMapDescription* const);
+
 @interface SXMapTileBuilder()
 @property(nonatomic, strong)SXMapAtlasDescription* mapDescription;
 @property(nonatomic, strong)NSArray* allGeneratedTiles;
@@ -49,8 +52,9 @@ inline SXRect getTextureRectForTileInMap(_SXTileDescription,
 }
 
 - (void)changeMapTile:(SXMapTile*)mapTile withTextureId:(TRId)textureId{
-    SXRect rect = getTextureRectForTileInMap(mapTile.tileDescription,
-                                                 (__bridge _SXMapDescription *)(_mapDescription));
+    SXRect rect = getTextureRectForTRIDInMap(textureId,
+                                            _mapDescription.data);
+    
     mapTile.sprite.texture = [self texture: _texture fromRect: rect];
 }
 
@@ -92,7 +96,8 @@ inline SXRect getTextureRectForTileInMap(_SXTileDescription,
                                             texture: _texture];
             
             UInt32 tid = i * des->sizeGrid.column + j;
-            UInt32 rid = tid /* should be taken from mapAtlasDescription */;
+#warning * should be taken from mapAtlasDescription
+            UInt32 rid = tid;
             
             _SXTileDescription tDescription = {tid, rid, {j, i}};
             tiles.tileDescription = tDescription;
@@ -106,10 +111,30 @@ inline SXRect getTextureRectForTileInMap(_SXTileDescription,
 
 SXRect getTextureRectForTileInMap(_SXTileDescription td,
                                   _SXMapDescription* const md){
-    return (SXRect){ td.position.x * md->sizeTile.width,
+    return (SXRect){ td.position.x * (md->sizeTile.width),
                      td.position.y * md->sizeTile.height,
                      md->sizeTile.width,
                      md->sizeTile.height};
+}
+
+SXRect getTextureRectForTRIDInMap(TRId trid,
+                                  _SXMapDescription* const md){
+    float g_w   = 1.f / md->sizeGrid.column;   // grid width
+    float g_h   = 1.f / md->sizeGrid.row;      // grid height
+    
+    float currentRowSubOne = (trid % md->sizeGrid.row) * g_w;
+    
+    // should not outBound
+    trid %= md->sizeGrid.column * md->sizeGrid.row;
+
+    // could crash if trid and md->sizeGrid.column are null
+    SXRect rect =  (SXRect){
+                     currentRowSubOne,
+                     ((uint)(trid / md->sizeGrid.column) * g_h),
+                     g_w,
+                     g_h};
+
+    return rect;
 }
 
 - (SKTexture*)texture:(SKTexture*)texture fromRect:(SXRect)rect{
@@ -124,7 +149,7 @@ SXRect getTextureRectForTileInMap(_SXTileDescription td,
     SKTexture* crop     = [self texture: texture fromRect: rect];
     SKSpriteNode* node  = [SKSpriteNode spriteNodeWithTexture: crop];
     CGPoint pos         = CGPointMake(node.size.width * pnt.row,
-                                          node.size.height * pnt.column);
+                                      node.size.height * pnt.column);
     node.position = pos;
     
     return node;
