@@ -47,14 +47,14 @@
 #pragma mark - override
 
 - (NSString*)description{
-    printf("--- %u %u\n", _size.column, _size.row);
-    for(int i = 0; i < _size.column; ++i){
-        for (int j = 0; j < _size.row; ++j) {
-            printf("(%i, %i)[%i]", i, j, _matrix[i][j]);
-        }
-        printf("\n");
-    }
-    return nil;
+    std::string d;
+    
+    for(int i = 0; i < _size.column; ++i)
+        for (int j = 0; j < _size.row; ++j)
+            d += "[" + std::to_string(_matrix[i][j]) + "]";
+        d += "\n";
+
+    return [NSString stringWithFormat: @"\n[SX2DMatrice %p]\n%s", self, d.c_str()];
 }
 
 #pragma mark -------------------------- private --------------------------------
@@ -102,13 +102,11 @@
 }
 
 - (void)buildMatrix:(NSArray*)array onError:(NSError**)cb_error{
-    matrixSize size;
-    
     if(cb_error)
-        *cb_error = [self check2DMatrixValidity: array matrixSize: &size];
-    
+        *cb_error = [self check2DMatrixValidity: array matrixSize: &_size];
+
     if(cb_error && !*cb_error)
-        [self setUp2DMatrix: array matrixSize: size];
+        [self setUp2DMatrix: array matrixSize: _size];
 }
 
 #pragma mark - setup
@@ -116,24 +114,15 @@
 // call this method only if you know the 2DMatrix is valid
 - (void)setUp2DMatrix:(NSArray*)array matrixSize:(matrixSize)mSize{
     for (int i = 0; i < array.count; i++) {
-        std::vector<unsigned> l{mSize.row, 0};
+        std::vector<unsigned> l(mSize.row, 0);
+        
         NSArray* rows = array[i];
 
-        for (int j = 0; j < rows.count; j++){
+        for (int j = 0; j < rows.count; j++)
             l[j] = [rows[j] unsignedIntegerValue];
-            printf("sn %u %u\n", j, l[j]);
-        }
+
         _matrix.push_back(l);
     }
-    
-    for(int i = 0; i < _size.column; ++i){
-        for (int j = 0; j < _size.row; ++j) {
-            printf("[%i]", _matrix[i][j]);
-        }
-        printf("\n");
-    }
-    
-    printf("test %i %i", _matrix[0][2], _matrix[0][3]);
 }
 
 @end
