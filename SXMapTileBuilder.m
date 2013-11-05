@@ -35,7 +35,7 @@ inline SXRect getTextureRectForTRIDInMap(TRId* trid,
     return self;
 }
 
-- (void)generateTile:(SXCoordinateSpace)spaceCoordinate{
+- (void)generateTileFromCoordinateSpace:(SXCoordinateSpace)spaceCoordinate{
     if(!_tiles)
         self.allGeneratedTiles = [self createTilesFromMapAtlasDesctiptor: _mapDescription];
 }

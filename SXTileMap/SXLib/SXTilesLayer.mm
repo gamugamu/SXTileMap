@@ -16,6 +16,7 @@
 
 @interface SXTilesLayer()
 @property(nonatomic, strong)SXMapTileBuilder* mapBuilder;
+@property(nonatomic, strong)SXMapAtlas* mapAtlas;
 @end
 
 using namespace std;
@@ -95,9 +96,7 @@ using namespace std;
     for (int i = 0; i < m.size(); ++i) {
         for(int j = 0; j < m[i].size(); ++j){
             SXMapTile* tile = [self tileAtPoint:(SXPoint){static_cast<uint_fast8_t>(i),
-                                                          static_cast<uint_fast8_t>(j)}];
-            NSLog(@"get tile %@ %u", tile,  m[i][j]);
-            
+                                                          static_cast<uint_fast8_t>(j)}];            
             tile.textureId = m[i][j];
         }
     }

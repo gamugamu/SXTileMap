@@ -8,7 +8,9 @@
 
 #import "SXMapAtlasDescription.h"
 
-@interface SXMapAtlasDescription()
+@interface SXMapAtlasDescription(){
+    _SXMapDescription _description;
+}
 @property(nonatomic, strong)NSString* fileName;
 @end
 
@@ -32,18 +34,17 @@
 #pragma mark ============================ private ==============================
 #pragma mark ===================================================================
 
-_SXMapDescription description;
 
 #warning a enlever
 - (void)fakeADescription{
-    description.sizeGrid = (_SXGridSize){5, 5};
-    description.sizeTile = (_SXTileSize){20, 20};
-    _data = &description;
+    _description.sizeGrid = (_SXGridSize){5, 5};
+    _description.sizeTile = (_SXTileSize){20, 20};
+    //_data = &_description;
 }
 
 - (NSString*)description{
     return [NSString stringWithFormat: @"[SXMapDescription %p] size %u %u, tileSize %u %u",
-            self, description.sizeGrid.column, description.sizeGrid.row,
-            description.sizeTile.width, description.sizeTile.height];
+            self, _description.sizeGrid.column, _description.sizeGrid.row,
+            _description.sizeTile.width, _description.sizeTile.height];
 }
 @end

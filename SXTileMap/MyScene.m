@@ -45,12 +45,6 @@
 #pragma mark - setup
 
 - (void)testMapAtlas{
-    NSError* __autoreleasing error = nil;
-    SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@24, @24, @5, @5],
-                                                                   @[@12, @12, @12, @12]]
-                                                        onError: &error];
-    NSLog(@"error %@ - %@", error, matrix);
-    
     // note that rgb.png is not what a file is. For the moment we are still under development.
     self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"rgb.png"]];
     _mapAtlas.xScale    = .5f;
@@ -58,6 +52,12 @@
     _mapAtlas.position  = CGPointMake(50, 100);
 
     [self addChild: _mapAtlas];
+    
+    NSError* __autoreleasing error = nil;
+    SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@24, @24, @5, @5],
+                                                                   @[@12, @12, @12, @12]]
+                                                        onError: &error];
+    NSLog(@"error %@ - %@", error, matrix);
     
     SXTilesLayer* layer = [_mapAtlas allLayers][0];
     [layer changeTilesTextureIdWith2DMatrix: matrix];
