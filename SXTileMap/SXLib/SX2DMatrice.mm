@@ -8,13 +8,17 @@
 
 #import "SX2DMatrice.h"
 #import <vector>
+#import <string>
 
 @interface SX2DMatrice(){
-    std::vector< std::vector<unsigned>> matrix;
+    std::vector< std::vector<unsigned>> _matrix;
 }
+
+@property(nonatomic, assign)matrixSize size;
 @end
 
 @implementation SX2DMatrice
+@synthesize size = _size;
 
 #pragma mark -------------------------- public ---------------------------------
 #pragma mark -------------------------------------------------------------------
@@ -37,7 +41,20 @@
 #pragma mark - getter  / setter
 
 - (matrixSize)size{
-    return (matrixSize){0, 0};
+    return _size;
+}
+
+#pragma mark - override
+
+- (NSString*)description{
+    printf("--- %u %u\n", _size.column, _size.row);
+    for(int i = 0; i < _size.column; ++i){
+        for (int j = 0; j < _size.row; ++j) {
+            printf("(%i, %i)[%i]", i, j, _matrix[i][j]);
+        }
+        printf("\n");
+    }
+    return nil;
 }
 
 #pragma mark -------------------------- private --------------------------------
@@ -57,7 +74,7 @@
     // let it deals with direct C++ / C injection.
     for (id object in array){
         if([object isKindOfClass: nsArrayClass]){
-            NSUInteger count = [object count];
+            int count = [object count];
             
             // if the row are not the same size, the greatest will be for
             // all rows.
@@ -76,6 +93,11 @@
             break;
         }
     }
+
+    if(!error)
+        _size = {static_cast<uint_fast8_t>(vectorSize),
+                 static_cast<uint_fast8_t>(array.count)};
+    
     return error;
 }
 
@@ -96,13 +118,22 @@
     for (int i = 0; i < array.count; i++) {
         std::vector<unsigned> l{mSize.row, 0};
         NSArray* rows = array[i];
-        
-        for (int j = 0; j < rows.count; j++)
+
+        for (int j = 0; j < rows.count; j++){
             l[j] = [rows[j] unsignedIntegerValue];
-        
-        matrix.push_back(l);
+            printf("sn %u %u\n", j, l[j]);
+        }
+        _matrix.push_back(l);
     }
-    printf("gfdf\n");
+    
+    for(int i = 0; i < _size.column; ++i){
+        for (int j = 0; j < _size.row; ++j) {
+            printf("[%i]", _matrix[i][j]);
+        }
+        printf("\n");
+    }
+    
+    printf("test %i %i", _matrix[0][2], _matrix[0][3]);
 }
 
 @end

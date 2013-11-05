@@ -46,10 +46,10 @@
 
 - (void)testMapAtlas{
     NSError* __autoreleasing error = nil;
-    SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@0, @1, @0, @1],
-                                                                   @[@0, @1, @0, @1]]
+    SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@0, @1, @2, @3],
+                                                                   @[@0, @1, @2, @3]]
                                                         onError: &error];
-    NSLog(@"error %@", error);
+    NSLog(@"error %@ - %@", error, matrix);
     
     // note that rgb.png is not what a file is. For the moment we are still under development.
     self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"rgb.png"]];
