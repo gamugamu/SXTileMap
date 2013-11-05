@@ -22,19 +22,20 @@
 - (id)initTilesLayerWithLayerDescription:(void*)description;
 
 /**
- Return a tile from the mapAtlas coordinate system.
- Return nil, if that tile doens't exit.
+    Return a tile from the mapAtlas coordinate system.
+    Return nil, if that tile doens't exit.
  */
 - (SXMapTile*)tileAtPoint:(SXPoint)pnt;
 
 /**
- Return all Tiles
- */
-- (NSArray*)allTiles;
-
-/**
- Return an array of tiles from a region
+    Return a list of tiles from a region.
+    Return only tiles from valid position.
  */
 - (NSArray*)tilesFromRegion:(void*)region;
+
+/**
+    Return all Tiles
+ */
+- (NSArray*)allTiles;
 
 @end

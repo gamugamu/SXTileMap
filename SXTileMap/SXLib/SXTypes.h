@@ -27,6 +27,8 @@ typedef CGRect SXRect;
 // Texture region id
 typedef unsigned TRId;
 
+typedef _SXGridSize matrixSize;
+
 // Represent the coordinate system.
 typedef struct{
     uint_fast8_t x;
