@@ -45,7 +45,11 @@
 #pragma mark - setup
 
 - (void)testMapAtlas{
-    SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: nil onError: nil];
+    NSError* __autoreleasing error = nil;
+    SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@0, @1, @0, @1],
+                                                                   @[@0, @1, @0, @1]]
+                                                        onError: &error];
+    NSLog(@"error %@", error);
     
     // note that rgb.png is not what a file is. For the moment we are still under development.
     self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"rgb.png"]];

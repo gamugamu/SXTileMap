@@ -19,14 +19,9 @@
 #pragma mark -------------------------- public ---------------------------------
 #pragma mark -------------------------------------------------------------------
 
-- (id)initWith2DMatrix:(NSArray*)array onError:(NSError**)cb_error{
+- (id)initWith2DMatrix:(NSArray*)array onError:(NSError* __autoreleasing*)cb_error{
     if(self = [super init]){
-        matrixSize size;
-        
-        *cb_error = [self check2DMatrixValidity: array matrixSize: &size];
-        
-        if(!*cb_error)
-            [self setUp2DMatrix: array matrixSize: size];
+        [self buildMatrix: array onError: cb_error];
     }
     return self;
 }
@@ -69,9 +64,10 @@
             if(vectorSize < count)
                 vectorSize = count;
                 
-            for (id subObject in array)
+            for (id subObject in object)
                 if(![subObject isKindOfClass: nsNumberClass])
                     goto badMatrix;
+            
         }else{
             badMatrix:
             error = [NSError errorWithDomain: @"Bad2DMatrix"
@@ -81,6 +77,16 @@
         }
     }
     return error;
+}
+
+- (void)buildMatrix:(NSArray*)array onError:(NSError**)cb_error{
+    matrixSize size;
+    
+    if(cb_error)
+        *cb_error = [self check2DMatrixValidity: array matrixSize: &size];
+    
+    if(cb_error && !*cb_error)
+        [self setUp2DMatrix: array matrixSize: size];
 }
 
 #pragma mark - setup
@@ -96,6 +102,7 @@
         
         matrix.push_back(l);
     }
+    printf("gfdf\n");
 }
 
 @end
