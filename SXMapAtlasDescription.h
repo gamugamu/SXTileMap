@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SXTypes.h"
 
 //----------------------------------------------------------------------------//
 // SXMapAtlasDescription define what is a MapAtlas file.

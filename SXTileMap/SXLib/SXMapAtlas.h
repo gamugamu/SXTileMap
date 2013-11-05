@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SKNode.h>
 #import "SXMapAtlasDescription.h" // for SXPoint
+#import "SXTypes.h"
 
 @class SXMapAtlasDescription;
 @class SXTilesLayer;

@@ -7,7 +7,7 @@
 //
 
 #import "SXMapTile.h"
-#import "SXTypes.h"
+#import "SXTypes_private.h"
 
 @class SXTilesLayer;
 

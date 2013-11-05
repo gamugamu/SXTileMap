@@ -80,6 +80,7 @@
 		D3C33B1D18140D32008AED54 /* SXMapTile_hidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapTile_hidden.h; path = SXTileMap/SXLib/SXMapTile_hidden.h; sourceTree = "<group>"; };
 		EB0BCF4B181AAEF70026ABD3 /* SXTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXTypes.h; path = SXTileMap/SXLib/SXTypes.h; sourceTree = "<group>"; };
 		EB0BCF4C181ABEF70026ABD3 /* SXTilesLayer_hidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXTilesLayer_hidden.h; sourceTree = "<group>"; };
+		EB102D3418293305009039BF /* SXTypes_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SXTypes_private.h; path = SXTileMap/SXLib/SXTypes_private.h; sourceTree = "<group>"; };
 		EB469D481828E2AF003CDC9A /* SXTilesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXTilesLayer.h; path = SXTileMap/SXLib/SXTilesLayer.h; sourceTree = "<group>"; };
 		EB469D491828E2AF003CDC9A /* SXTilesLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SXTilesLayer.mm; path = SXTileMap/SXLib/SXTilesLayer.mm; sourceTree = "<group>"; };
 		EB469D4B1828EAF4003CDC9A /* SX2DMatrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SX2DMatrice.h; path = SXTileMap/SXLib/SX2DMatrice.h; sourceTree = "<group>"; };
@@ -240,6 +241,7 @@
 		D3C33B131812C582008AED54 /* SXPrivate */ = {
 			isa = PBXGroup;
 			children = (
+				EB102D3418293305009039BF /* SXTypes_private.h */,
 				D3C33B1D18140D32008AED54 /* SXMapTile_hidden.h */,
 				EB0BCF4C181ABEF70026ABD3 /* SXTilesLayer_hidden.h */,
 				EB469D4E1829076B003CDC9A /* SX2DMatrice_hidden.h */,
