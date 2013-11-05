@@ -41,7 +41,7 @@ typedef struct{
 typedef struct _SXMapDescription{
     _SXGridSize sizeGrid;
     _SXTileSize sizeTile;
-    unsigned layersCount;                   // Number of layer.
+    unsigned layersCount;                  // Number of layer.
     _SXTilesLayerDescription* layers;      // Layers description
 }_SXMapDescription;
 
