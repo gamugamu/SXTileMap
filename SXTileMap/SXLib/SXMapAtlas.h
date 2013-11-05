@@ -9,8 +9,8 @@
 #import <SpriteKit/SKNode.h>
 #import "SXMapAtlasDescription.h" // for SXPoint
 
-@class SXMapTile;
 @class SXMapAtlasDescription;
+@class SXTilesLayer;
 
 //----------------------------------------------------------------------------//
 // SXMapAtlas holds collection of tiles.
@@ -28,19 +28,7 @@
 - (id)initWithDescription:(SXMapAtlasDescription*)data;
 
 /**
-    Return a tile from the mapAtlas coordinate system.
-    Return nil, if that tile doens't exit.
+    Return all the layers holds by SXMapAtlas.
  */
-- (SXMapTile*)tileAtPoint:(SXPoint)pnt;
-
-/**
-    Return all Tiles
- */
-- (NSArray*)allTiles;
-
-/**
-    Return an array of tiles from a region
- */
-- (NSArray*)tilesFromRegion:(void*)region;
-
+@property(nonatomic, readonly)NSArray* /* SXTilesLayer */ allLayers;
 @end

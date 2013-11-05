@@ -10,6 +10,8 @@
 #include "SXTypes.h"
 
 @class SXMapAtlas;
+@class SXTilesLayer;
+
 //----------------------------------------------------------------------------//
 // SXMapTile define what is a tile.
 //----------------------------------------------------------------------------//
@@ -19,6 +21,6 @@
 
 @property(nonatomic, strong, readonly)SKSpriteNode* sprite;
 
-@property(nonatomic, strong, readonly)SXMapAtlas* mapAtlas;
+@property(nonatomic, strong, readonly)SXTilesLayer* layer;
 
 @end

@@ -9,7 +9,7 @@
 #import "SXMapTile.h"
 #import "SXTypes.h"
 
-@class SXMapAtlas;
+@class SXTilesLayer;
 
 @interface SXMapTile()
 
@@ -17,6 +17,6 @@
 
 /* Should only be used by SXTileBuilder */
 @property(nonatomic, assign)_SXTileDescription tileDescription;
-@property(nonatomic, strong)SXMapAtlas* mapAtlas;
+@property(nonatomic, strong)SXTilesLayer* layer;
 
 @end

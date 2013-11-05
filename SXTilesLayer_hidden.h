@@ -9,11 +9,11 @@
 #ifndef SXTileMap_SXMapAtlas_hidden_h
 #define SXTileMap_SXMapAtlas_hidden_h
 
-#import "SXMapAtlas.h"
+#import "SXTilesLayer.h"
 
 @class SXMapTile;
 
-@interface SXMapAtlas(hidden)
+@interface SXTilesLayer(hidden)
 
 - (void)changeMapTile:(SXMapTile*)mapTile withTextureId:(TRId)textureId;
 

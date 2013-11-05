@@ -10,6 +10,7 @@
 #import "SXMapAtlas.h"
 #import "SXMapAtlasDescription.h"
 #import "SXMapTile.h"
+#import "SXTilesLayer.h"
 
 @interface MyScene()
 @property(nonatomic, strong)SXMapAtlas* mapAtlas;
@@ -55,7 +56,7 @@
 
 - (void)changeTexture{
     static int count    = 0;
-    SXMapTile* tile     = [_mapAtlas tileAtPoint:(SXPoint){4, 4}];
+    SXMapTile* tile     = [[_mapAtlas allLayers][0] tileAtPoint:(SXPoint){4, 4}];
     tile.textureId      = ++count;
     
     [self performSelector: @selector(changeTexture)

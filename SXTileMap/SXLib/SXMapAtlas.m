@@ -7,17 +7,14 @@
 //
 
 #import "SXMapAtlas.h"
-#import "SXMapAtlas_hidden.h"
-#import "SXMapTile_hidden.h"
-#import "SXMapTileBuilder.h"
-#import "SXMapTile.h"
+#import "SXTilesLayer.h"
 
 @interface SXMapAtlas()
-@property(nonatomic, strong)SXMapTileBuilder* mapBuilder;
+@property(nonatomic, strong)NSArray* allLayers;
 @end
 
 @implementation SXMapAtlas
-@synthesize mapBuilder  = _mapBuilder;
+@synthesize allLayers   = _allLayers;
 
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
@@ -28,15 +25,9 @@
 
 - (id)initWithDescription:(SXMapAtlasDescription*)description{
     if(self = [super init]){
-        [self setUpMapBuilder: description];
-        [self setUpTiles: description fromBuilder: _mapBuilder];
-        [self displayTiles: _mapBuilder.allGeneratedTiles];
+        [self setUpLayers: (void*)description];
     }
     return self;
-}
-
-- (SXMapTile*)tileAtPoint:(SXPoint)pnt{
-    return [_mapBuilder tileAtPoint: pnt];
 }
 
 - (NSArray*)allTiles{
@@ -58,31 +49,10 @@
 #pragma mark ============================ private ==============================
 #pragma mark ===================================================================
 
-#pragma mark - hidden
-
-- (void)changeMapTile:(SXMapTile*)mapTile withTextureId:(TRId)textureId{
-    [_mapBuilder changeMapTile: mapTile withTextureId: textureId];
-}
-
-#pragma mark - setUp
-
-- (void)setUpMapBuilder:(SXMapAtlasDescription*)description{
-    self.mapBuilder = [[SXMapTileBuilder alloc] initFromDescription: description];
-}
-
-- (void)setUpTiles:(SXMapAtlasDescription*)description
-       fromBuilder:(SXMapTileBuilder*)builder{
-    /* Note that it should be deported elseWhere */
-    [builder generateTile];
-}
-
-#pragma mark - displayLogic
-
-- (void)displayTiles:(NSArray*)tilesList{
-    for(SXMapTile* tiles in tilesList){
-        tiles.mapAtlas = self;
-        [self addChild: tiles.sprite];
-    }
+- (void)setUpLayers:(void*)layerDescription{
+    SXTilesLayer* simpleLayer = [[SXTilesLayer alloc] initTilesLayerWithLayerDescription: layerDescription];
+    self.allLayers = @[simpleLayer];
+    [self addChild: simpleLayer];
 }
 
 @end
