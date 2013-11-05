@@ -44,6 +44,8 @@
 #pragma mark - description
 #warning a enlever
 - (void)fakeADescription{
+    [self allocDataSpace];
+    
     _description.sizeGrid = (_SXGridSize){5, 5};
     _description.sizeTile = (_SXTileSize){20, 20};
     _data = &_description;
@@ -58,10 +60,28 @@
 #pragma mark - memoryManagement
 
 - (void)allocDataSpace{
-   // _SXMapDescription.
+    _description.layers = malloc(sizeof(_SXTilesLayerDescription) * 2);
+    int test[] = {1, 2 ,3, 0, 4, 3, 9, 0, 1203};
+    
+    for (int i = 0; i < 2; i++) {
+        _SXTilesLayerDescription* des = (_description.layers + i);
+        
+        des->TRID_list = malloc(sizeof(50));
+        printf("get %p %p\n", des, des->TRID_list);
+        des->TRID_list[0] = (int)test[0];
+        des->TRID_list[1] = test[1];
+        des->TRID_list[2] = test[2];
+    };
+    
+    printf("test %u %u\n", _description.layers[0].TRID_list[0], _description.layers[0].TRID_list[2]);
 }
 
 - (void)freedDataSpace{
-
+ /*   for (int i = 0; i < 2; i++) {
+        _SXTilesLayerDescription* des = *(_description.layers + i);
+        free((void*)des->TRID_list);
+    };
+   */
+    free(_description.layers);
 }
 @end
