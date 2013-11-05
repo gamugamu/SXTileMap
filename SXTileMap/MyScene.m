@@ -54,10 +54,9 @@
 }
 
 - (void)changeTexture{
-    static int count = 0;
-    SXMapTile* tile = [_mapAtlas tileAtPoint:(SXPoint){4, 4}];
-    tile.textureId = ++count;
-    NSLog(@"tile %@", tile);
+    static int count    = 0;
+    SXMapTile* tile     = [_mapAtlas tileAtPoint:(SXPoint){4, 4}];
+    tile.textureId      = ++count;
     
     [self performSelector: @selector(changeTexture)
                withObject: nil

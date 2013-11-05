@@ -25,7 +25,7 @@ typedef struct{
 typedef CGRect SXRect;
 
 // Texture region id
-typedef UInt32 TRId;
+typedef unsigned TRId;
 
 // Represent the coordinate system.
 typedef struct{
@@ -34,7 +34,7 @@ typedef struct{
 }SXPoint;
 
 typedef struct{
-    UInt32 tileId;              // a unique id for each tile.
+    unsigned tileId;              // a unique id for each tile.
     TRId    textureRegionId;    // an id representing the region of the texture.
     SXPoint position;           // where the tile is into the map coordinate.
 }_SXTileDescription;

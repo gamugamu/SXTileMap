@@ -29,7 +29,7 @@
 #pragma mark - alloc / dealloc
 
 - (NSString*)description{
-    return [NSString stringWithFormat: @"[SXMapTile %p]\tid: %lu\t[x: %u y: %u]\ttrid: %lu",
+    return [NSString stringWithFormat: @"[SXMapTile %p]\tid: %u\t[x: %u y: %u]\ttrid: %u",
             self,
             _tileDescription.tileId,
             _tileDescription.position.x,
