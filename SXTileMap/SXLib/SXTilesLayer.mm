@@ -9,11 +9,15 @@
 #import "SXTilesLayer.h"
 #import "SXMapTile.h"
 #import "SXMapTile_hidden.h"
+#import "SX2DMatrice_hidden.h"
 #import "SXMapTileBuilder.h"
+#import <vector>
 
 @interface SXTilesLayer()
 @property(nonatomic, strong)SXMapTileBuilder* mapBuilder;
 @end
+
+using namespace std;
 
 @implementation SXTilesLayer
 @synthesize mapBuilder = _mapBuilder;
@@ -32,6 +36,11 @@
 
 - (SXMapTile*)tileAtPoint:(SXPoint)pnt{
     return [_mapBuilder tileAtPoint: pnt];
+}
+
+- (void)changeTilesTextureIdWith2DMatrix:(SX2DMatrice*)matrix2d{
+    vector<vector<unsigned> > m = [matrix2d getRawMatrixCopy];
+    [self changeTileTextureFromMatrix: m];
 }
 
 - (NSArray*)allTiles{
@@ -72,4 +81,16 @@
     }
 }
 
+- (void)changeTileTextureFromMatrix:(const vector<vector<unsigned> >&)m{
+    // Note that it is poorly designed. Improvement will be made later if necessary.
+    for (int i = 0; i < m.size(); ++i) {
+        for(int j = 0; j < m[i].size(); ++j){
+            SXMapTile* tile = [self tileAtPoint:(SXPoint){static_cast<uint_fast8_t>(i),
+                                                          static_cast<uint_fast8_t>(j)}];
+            NSLog(@"get tile %@ %u", tile,  m[i][j]);
+            
+            tile.textureId = m[i][j];
+        }
+    }
+}
 @end

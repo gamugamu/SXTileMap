@@ -29,7 +29,7 @@
 		D3C33B161812C947008AED54 /* SXMapAtlasDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B151812C947008AED54 /* SXMapAtlasDescription.m */; };
 		D3C33B191812CAA0008AED54 /* rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = D3C33B181812CAA0008AED54 /* rgb.png */; };
 		D3C33B1C1812CB17008AED54 /* SXMapTileBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B1B1812CB17008AED54 /* SXMapTileBuilder.m */; };
-		EB469D4A1828E2AF003CDC9A /* SXTilesLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = EB469D491828E2AF003CDC9A /* SXTilesLayer.m */; };
+		EB469D4A1828E2AF003CDC9A /* SXTilesLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB469D491828E2AF003CDC9A /* SXTilesLayer.mm */; };
 		EB469D4D1828EAF4003CDC9A /* SX2DMatrice.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB469D4C1828EAF4003CDC9A /* SX2DMatrice.mm */; };
 /* End PBXBuildFile section */
 
@@ -81,9 +81,10 @@
 		EB0BCF4B181AAEF70026ABD3 /* SXTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXTypes.h; path = SXTileMap/SXLib/SXTypes.h; sourceTree = "<group>"; };
 		EB0BCF4C181ABEF70026ABD3 /* SXTilesLayer_hidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXTilesLayer_hidden.h; sourceTree = "<group>"; };
 		EB469D481828E2AF003CDC9A /* SXTilesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXTilesLayer.h; path = SXTileMap/SXLib/SXTilesLayer.h; sourceTree = "<group>"; };
-		EB469D491828E2AF003CDC9A /* SXTilesLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXTilesLayer.m; path = SXTileMap/SXLib/SXTilesLayer.m; sourceTree = "<group>"; };
+		EB469D491828E2AF003CDC9A /* SXTilesLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SXTilesLayer.mm; path = SXTileMap/SXLib/SXTilesLayer.mm; sourceTree = "<group>"; };
 		EB469D4B1828EAF4003CDC9A /* SX2DMatrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SX2DMatrice.h; path = SXTileMap/SXLib/SX2DMatrice.h; sourceTree = "<group>"; };
 		EB469D4C1828EAF4003CDC9A /* SX2DMatrice.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SX2DMatrice.mm; path = SXTileMap/SXLib/SX2DMatrice.mm; sourceTree = "<group>"; };
+		EB469D4E1829076B003CDC9A /* SX2DMatrice_hidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SX2DMatrice_hidden.h; path = SXTileMap/SXLib/SX2DMatrice_hidden.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,7 +208,7 @@
 				D3C33B061812B316008AED54 /* SXMapAtlas.h */,
 				D3C33B071812B316008AED54 /* SXMapAtlas.m */,
 				EB469D481828E2AF003CDC9A /* SXTilesLayer.h */,
-				EB469D491828E2AF003CDC9A /* SXTilesLayer.m */,
+				EB469D491828E2AF003CDC9A /* SXTilesLayer.mm */,
 				EB469D4B1828EAF4003CDC9A /* SX2DMatrice.h */,
 				EB469D4C1828EAF4003CDC9A /* SX2DMatrice.mm */,
 				D3C33B0C1812C0C9008AED54 /* SXMutableMapAtlas.h */,
@@ -241,6 +242,7 @@
 			children = (
 				D3C33B1D18140D32008AED54 /* SXMapTile_hidden.h */,
 				EB0BCF4C181ABEF70026ABD3 /* SXTilesLayer_hidden.h */,
+				EB469D4E1829076B003CDC9A /* SX2DMatrice_hidden.h */,
 				D3C33B1A1812CB17008AED54 /* SXMapTileBuilder.h */,
 				D3C33B1B1812CB17008AED54 /* SXMapTileBuilder.m */,
 			);
@@ -360,7 +362,7 @@
 				D3C33AE31812B2AB008AED54 /* ViewController.m in Sources */,
 				D3C33ADA1812B2AB008AED54 /* AppDelegate.m in Sources */,
 				D3C33B161812C947008AED54 /* SXMapAtlasDescription.m in Sources */,
-				EB469D4A1828E2AF003CDC9A /* SXTilesLayer.m in Sources */,
+				EB469D4A1828E2AF003CDC9A /* SXTilesLayer.mm in Sources */,
 				D3C33AD61812B2AB008AED54 /* main.m in Sources */,
 				D3C33B081812B316008AED54 /* SXMapAtlas.m in Sources */,
 				D3C33B0E1812C0C9008AED54 /* SXMutableMapAtlas.m in Sources */,

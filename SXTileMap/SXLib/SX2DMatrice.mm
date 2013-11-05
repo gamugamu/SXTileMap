@@ -7,6 +7,7 @@
 //
 
 #import "SX2DMatrice.h"
+#import "SX2DMatrice_hidden.h"
 #import <vector>
 #import <string>
 
@@ -59,6 +60,12 @@
 
 #pragma mark -------------------------- private --------------------------------
 #pragma mark -------------------------------------------------------------------
+
+#pragma mark - hidden
+
+- (std::vector< std::vector<unsigned> >)getRawMatrixCopy{
+    return _matrix;
+}
 
 #pragma mark - logic
 

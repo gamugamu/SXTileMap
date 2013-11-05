@@ -10,6 +10,7 @@
 #import "SXTypes.h"
 
 @class SXMapTile;
+@class SX2DMatrice;
 
 //----------------------------------------------------------------------------//
 // SXTilesLayer holds collection of tiles.
@@ -26,6 +27,11 @@
     Return nil, if that tile doens't exit.
  */
 - (SXMapTile*)tileAtPoint:(SXPoint)pnt;
+
+/**
+    Change all the tiles corresponding tto the matrix2d
+ */
+- (void)changeTilesTextureIdWith2DMatrix:(SX2DMatrice*)matrix2d;
 
 /**
     Return a list of tiles from a region.

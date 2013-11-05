@@ -46,8 +46,8 @@
 
 - (void)testMapAtlas{
     NSError* __autoreleasing error = nil;
-    SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@0, @1, @2, @3],
-                                                                   @[@0, @1, @2, @3]]
+    SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@12, @12, @12, @12],
+                                                                   @[@12, @12, @12, @12]]
                                                         onError: &error];
     NSLog(@"error %@ - %@", error, matrix);
     
@@ -58,7 +58,11 @@
     _mapAtlas.position  = CGPointMake(50, 100);
 
     [self addChild: _mapAtlas];
-    [self changeTexture];
+    
+    SXTilesLayer* layer = [_mapAtlas allLayers][0];
+    [layer changeTilesTextureIdWith2DMatrix: matrix];
+    
+    //[self changeTexture];
 }
 
 - (void)changeTexture{
