@@ -11,6 +11,7 @@
 #import "SXMapTile_hidden.h"
 #import "SX2DMatrice_hidden.h"
 #import "SXMapTileBuilder.h"
+#import "SXMapAtlas.h"
 #import <vector>
 
 @interface SXTilesLayer()
@@ -20,7 +21,9 @@
 using namespace std;
 
 @implementation SXTilesLayer
-@synthesize mapBuilder = _mapBuilder;
+@synthesize mapBuilder                  = _mapBuilder,
+            mapAtlas                    = _mapAtlas,
+            mapAtlasSpaceCoordinate     = _mapAtlasSpaceCoordinate;
 
 #pragma mark -------------------------- public ---------------------------------
 #pragma mark -------------------------------------------------------------------
@@ -51,6 +54,12 @@ using namespace std;
     return nil;
 }
 
+#pragma mark - alloc / dealloc
+
+- (SXCoordinateSpace)mapAtlasSpaceCoordinate{
+    return _mapAtlas.currenSpaceCoordinate;
+}
+
 #pragma mark -------------------------- private --------------------------------
 #pragma mark -------------------------------------------------------------------
 
@@ -69,7 +78,7 @@ using namespace std;
 - (void)setUpTiles:(SXMapAtlasDescription*)description
        fromBuilder:(SXMapTileBuilder*)builder{
     /* Note that it should be deported elseWhere */
-    [builder generateTile];
+    [builder generateTileFromCoordinateSpace: _mapAtlas.currenSpaceCoordinate];
 }
 
 #pragma mark - displayLogic

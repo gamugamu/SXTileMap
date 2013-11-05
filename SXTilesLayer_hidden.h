@@ -9,9 +9,12 @@
 #import "SXTilesLayer.h"
 
 @class SXMapTile;
+@class SXMapAtlas;
 
 @interface SXTilesLayer(hidden)
 
 - (void)changeMapTile:(SXMapTile*)mapTile withTextureId:(TRId)textureId;
+
+@property(nonatomic, strong)SXMapAtlas* mapAtlas;
 
 @end

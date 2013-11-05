@@ -46,7 +46,7 @@
 
 - (void)testMapAtlas{
     NSError* __autoreleasing error = nil;
-    SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@12, @12, @12, @12],
+    SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@24, @24, @5, @5],
                                                                    @[@12, @12, @12, @12]]
                                                         onError: &error];
     NSLog(@"error %@ - %@", error, matrix);

@@ -31,4 +31,9 @@
     Return all the layers holds by SXMapAtlas.
  */
 @property(nonatomic, readonly)NSArray* /* SXTilesLayer */ allLayers;
+
+/**
+    Return the current coordinate space.
+ */
+@property(nonatomic, assign)SXCoordinateSpace currenSpaceCoordinate;
 @end

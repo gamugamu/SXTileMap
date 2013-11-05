@@ -11,6 +11,7 @@
 
 @class SXMapTile;
 @class SX2DMatrice;
+@class SXMapAtlas;
 
 //----------------------------------------------------------------------------//
 // SXTilesLayer holds collection of tiles.
@@ -43,5 +44,15 @@
     Return all Tiles
  */
 - (NSArray*)allTiles;
+
+/**
+    Return the parent MapAtlas.
+ */
+@property(nonatomic, readonly)SXMapAtlas* mapAtlas;
+
+/**
+    Return the mapAtlas coordinateSpace.
+ */
+@property(nonatomic, readonly)SXCoordinateSpace mapAtlasSpaceCoordinate;
 
 @end

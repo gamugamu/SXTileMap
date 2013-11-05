@@ -25,7 +25,7 @@
 /**
     Generate all the tiles from the SXMapAtlasDescription*.
  */
-- (void)generateTile;
+- (void)generateTileFromCoordinateSpace:(SXCoordinateSpace)spaceCoordinate;
 
 /**
     Return the tiles at the Map coordinate system. Return nil if can't be found. 

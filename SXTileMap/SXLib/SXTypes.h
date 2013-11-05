@@ -41,6 +41,14 @@ typedef struct{
     SXPoint position;           // where the tile is into the map coordinate.
 }_SXTileDescription;
 
+// Represent the coordinate space. By default bottomLeft.
+typedef enum{
+    SXCoordinateBottomLeft,
+    SXCoordinateBottomRight,
+    SXCoordinateTopLeft,
+    SXCoordinateTopRight
+}SXCoordinateSpace;
+
 typedef struct{
     _SXGridSize sizeGrid;
     _SXTileSize sizeTile;

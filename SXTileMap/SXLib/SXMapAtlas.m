@@ -8,13 +8,15 @@
 
 #import "SXMapAtlas.h"
 #import "SXTilesLayer.h"
+#import "SXTilesLayer_hidden.h"
 
 @interface SXMapAtlas()
 @property(nonatomic, strong)NSArray* allLayers;
 @end
 
 @implementation SXMapAtlas
-@synthesize allLayers   = _allLayers;
+@synthesize allLayers               = _allLayers,
+            currenSpaceCoordinate   = _currenSpaceCoordinate;
 
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
@@ -38,6 +40,14 @@
     return nil;
 }
 
+#pragma mark - getter / setter
+
+- (void)setCurrenSpaceCoordinate:(SXCoordinateSpace)currenSpaceCoordinate{
+    if(currenSpaceCoordinate != _currenSpaceCoordinate){
+    
+    }
+}
+
 #pragma mark - override
 
 - (CGRect)calculateAccumulatedFrame{
@@ -50,7 +60,9 @@
 #pragma mark ===================================================================
 
 - (void)setUpLayers:(void*)layerDescription{
-    SXTilesLayer* simpleLayer = [[SXTilesLayer alloc] initTilesLayerWithLayerDescription: layerDescription];
+    SXTilesLayer* simpleLayer   = [[SXTilesLayer alloc] initTilesLayerWithLayerDescription: layerDescription];
+    simpleLayer.mapAtlas        = self;
+    
     self.allLayers = @[simpleLayer];
     [self addChild: simpleLayer];
 }

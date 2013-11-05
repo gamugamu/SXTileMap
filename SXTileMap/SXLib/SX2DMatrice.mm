@@ -50,10 +50,12 @@
 - (NSString*)description{
     std::string d;
     
-    for(int i = 0; i < _size.column; ++i)
+    for(int i = 0; i < _size.column; ++i){
         for (int j = 0; j < _size.row; ++j)
             d += "[" + std::to_string(_matrix[i][j]) + "]";
+
         d += "\n";
+    }
 
     return [NSString stringWithFormat: @"\n[SX2DMatrice %p]\n%s", self, d.c_str()];
 }
