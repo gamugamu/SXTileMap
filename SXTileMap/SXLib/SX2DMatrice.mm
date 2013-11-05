@@ -21,20 +21,22 @@
 
 - (id)initWith2DMatrix:(NSArray*)array onError:(NSError**)cb_error{
     if(self = [super init]){
-        *cb_error = [self check2DMatrixValidity: array];
+        matrixSize size;
+        
+        *cb_error = [self check2DMatrixValidity: array matrixSize: &size];
         
         if(!*cb_error)
-            [self setUp2DMatrix: array];
+            [self setUp2DMatrix: array matrixSize: size];
     }
     return self;
 }
 
 - (void)addRow:(NSArray*)array{
-
+    // todo
 }
 
 - (void)addCollumn:(NSArray*)array{
-
+    // todo
 }
 
 #pragma mark - getter  / setter
@@ -48,17 +50,25 @@
 
 #pragma mark - logic
 
-- (NSError*)check2DMatrixValidity:(NSArray*)array{
+- (NSError*)check2DMatrixValidity:(NSArray*)array matrixSize:(matrixSize*)size{
     NSError* error = nil;
     Class nsArrayClass  = [NSArray class];
     Class nsNumberClass = [NSNumber class];
-
+    int vectorSize      = -1;
+    
     // Note that checking a 2D matrix is epensively huge and unessecary
     // due to obj-c lack of static checking. This will not happen if we direclty
     // deal with C++ colletion. But SX2DMatrix is a front-end user, and we can't
     // let it deals with direct C++ / C injection.
     for (id object in array){
         if([object isKindOfClass: nsArrayClass]){
+            NSUInteger count = [object count];
+            
+            // if the row are not the same size, the greatest will be for
+            // all rows.
+            if(vectorSize < count)
+                vectorSize = count;
+                
             for (id subObject in array)
                 if(![subObject isKindOfClass: nsNumberClass])
                     goto badMatrix;
@@ -75,8 +85,17 @@
 
 #pragma mark - setup
 
-- (void)setUp2DMatrix:(NSArray*)array{
-
+// call this method only if you know the 2DMatrix is valid
+- (void)setUp2DMatrix:(NSArray*)array matrixSize:(matrixSize)mSize{
+    for (int i = 0; i < array.count; i++) {
+        std::vector<unsigned> l{mSize.row, 0};
+        NSArray* rows = array[i];
+        
+        for (int j = 0; j < rows.count; j++)
+            l[j] = [rows[j] unsignedIntegerValue];
+        
+        matrix.push_back(l);
+    }
 }
 
 @end

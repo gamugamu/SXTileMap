@@ -14,7 +14,7 @@
 //----------------------------------------------------------------------------//
 @interface SX2DMatrice : NSObject
 
-- (id)initWith2DMatrix:(NSArray*)array;
+- (id)initWith2DMatrix:(NSArray*)array onError:(NSError**)cb_error;
 
 - (void)addRow:(NSArray*)array;
 
