@@ -235,6 +235,8 @@
 		D3C33B121812C57A008AED54 /* SXLib */ = {
 			isa = PBXGroup;
 			children = (
+				EB654136182BE06900CC6BD5 /* encoder/Decoder */,
+				EB654135182BE06000CC6BD5 /* compressor */,
 				D3C33B131812C582008AED54 /* SXPrivate */,
 				D3C33B0F1812C541008AED54 /* SXMapObject */,
 			);
@@ -250,8 +252,6 @@
 				EB469D4E1829076B003CDC9A /* SX2DMatrice_hidden.h */,
 				D3C33B1A1812CB17008AED54 /* SXMapTileBuilder.h */,
 				D3C33B1B1812CB17008AED54 /* SXMapTileBuilder.m */,
-				EB102D36182941E3009039BF /* SXDecoder.h */,
-				EB102D37182941E3009039BF /* SXDecoder.m */,
 			);
 			name = SXPrivate;
 			sourceTree = "<group>";
@@ -262,6 +262,22 @@
 				D3C33B181812CAA0008AED54 /* rgb.png */,
 			);
 			name = img;
+			sourceTree = "<group>";
+		};
+		EB654135182BE06000CC6BD5 /* compressor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = compressor;
+			sourceTree = "<group>";
+		};
+		EB654136182BE06900CC6BD5 /* encoder/Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				EB102D36182941E3009039BF /* SXDecoder.h */,
+				EB102D37182941E3009039BF /* SXDecoder.m */,
+			);
+			name = encoder/Decoder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
