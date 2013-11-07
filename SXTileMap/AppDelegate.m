@@ -7,11 +7,34 @@
 //
 
 #import "AppDelegate.h"
+#import "lzfx.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    unsigned lenght = 200;
+    
+    char test[]     = "a_a_a_a_a_a_a_a_a\n";
+    char* output    = (char*)calloc(lenght, sizeof(char));
+    
+    if(output == NULL)
+        printf("failed\n");
+    
+    printf("%zu size of %zu\n", sizeof(output) / sizeof(*output), sizeof(test) / sizeof(*test));
+    
+    int success = lzfx_compress(&test, sizeof(test) / sizeof(*test),
+                                output, &lenght);
+    
+    printf("[%i] result %s %s %u\n", success, test, output, lenght);
+    
+    success = lzfx_decompress(output, lenght,
+                              &test,  &lenght);
+    
+    // insert code here...
+    
+    printf("[%i] result_2 ---> %s %s %u\n", success, output, test, lenght);
+
     // Override point for customization after application launch.
     return YES;
 }
