@@ -66,14 +66,11 @@
     for (int i = 0; i < 2; i++) {
         _SXTilesLayerDescription* des = (_description.layers + i);
         
-        des->TRID_list = malloc(sizeof(50));
-        printf("get %p %p\n", des, des->TRID_list);
-        des->TRID_list[0] = (int)test[0];
-        des->TRID_list[1] = test[1];
-        des->TRID_list[2] = test[2];
+        des->TRID_list      = malloc(sizeof(50));
+        des->TRID_list[0]   = (int)test[0];
+        des->TRID_list[1]   = test[1];
+        des->TRID_list[2]   = test[2];
     };
-    
-    printf("test %u %u\n", _description.layers[0].TRID_list[0], _description.layers[0].TRID_list[2]);
 }
 
 - (void)freedDataSpace{

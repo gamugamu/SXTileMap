@@ -124,7 +124,7 @@
 - (void)setUp2DMatrix:(NSArray*)array matrixSize:(SXMatrixSize)mSize{
     for (int i = 0; i < array.count; i++) {
         std::vector<unsigned> l(mSize.row, 0);
-        
+#warning sometime pointer are invalide (what are u doing ARC)?
         NSArray* rows = array[i];
 
         for (int j = 0; j < rows.count; j++)
