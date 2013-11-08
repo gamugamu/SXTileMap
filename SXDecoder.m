@@ -74,9 +74,22 @@
             layerSize.row     = [[layer substringWithRange: range] integerValue];
             range.location   += GRID_PER_RANGE;
             layerSize.column  = [[layer substringWithRange: range] integerValue];
+            range.location   += GRID_PER_RANGE;
+
+            // and no get the layerRepresentation
+            range.length = layer.length - range.location;
+            NSString* layerRepresentation = [layer substringWithRange: range];
+            char* allValues = (char*)[layerRepresentation cStringUsingEncoding: NSUTF8StringEncoding];
+            char*  scanner  = allValues;
+            
+            while (*scanner != '\0') {
+                printf("%c", scanner[0]);
+                scanner++;
+            }
+            printf("*\n");
 
             NSLog(@"layerSize %u %u", layerSize.row, layerSize.column);
-
+            NSLog(@"rest %@", layerRepresentation);
         }
     }
     @catch (NSException *exception) {
