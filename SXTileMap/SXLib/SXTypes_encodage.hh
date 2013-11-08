@@ -24,7 +24,7 @@ struct decodedMapData{
      std::vector<const struct decodedLayerData> allDataLayers;
 };
 
-void logMapData(decodedMapData& mapData){
+inline void logMapData(decodedMapData& mapData){
     printf("gridSize %u %u\n", mapData.gridSize.row, mapData.gridSize.column);
     printf("gridSize %u %u\n", mapData.tileSize.width, mapData.tileSize.height);
     

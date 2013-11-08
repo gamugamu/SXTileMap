@@ -49,8 +49,8 @@
 #pragma mark - setup
 
 - (void)testDecoder{
-    //[SXDecoder testRepresentation];
-    [SXConverser archivefile: nil atPath: nil];
+    [SXDecoder testRepresentation];
+    //[SXConverser archivefile: nil atPath: nil];
 }
 
 - (void)testMapAtlas{

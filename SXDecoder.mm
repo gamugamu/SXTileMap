@@ -22,16 +22,17 @@
 
 + (void)testRepresentation{
     /*
-        sizeGrid_sizeTile_NBcharFileName_fileName_layerSize_layerRep
+        sizeGrid_sizeTile_NBcharFileName_( | n time)_fileName_layerSize_layerRep
      */
-    char _test[] = "0015001500300030|011bonjour.png000200020_1_2_3|013bonjouiur.png000300032_3_1_2_2_1_3_4_5\0";
-    [self analyseRepresentation: _test];
+    char _test[] = "0015001500300030|011bonjour.png000200020_1_2_3_|013bonjouiur.png000300032_3_1_2_2_1_3_4_5_\0";
+    struct decodedMapData data = [self analyseRepresentation: _test];
+    logMapData(data);
 }
 
 #pragma mark -------------------------- private --------------------------------
 #pragma mark -------------------------------------------------------------------
 
-+ (void)analyseRepresentation:(char*)data{
++ (struct decodedMapData)analyseRepresentation:(char*)data{
     NSString* rawRepresentation = [NSString stringWithCString: data
                                                      encoding: NSUTF8StringEncoding];
     @try {
@@ -58,9 +59,10 @@
         mapData.gridSize = gridSize;
         mapData.tileSize = tileSize;
         
-        // first one is not a layer.
+        // first one is not a layer data.
         [layers removeObjectAtIndex: 0];
         
+        // for the rest
         for(int i = 0; i < layers.count; i++){
             NSString* layer = layers[i];
             struct decodedLayerData layerData;
@@ -84,15 +86,15 @@
             layerData.layerSize.column  = [[layer substringWithRange: range] integerValue];
             range.location              += GRID_PER_RANGE;
 
-            // and no get the layerRepresentation
+            // and now take the layerRepresentation
             range.length                    = layer.length - range.location;
             NSString* layerRepresentation   = [layer substringWithRange: range];
             
             char* allValues = (char*)[layerRepresentation cStringUsingEncoding: NSUTF8StringEncoding];
-            char scanner[5] = {'\0'};
-            
             // we strongly assuming that there will be less than 100000 differents
             // values.
+            char scanner[5] = {'\0'};
+            
             int j = 0;
             while (*allValues != '\0'){
                 if(*allValues == '_'){
@@ -104,11 +106,11 @@
                 }
                 allValues++;
             }
-            layerData.layerRepresentation.push_back(atoi(&scanner[0]));
+
             mapData.allDataLayers.push_back(layerData);
         }
         
-        logMapData(mapData);
+        return mapData;
     }
     @catch (NSException *exception) {
         
