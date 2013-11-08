@@ -14,25 +14,23 @@
 + (BOOL)archivefile:(NSString*)file atPath:(NSString*)dcumentPath{
     unsigned lenght = 200;
     
-    char test[]     = "a_a_a_a_a_a_a_a_a\n";
+    char test[]     = "0015001500300030|011bonjour.png000200020_1_2_3|013bonjouiur.png000300032_3_1_2_2_1_3_4_5\0\n";
     char* output    = (char*)calloc(lenght, sizeof(char));
     
     if(output == NULL)
         printf("failed\n");
-    
-    printf("%zu size of %zu\n", sizeof(output) / sizeof(*output), sizeof(test) / sizeof(*test));
-    
+        
     int success = lzfx_compress(&test, sizeof(test) / sizeof(*test),
                                 output, &lenght);
     
-    printf("[%i] result %s %s %u\n", success, test, output, lenght);
+    printf("[%i] compress result %s %u\n", success, output, lenght);
     
     success = lzfx_decompress(output, lenght,
                               &test,  &lenght);
     
     // insert code here...
     
-    printf("[%i] result_2 ---> %s %s %u\n", success, output, test, lenght);
+    printf("[%i] decompress result_2 ---> %s %u\n", success, test, lenght);
     return NO;
 }
 

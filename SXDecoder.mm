@@ -24,7 +24,7 @@
     /*
         sizeGrid_sizeTile_NBcharFileName_fileName_layerSize_layerRep
      */
-    char _test[] = "0015001500300030|011bonjour.png000200020_1_0_1|013bonjouiur.png000300032_3_1_2_2_1_3_4_5\0";
+    char _test[] = "0015001500300030|011bonjour.png000200020_1_2_3|013bonjouiur.png000300032_3_1_2_2_1_3_4_5\0";
     [self analyseRepresentation: _test];
 }
 

@@ -35,7 +35,7 @@ void logMapData(decodedMapData& mapData){
         
         for (int i = 0;  i < layer.layerSize.row; i++) {
             for (int j = 0;  j < layer.layerSize.column; j++) {
-                printf("%u", layer.layerRepresentation[i]);
+                printf("%u", layer.layerRepresentation[i * layer.layerSize.column + j]);
             }
             printf("\n");
         }
