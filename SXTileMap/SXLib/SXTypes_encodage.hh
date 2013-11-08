@@ -21,16 +21,18 @@ struct decodedLayerData{
 struct decodedMapData{
      _SXGridSize gridSize;
      _SXTileSize tileSize;
-     std::vector<struct decodedLayerData> layers;
+     std::vector<const struct decodedLayerData> allDataLayers;
 };
 
 void logMapData(decodedMapData& mapData){
     printf("gridSize %u %u\n", mapData.gridSize.row, mapData.gridSize.column);
     printf("gridSize %u %u\n", mapData.tileSize.width, mapData.tileSize.height);
     
-    for(const struct decodedLayerData& layer : mapData.layers){
+    for(const struct decodedLayerData& layer : mapData.allDataLayers){
         printf("layer %u\n", layer.level);
         printf("layerTexture %s\n", layer.layerTextureFile.c_str());
+        printf("layer Size %u %u\n", layer.layerSize.row, layer.layerSize.column);
+        
         for (int i = 0;  i < layer.layerSize.row; i++) {
             for (int j = 0;  j < layer.layerSize.column; j++) {
                 printf("%u", layer.layerRepresentation[i]);
@@ -38,6 +40,7 @@ void logMapData(decodedMapData& mapData){
             printf("\n");
         }
     }
+    printf("\n");
 }
     
 #endif
