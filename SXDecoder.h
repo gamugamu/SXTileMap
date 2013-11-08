@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SXTypes_private.h"
 
 @interface SXDecoder : NSObject
 

@@ -8,6 +8,7 @@
 
 #import "SXDecoder.h"
 #import "SXTypes_private.h"
+#import "SXTypes_encodage.hh"
 
 #define GRID_PER_RANGE 4
 #define LAYER_SEPARATOR @"|"
@@ -33,7 +34,8 @@
 + (void)analyseRepresentation:(char*)data{
     NSString* rawRepresentation = [NSString stringWithCString: data
                                                      encoding: NSUTF8StringEncoding];
-
+    struct decodedMapData mapData;
+    
     @try {
         _SXGridSize gridSize;
         _SXTileSize tileSize;
@@ -55,6 +57,9 @@
         
         NSLog(@"gridSize %u %u", gridSize.row, gridSize.column);
         NSLog(@"tileSize %u %u", tileSize.width, tileSize.height);
+        mapData.gridSize = gridSize;
+        mapData.tileSize = tileSize;
+        
         // first one is not a layer.
         [layers removeObjectAtIndex: 0];
         
@@ -104,6 +109,8 @@
     @catch (NSException *exception) {
         
     }
+    
+    logMapData(mapData);
 }
 
 @end

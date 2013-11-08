@@ -45,4 +45,10 @@ typedef struct _SXMapDescription{
     _SXTilesLayerDescription* layers;      // Layers description
 }_SXMapDescription;
 
+// Those types are forward declared because they use c++ template.
+// Defined in SXTypes_encodage.hh
+
+struct decodedMapData;      // an opaque decoded mapData type.
+struct decodedLayerData;    // an opaque decoded LayerData type.
+
 #endif

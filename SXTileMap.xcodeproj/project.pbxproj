@@ -95,6 +95,7 @@
 		EB6541B4182BF41000CC6BD5 /* liblzxf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblzxf.a; path = SXTileMap/libs/lzfx/liblzxf.a; sourceTree = "<group>"; };
 		EB7C7565182D0B2000DE1A06 /* SXConverser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXConverser.h; path = SXTileMap/SXLib/SXConverser.h; sourceTree = "<group>"; };
 		EB7C7566182D0B2000DE1A06 /* SXConverser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXConverser.m; path = SXTileMap/SXLib/SXConverser.m; sourceTree = "<group>"; };
+		EB7C7568182D310C00DE1A06 /* SXTypes_encodage.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SXTypes_encodage.hh; path = SXTileMap/SXLib/SXTypes_encodage.hh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				EB102D3418293305009039BF /* SXTypes_private.h */,
+				EB7C7568182D310C00DE1A06 /* SXTypes_encodage.hh */,
 				D3C33B1D18140D32008AED54 /* SXMapTile_hidden.h */,
 				EB0BCF4C181ABEF70026ABD3 /* SXTilesLayer_hidden.h */,
 				EB469D4E1829076B003CDC9A /* SX2DMatrice_hidden.h */,
