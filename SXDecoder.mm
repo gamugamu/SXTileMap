@@ -23,7 +23,7 @@
     /*
         sizeGrid_sizeTile_NBcharFileName_fileName_layerSize_layerRep
      */
-    char _test[] = "0015001500300030|011bonjour.png000200020_1_0_1\0";
+    char _test[] = "0015001500300030|011bonjour.png000200020_1_0_1|013bonjouiur.png000300032_3_1_2_2_1_3_4_5\0";
     [self analyseRepresentation: _test];
 }
 
@@ -75,21 +75,30 @@
             range.location   += GRID_PER_RANGE;
             layerSize.column  = [[layer substringWithRange: range] integerValue];
             range.location   += GRID_PER_RANGE;
+            NSLog(@"layerSize %u %u\n", layerSize.row, layerSize.column);
 
             // and no get the layerRepresentation
             range.length = layer.length - range.location;
             NSString* layerRepresentation = [layer substringWithRange: range];
             char* allValues = (char*)[layerRepresentation cStringUsingEncoding: NSUTF8StringEncoding];
-            char*  scanner  = allValues;
+           
+            char scanner[5] = {'\0'};
+            // we strongly assuming that there will be less than 100000 differents
+            // values.
             
-            while (*scanner != '\0') {
-                printf("%c", scanner[0]);
-                scanner++;
+            int i = 0;
+            while (*allValues != '\0'){
+                if(*allValues == '_'){
+                    printf("%s\n", scanner);
+                    i = 0;
+                    scanner[0] = '\0';
+                }else{
+                    scanner[i++] = allValues[0];
+                }
+                allValues++;
             }
-            printf("*\n");
-
-            NSLog(@"layerSize %u %u", layerSize.row, layerSize.column);
-            NSLog(@"rest %@", layerRepresentation);
+            
+            printf("%s\n", scanner);
         }
     }
     @catch (NSException *exception) {
