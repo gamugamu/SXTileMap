@@ -15,7 +15,7 @@
     std::vector< std::vector<unsigned>> _matrix;
 }
 
-@property(nonatomic, assign)matrixSize size;
+@property(nonatomic, assign)SXMatrixSize size;
 @end
 
 @implementation SX2DMatrice
@@ -41,7 +41,7 @@
 
 #pragma mark - getter  / setter
 
-- (matrixSize)size{
+- (SXMatrixSize)size{
     return _size;
 }
 
@@ -71,7 +71,7 @@
 
 #pragma mark - logic
 
-- (NSError*)check2DMatrixValidity:(NSArray*)array matrixSize:(matrixSize*)size{
+- (NSError*)check2DMatrixValidity:(NSArray*)array matrixSize:(SXMatrixSize*)size{
     NSError* error = nil;
     Class nsArrayClass  = [NSArray class];
     Class nsNumberClass = [NSNumber class];
@@ -121,7 +121,7 @@
 #pragma mark - setup
 
 // call this method only if you know the 2DMatrix is valid
-- (void)setUp2DMatrix:(NSArray*)array matrixSize:(matrixSize)mSize{
+- (void)setUp2DMatrix:(NSArray*)array matrixSize:(SXMatrixSize)mSize{
     for (int i = 0; i < array.count; i++) {
         std::vector<unsigned> l(mSize.row, 0);
         

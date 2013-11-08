@@ -12,6 +12,7 @@
 #import "SXMapTile.h"
 #import "SXTilesLayer.h"
 #import "SX2DMatrice.h"
+#import "SXDecoder.h"
 
 @interface MyScene()
 @property(nonatomic, strong)SXMapAtlas* mapAtlas;
@@ -26,6 +27,7 @@
 - (id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
+        [self testDecoder];
         [self testMapAtlas];
         self.backgroundColor = [SKColor whiteColor];
     }
@@ -43,6 +45,10 @@
 #pragma mark ===================================================================
 
 #pragma mark - setup
+
+- (void)testDecoder{
+    [SXDecoder testRepresentation];
+}
 
 - (void)testMapAtlas{
     // note that rgb.png is not what a file is. For the moment we are still under development.

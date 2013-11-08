@@ -10,4 +10,6 @@
 
 @interface SXDecoder : NSObject
 
++ (void)testRepresentation;
+
 @end

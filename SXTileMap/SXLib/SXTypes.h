@@ -17,7 +17,7 @@ typedef unsigned TRId;
 typedef struct{
     uint_fast8_t row;
     uint_fast8_t column;
-}matrixSize;
+}SXMatrixSize;
 
 // Represent the coordinate system.
 typedef struct{

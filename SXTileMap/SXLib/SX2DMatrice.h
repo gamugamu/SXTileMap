@@ -20,5 +20,5 @@
 
 - (void)addCollumn:(NSArray*)array;
 
-- (matrixSize)size;
+- (SXMatrixSize)size;
 @end

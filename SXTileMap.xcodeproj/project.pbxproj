@@ -33,6 +33,7 @@
 		EB469D4A1828E2AF003CDC9A /* SXTilesLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB469D491828E2AF003CDC9A /* SXTilesLayer.mm */; };
 		EB469D4D1828EAF4003CDC9A /* SX2DMatrice.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB469D4C1828EAF4003CDC9A /* SX2DMatrice.mm */; };
 		EB6541B5182BF41000CC6BD5 /* liblzxf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6541B4182BF41000CC6BD5 /* liblzxf.a */; };
+		EB7C7567182D0B2000DE1A06 /* SXConverser.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7C7566182D0B2000DE1A06 /* SXConverser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,8 @@
 		EB469D4E1829076B003CDC9A /* SX2DMatrice_hidden.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SX2DMatrice_hidden.h; path = SXTileMap/SXLib/SX2DMatrice_hidden.h; sourceTree = "<group>"; };
 		EB6541AD182BF1A000CC6BD5 /* lzfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzfx.h; path = SXTileMap/libs/lzfx/lzfx.h; sourceTree = "<group>"; };
 		EB6541B4182BF41000CC6BD5 /* liblzxf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblzxf.a; path = SXTileMap/libs/lzfx/liblzxf.a; sourceTree = "<group>"; };
+		EB7C7565182D0B2000DE1A06 /* SXConverser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXConverser.h; path = SXTileMap/SXLib/SXConverser.h; sourceTree = "<group>"; };
+		EB7C7566182D0B2000DE1A06 /* SXConverser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXConverser.m; path = SXTileMap/SXLib/SXConverser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				EB6541AD182BF1A000CC6BD5 /* lzfx.h */,
+				EB7C7565182D0B2000DE1A06 /* SXConverser.h */,
+				EB7C7566182D0B2000DE1A06 /* SXConverser.m */,
 			);
 			name = compressor;
 			sourceTree = "<group>";
@@ -387,6 +392,7 @@
 				D3C33AE61812B2AB008AED54 /* MyScene.m in Sources */,
 				D3C33B1C1812CB17008AED54 /* SXMapTileBuilder.m in Sources */,
 				EB469D4D1828EAF4003CDC9A /* SX2DMatrice.mm in Sources */,
+				EB7C7567182D0B2000DE1A06 /* SXConverser.m in Sources */,
 				D3C33B0B1812B8F5008AED54 /* SXMapTile.m in Sources */,
 				D3C33AE31812B2AB008AED54 /* ViewController.m in Sources */,
 				D3C33ADA1812B2AB008AED54 /* AppDelegate.m in Sources */,
@@ -457,7 +463,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -497,7 +502,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -570,7 +574,6 @@
 		D3C33B041812B2AB008AED54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SX_Test.app/SX_Test";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -593,7 +596,6 @@
 		D3C33B051812B2AB008AED54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SX_Test.app/SX_Test";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
