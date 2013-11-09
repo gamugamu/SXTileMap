@@ -11,6 +11,7 @@
 		795780FF182E585D0011A196 /* SXMapTileBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 795780FE182E585D0011A196 /* SXMapTileBuilder.m */; };
 		79578102182E58780011A196 /* SXMapAtlasDescription.mm in Sources */ = {isa = PBXBuildFile; fileRef = 79578101182E58780011A196 /* SXMapAtlasDescription.mm */; };
 		79578108182E61A10011A196 /* liblzxf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79578107182E61A10011A196 /* liblzxf.a */; };
+		7963FA90182EC7EA00AE145A /* flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 7963FA8F182EC7EA00AE145A /* flower.png */; };
 		D3C33AC81812B2AA008AED54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C33AC71812B2AA008AED54 /* Foundation.framework */; };
 		D3C33ACA1812B2AA008AED54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C33AC91812B2AA008AED54 /* CoreGraphics.framework */; };
 		D3C33ACC1812B2AA008AED54 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C33ACB1812B2AA008AED54 /* UIKit.framework */; };
@@ -58,6 +59,7 @@
 		79578106182E58FA0011A196 /* SXTilesLayer_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXTilesLayer_private.h; path = SXTileMap/SXLib/SXTilesLayer_private.h; sourceTree = "<group>"; };
 		79578107182E61A10011A196 /* liblzxf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblzxf.a; path = SXTileMap/SXLib/libs/lzfx/liblzxf.a; sourceTree = "<group>"; };
 		7963FA8E182EA06700AE145A /* SXMapAtlasDescription_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapAtlasDescription_private.h; path = SXTileMap/SXLib/SXMapAtlasDescription_private.h; sourceTree = "<group>"; };
+		7963FA8F182EC7EA00AE145A /* flower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flower.png; sourceTree = "<group>"; };
 		D3C33AC41812B2AA008AED54 /* SXTileMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SXTileMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C33AC71812B2AA008AED54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D3C33AC91812B2AA008AED54 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -296,6 +298,7 @@
 		EB0BCF4A181AA6200026ABD3 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				7963FA8F182EC7EA00AE145A /* flower.png */,
 				D3C33B181812CAA0008AED54 /* rgb.png */,
 			);
 			name = img;
@@ -398,6 +401,7 @@
 				D3C33AE01812B2AB008AED54 /* Main_iPad.storyboard in Resources */,
 				D3C33B191812CAA0008AED54 /* rgb.png in Resources */,
 				D3C33ADD1812B2AB008AED54 /* Main_iPhone.storyboard in Resources */,
+				7963FA90182EC7EA00AE145A /* flower.png in Resources */,
 				D3C33AD41812B2AB008AED54 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

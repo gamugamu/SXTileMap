@@ -32,7 +32,7 @@ using namespace std;
 
 - (id)initTilesLayerWithLayerDescription:(SXMapAtlasDescription*)description layerId:(uint)layerId{
     if(self = [super init]){
-        [self setUpMapBuilder: description];
+        [self setUpMapBuilder: description withLayerId: layerId];
         [self setUpTiles: description fromBuilder: _mapBuilder];
         [self displayTiles: _mapBuilder.allGeneratedTiles];
     }
@@ -73,9 +73,9 @@ using namespace std;
 
 #pragma mark - setUp
 
-- (void)setUpMapBuilder:(SXMapAtlasDescription*)description{
+- (void)setUpMapBuilder:(SXMapAtlasDescription*)description withLayerId:(uint)layerId{
     self.mapBuilder = [[SXMapTileBuilder alloc] initFromDescription: description
-                                                        withLayerId: 0];
+                                                        withLayerId: layerId];
 }
 
 - (void)setUpTiles:(SXMapAtlasDescription*)description

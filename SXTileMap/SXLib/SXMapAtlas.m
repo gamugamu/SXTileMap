@@ -12,7 +12,7 @@
 #import "SXMapAtlasDescription_private.h"
 
 @interface SXMapAtlas()
-@property(nonatomic, strong)NSArray* allLayers;
+@property(nonatomic, strong)NSMutableArray* allLayers;
 @end
 
 @implementation SXMapAtlas
@@ -45,7 +45,6 @@
 
 - (void)setCurrenSpaceCoordinate:(SXCoordinateSpace)currenSpaceCoordinate{
     if(currenSpaceCoordinate != _currenSpaceCoordinate){
-    
     }
 }
 
@@ -64,22 +63,26 @@
 
 - (void)setUpMap:(SXMapAtlasDescription*)mapDescription{
     const _SXMapDescription* des = mapDescription.data;
-    printf("get ---> %u\n", des->layersCount);
+
+    NSMutableArray* listLayers = [NSMutableArray array];
+    
     for (int i = 0; i < des->layersCount; i++) {
-        printf("%p\n", des->layers + i);
         _SXTilesLayerDescription* const test = des->layers + i;
-        printf("XXX %u [%u %u]\n", test->layerId, test->sizeGrid.row, test->sizeGrid.column);
-        [self setUpLayers: mapDescription withId: test->layerId];
+        SXTilesLayer* tileLayer = [self createLayers: mapDescription withId: test->layerId];
+        
+        [listLayers addObject: tileLayer];
+        [self addChild: tileLayer];
     }
+    
+    self.allLayers = listLayers;
 }
 
-- (void)setUpLayers:(SXMapAtlasDescription*)mapDescription withId:(uint)layerId{
+- (SXTilesLayer*)createLayers:(SXMapAtlasDescription*)mapDescription withId:(uint)layerId{
     SXTilesLayer* simpleLayer   = [[SXTilesLayer alloc] initTilesLayerWithLayerDescription: mapDescription
                                                                                    layerId: layerId];
     simpleLayer.mapAtlas        = self;
-
-    self.allLayers = @[simpleLayer];
-    [self addChild: simpleLayer];
+    NSLog(@"create layer %@", simpleLayer);
+    return simpleLayer;
 }
 
 @end

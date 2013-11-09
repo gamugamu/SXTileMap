@@ -13,10 +13,12 @@
 #import "SXMapTile.h"
 #import "SXMapTile_private.h"
 
-inline SXRect getTextureRectForTRIDInMap(TRId* trid,
+inline SXRect getTextureRectForTRIDInMap(TRId trid,
                                          _SXMapDescription* const);
 
-@interface SXMapTileBuilder()
+@interface SXMapTileBuilder(){
+    uint _layerId;
+}
 @property(nonatomic, strong)SXMapAtlasDescription* mapDescription;
 @property(nonatomic, strong)NSArray* allGeneratedTiles;
 @property(nonatomic, strong)SKTexture* texture;
@@ -32,6 +34,7 @@ inline SXRect getTextureRectForTRIDInMap(TRId* trid,
 - (SXMapTileBuilder*)initFromDescription:(SXMapAtlasDescription*)mapDescription
                              withLayerId:(uint)layerId{
     if(self = [super init]){
+        _layerId = layerId;
         self.mapDescription = mapDescription;
         [self setUpMap: [mapDescription layerDescriptionForId: layerId]];
     }
@@ -51,7 +54,7 @@ inline SXRect getTextureRectForTRIDInMap(TRId* trid,
 }
 
 - (void)changeMapTile:(SXMapTile*)mapTile withTextureId:(TRId)textureId{
-    SXRect rect = getTextureRectForTRIDInMap(&textureId,
+    SXRect rect = getTextureRectForTRIDInMap(textureId,
                                             _mapDescription.data);
     
     _SXTileDescription tDes  = mapTile.tileDescription;
@@ -71,21 +74,20 @@ inline SXRect getTextureRectForTRIDInMap(TRId* trid,
 
 #pragma mark - setUp
 
+#warning  we should can change the texture at runtime. Not what expected for the moment
 - (void)setUpMap:(_SXTilesLayerDescription*)layerDescription{
-    self.texture = [SKTexture textureWithImageNamed: @"rgb.png"];
+    NSString* fileName = [NSString stringWithUTF8String: layerDescription->textureName];
+    self.texture = [SKTexture textureWithImageNamed: fileName];
 }
 
 #pragma mark - logic
 
 - (NSArray*)createTilesFromMapAtlasDesctiptor:(SXMapAtlasDescription*)mapDescription{
-    _SXMapDescription* des   = (_SXMapDescription*)mapDescription.data;
+    _SXMapDescription* des              = (_SXMapDescription*)mapDescription.data;
+    _SXTilesLayerDescription* t_des     = [mapDescription layerDescriptionForId: _layerId];
+
     NSMutableArray* nodeList = [NSMutableArray new];
-    
-    _texture = [SKTexture textureWithImageNamed: mapDescription.fileName];
-    
-    // texture file is expressed in term of ratio.
-    float g_w   = 1.f / des->sizeGrid.column;   // grid width
-    float g_h   = 1.f / des->sizeGrid.row;      // grid height
+    [self setUpMap: t_des];
 
     // Since textures in sprite are expressed in ratio,
     // we need then to compute the ratio for the tiles.
@@ -93,23 +95,24 @@ inline SXRect getTextureRectForTRIDInMap(TRId* trid,
          (des->sizeTile.width * des->sizeGrid.row) / _texture.size.width,
          (des->sizeTile.height * des->sizeGrid.column) / _texture.size.height};
     
-    for (int i = 0; i < des->sizeGrid.row; ++i){
-        for (int j = 0; j < des->sizeGrid.column; ++j){
-            SXMapTile* tiles = [SXMapTile new];
-            CGRect area      = CGRectMake(i * g_w, j * g_h, g_w, g_h);
+    // We create the row first, and go up throught the columns.
+    for (int i = 0; i < t_des->sizeGrid.column; ++i){
+        for (int j = 0; j < t_des->sizeGrid.row; ++j){
+            
+            SXMapTile* tiles    = [SXMapTile new];
+            UInt32 tid          = i * des->sizeGrid.column + j;
+            TRId rid            = t_des->TRID_list[i * t_des->sizeGrid.column + j];
+            CGRect area         = getTextureRectForTRIDInMap(rid, des);
 
             tiles.sprite = [self createNodeFromRect: area
-                                            atPoint: (_SXGridSize){i, j}
+                                            atPoint: (_SXGridSize){j, i}
                                      tileSizeRatioX: ratioTM.width
                                      tileSizeRatioY: ratioTM.height
                                             texture: _texture];
-            
-            UInt32 tid = i * des->sizeGrid.column + j;
-            UInt32 rid = tid;
-            
+          
             _SXTileDescription tDescription = {tid, rid, {j, i}};
-            tiles.tileDescription = tDescription;
-
+            tiles.tileDescription           = tDescription;
+            
             [nodeList addObject: tiles];
         }
     }
@@ -117,19 +120,19 @@ inline SXRect getTextureRectForTRIDInMap(TRId* trid,
     return nodeList;
 }
 
-SXRect getTextureRectForTRIDInMap(TRId* trid,
+SXRect getTextureRectForTRIDInMap(TRId trid,
                                   _SXMapDescription* const md){
     float g_w = 1.f / md->sizeGrid.column;   // grid width
     float g_h = 1.f / md->sizeGrid.row;      // grid height
     
-    float currentRowSubOne = (*trid % md->sizeGrid.row) * g_w;
+    float currentRowSubOne = (trid % md->sizeGrid.row) * g_w;
     
     // should not outBound.
-    *trid %= md->sizeGrid.column * md->sizeGrid.row;
+    trid %= md->sizeGrid.column * md->sizeGrid.row;
 
     // could crash if trid and md->sizeGrid.column are null.
     return (SXRect){ currentRowSubOne,
-                    ((uint)(*trid / md->sizeGrid.column) * g_h),
+                    ((uint)(trid / md->sizeGrid.column) * g_h),
                     g_w,
                     g_h};
 }

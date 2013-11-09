@@ -48,7 +48,7 @@
 
 - (void)testMapAtlas{
     // note that rgb.png is not what a file is. For the moment we are still under development.
-    self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"rgb.png"]];
+    self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"blablabla.sx"]];
     _mapAtlas.xScale    = .5f;
     _mapAtlas.yScale    = .5f;
     _mapAtlas.position  = CGPointMake(50, 100);
@@ -64,7 +64,7 @@
    // SXTilesLayer* layer = [_mapAtlas allLayers][0];
    // [layer changeTilesTextureIdWith2DMatrix: matrix];
     
-    [self changeTexture];
+   // [self changeTexture];
 }
 
 - (void)changeTexture{
