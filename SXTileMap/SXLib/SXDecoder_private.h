@@ -1,27 +1,28 @@
 //
-//  SXTypes_encodage.h
+//  SXDecoder_hidden.h
 //  SXTileMap
 //
-//  Created by Abadie, Loïc on 08/11/13.
+//  Created by loïc Abadie on 09/11/2013.
 //  Copyright (c) 2013 Abadie Loic. All rights reserved.
 //
 
-#ifndef SXTileMap_SXTypes_encodage_h
-#define SXTileMap_SXTypes_encodage_h
+#ifndef SXTileMap_SXDecoder_hidden_h
+#define SXTileMap_SXDecoder_hidden_h
+
 #include <vector>
 #include <string>
 
 struct decodedLayerData{
-     std::string layerTextureFile;
-     _SXGridSize layerSize;
-     unsigned level;
-     std::vector<int> layerRepresentation;
+    std::string layerTextureFile;
+    _SXGridSize layerSize;
+    unsigned level;
+    std::vector<int> layerRepresentation;
 };
- 
+
 struct decodedMapData{
-     _SXGridSize gridSize;
-     _SXTileSize tileSize;
-     std::vector<const struct decodedLayerData> allDataLayers;
+    _SXGridSize gridSize;
+    _SXTileSize tileSize;
+    std::vector<const struct decodedLayerData> allDataLayers;
 };
 
 inline void logMapData(decodedMapData& mapData){
@@ -42,5 +43,6 @@ inline void logMapData(decodedMapData& mapData){
     }
     printf("\n");
 }
-    
+
+
 #endif

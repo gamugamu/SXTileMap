@@ -7,8 +7,8 @@
 //
 
 #import "SXMapTile.h"
-#import "SXMapTile_hidden.h"
-#import "SXTilesLayer_hidden.h"
+#import "SXMapTile_private.h"
+#import "SXTilesLayer_private.h"
 
 @implementation SXMapTile
 @synthesize  sprite             = _sprite,

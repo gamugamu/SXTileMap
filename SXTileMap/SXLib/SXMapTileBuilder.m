@@ -10,7 +10,7 @@
 #import "SXMapTileBuilder.h"
 #import "SXMapAtlasDescription.h"
 #import "SXMapTile.h"
-#import "SXMapTile_hidden.h"
+#import "SXMapTile_private.h"
 
 inline SXRect getTextureRectForTRIDInMap(TRId* trid,
                                          _SXMapDescription* const);

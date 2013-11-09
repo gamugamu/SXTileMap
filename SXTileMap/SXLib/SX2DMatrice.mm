@@ -7,7 +7,7 @@
 //
 
 #import "SX2DMatrice.h"
-#import "SX2DMatrice_hidden.h"
+#import "SX2DMatrice_private.h"
 #import <vector>
 #import <string>
 

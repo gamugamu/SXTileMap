@@ -7,12 +7,16 @@
 //
 
 #import "SXDecoder.h"
+#import "SXDecoder_private.h"
 #import "SXTypes_private.h"
-#import "SXTypes_encodage.hh"
 
-#define GRID_PER_RANGE 4
-#define LAYER_SEPARATOR @"|"
-#define MAX_LENGHT_TEXT_FORMAT 3
+#define GRID_PER_RANGE 4                    // 4*4 max values digit for the grid and tile.
+#define LAYER_SEPARATOR @"|"                // A tag who define the separation for all layers.
+#define MAX_LENGHT_TEXT_FORMAT 3            // File name should have less than 100 caracteres.
+#define MAX_CHAR_SCANNER_BUFFER_LENGHT 5    // A buffer lenght who hold a fixed number. Used to hold the
+                                            // string representation of each individual value of the layers.
+                                            // 5 chars is really enought.
+
 // wich mean if a text as more than 100 caracter, we' ll get an undefined behaviour
 
 @implementation SXDecoder
@@ -91,9 +95,7 @@
             NSString* layerRepresentation   = [layer substringWithRange: range];
             
             char* allValues = (char*)[layerRepresentation cStringUsingEncoding: NSUTF8StringEncoding];
-            // we strongly assuming that there will be less than 100000 differents
-            // values.
-            char scanner[5] = {'\0'};
+            char scanner[MAX_CHAR_SCANNER_BUFFER_LENGHT] = {'\0'};
             
             int j = 0;
             while (*allValues != '\0'){

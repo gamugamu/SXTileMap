@@ -8,7 +8,7 @@
 
 #import "SXMapAtlas.h"
 #import "SXTilesLayer.h"
-#import "SXTilesLayer_hidden.h"
+#import "SXTilesLayer_private.h"
 
 @interface SXMapAtlas()
 @property(nonatomic, strong)NSArray* allLayers;

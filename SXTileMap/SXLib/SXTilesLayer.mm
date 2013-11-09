@@ -8,8 +8,8 @@
 
 #import "SXTilesLayer.h"
 #import "SXMapTile.h"
-#import "SXMapTile_hidden.h"
-#import "SX2DMatrice_hidden.h"
+#import "SXMapTile_private.h"
+#import "SX2DMatrice_private.h"
 #import "SXMapTileBuilder.h"
 #import "SXMapAtlas.h"
 #import <vector>
