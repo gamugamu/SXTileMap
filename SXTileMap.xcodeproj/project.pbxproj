@@ -57,6 +57,7 @@
 		79578105182E58E70011A196 /* lzfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzfx.h; path = SXTileMap/SXLib/libs/lzfx/lzfx.h; sourceTree = "<group>"; };
 		79578106182E58FA0011A196 /* SXTilesLayer_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXTilesLayer_private.h; path = SXTileMap/SXLib/SXTilesLayer_private.h; sourceTree = "<group>"; };
 		79578107182E61A10011A196 /* liblzxf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblzxf.a; path = SXTileMap/SXLib/libs/lzfx/liblzxf.a; sourceTree = "<group>"; };
+		7963FA8E182EA06700AE145A /* SXMapAtlasDescription_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapAtlasDescription_private.h; path = SXTileMap/SXLib/SXMapAtlasDescription_private.h; sourceTree = "<group>"; };
 		D3C33AC41812B2AA008AED54 /* SXTileMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SXTileMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C33AC71812B2AA008AED54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D3C33AC91812B2AA008AED54 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -132,6 +133,7 @@
 				D3C33B1D18140D32008AED54 /* SXMapTile_private.h */,
 				79578106182E58FA0011A196 /* SXTilesLayer_private.h */,
 				795780F8182E56DB0011A196 /* SXDecoder_private.h */,
+				7963FA8E182EA06700AE145A /* SXMapAtlasDescription_private.h */,
 			);
 			name = "private header";
 			sourceTree = "<group>";

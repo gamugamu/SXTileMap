@@ -7,12 +7,14 @@
 //
 
 #import "SXTilesLayer.h"
+#import "SXTypes_private.h"
 
 @class SXMapTile;
 @class SXMapAtlas;
 
 @interface SXTilesLayer(hidden)
 
+- (id)initTilesLayerWithLayerDescription:(SXMapAtlasDescription*)description layerId:(uint)layerId;
 - (void)changeMapTile:(SXMapTile*)mapTile withTextureId:(TRId)textureId;
 
 @property(nonatomic, strong)SXMapAtlas* mapAtlas;

@@ -7,6 +7,7 @@
 //
 
 #import "SXMapAtlasDescription.h"
+#import "SXMapAtlasDescription_private.h"
 #import "SXDecoder_private.h"
 #import "SXTypes_private.h"
 
@@ -42,6 +43,16 @@
 #pragma mark ============================ private ==============================
 #pragma mark ===================================================================
 
+#pragma mark - hidden
+
+- (_SXTilesLayerDescription* const)layerDescriptionForId:(uint)idLayer{
+    if(idLayer < _description.layersCount){
+        return _description.layers + idLayer;
+    }
+    else
+        return nil;
+}
+
 #pragma mark - description
 
 - (void)fakeADescription{
@@ -64,9 +75,9 @@
     
     size_t totalLayer   = data.allDataLayers.size();
     _description.layers = (_SXTilesLayerDescription*)malloc(sizeof(_SXTilesLayerDescription) * totalLayer);
-    
-    _description.sizeGrid = data.gridSize;
-    _description.sizeTile = data.tileSize;
+    _description.layersCount    = totalLayer;
+    _description.sizeGrid       = data.gridSize;
+    _description.sizeTile       = data.tileSize;
     
     for (int i = 0; i < totalLayer; i++){
         const decodedLayerData& layerData = data.allDataLayers[i];
@@ -75,6 +86,8 @@
         
         des->TRID_list = (TRId*)malloc(sizeof(uint) * lr.size());
         TRId* trid     = (TRId*)des->TRID_list; // uncast constantness
+        des->layerId   = i;
+        des->sizeGrid  = layerData.layerSize;
         
         for (size_t i = 0; i < lr.size(); ++i)
             trid[i] = lr[i];

@@ -9,6 +9,7 @@
 #import "SXTilesLayer.h"
 #import "SXMapTile.h"
 #import "SXMapTile_private.h"
+#import "SXMapAtlasDescription_private.h"
 #import "SX2DMatrice_private.h"
 #import "SXMapTileBuilder.h"
 #import "SXMapAtlas.h"
@@ -29,10 +30,10 @@ using namespace std;
 #pragma mark -------------------------- public ---------------------------------
 #pragma mark -------------------------------------------------------------------
 
-- (id)initTilesLayerWithLayerDescription:(void*)description{
+- (id)initTilesLayerWithLayerDescription:(SXMapAtlasDescription*)description layerId:(uint)layerId{
     if(self = [super init]){
-        [self setUpMapBuilder: (__bridge SXMapAtlasDescription*)description];
-        [self setUpTiles: (__bridge SXMapAtlasDescription*)description fromBuilder: _mapBuilder];
+        [self setUpMapBuilder: description];
+        [self setUpTiles: description fromBuilder: _mapBuilder];
         [self displayTiles: _mapBuilder.allGeneratedTiles];
     }
     return self;
@@ -73,7 +74,8 @@ using namespace std;
 #pragma mark - setUp
 
 - (void)setUpMapBuilder:(SXMapAtlasDescription*)description{
-    self.mapBuilder = [[SXMapTileBuilder alloc] initFromDescription: description];
+    self.mapBuilder = [[SXMapTileBuilder alloc] initFromDescription: description
+                                                        withLayerId: 0];
 }
 
 - (void)setUpTiles:(SXMapAtlasDescription*)description

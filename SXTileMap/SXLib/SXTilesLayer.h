@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SKNode.h>
 #import "SXTypes.h"
+#import "SXMapAtlasDescription.h"
 
 @class SXMapTile;
 @class SX2DMatrice;
@@ -17,11 +18,6 @@
 // SXTilesLayer holds collection of tiles.
 //----------------------------------------------------------------------------//
 @interface SXTilesLayer : SKNode
-
-/**
-    Should be hidden.
- */
-- (id)initTilesLayerWithLayerDescription:(void*)description;
 
 /**
     Return a tile from the mapAtlas coordinate system.

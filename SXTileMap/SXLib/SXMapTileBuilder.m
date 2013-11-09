@@ -9,6 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "SXMapTileBuilder.h"
 #import "SXMapAtlasDescription.h"
+#import "SXMapAtlasDescription_private.h"
 #import "SXMapTile.h"
 #import "SXMapTile_private.h"
 
@@ -28,9 +29,11 @@ inline SXRect getTextureRectForTRIDInMap(TRId* trid,
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
 
-- (SXMapTileBuilder*)initFromDescription:(SXMapAtlasDescription*)mapDescription{
+- (SXMapTileBuilder*)initFromDescription:(SXMapAtlasDescription*)mapDescription
+                             withLayerId:(uint)layerId{
     if(self = [super init]){
-        [self setUpMap: mapDescription];
+        self.mapDescription = mapDescription;
+        [self setUpMap: [mapDescription layerDescriptionForId: layerId]];
     }
     return self;
 }
@@ -68,9 +71,8 @@ inline SXRect getTextureRectForTRIDInMap(TRId* trid,
 
 #pragma mark - setUp
 
-- (void)setUpMap:(SXMapAtlasDescription*)mapDescription{
-    self.mapDescription = mapDescription;
-    self.texture = [SKTexture textureWithImageNamed: mapDescription.fileName];
+- (void)setUpMap:(_SXTilesLayerDescription*)layerDescription{
+    self.texture = [SKTexture textureWithImageNamed: @"rgb.png"];
 }
 
 #pragma mark - logic

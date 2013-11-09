@@ -9,6 +9,7 @@
 #import "SXMapAtlas.h"
 #import "SXTilesLayer.h"
 #import "SXTilesLayer_private.h"
+#import "SXMapAtlasDescription_private.h"
 
 @interface SXMapAtlas()
 @property(nonatomic, strong)NSArray* allLayers;
@@ -27,7 +28,7 @@
 
 - (id)initWithDescription:(SXMapAtlasDescription*)description{
     if(self = [super init]){
-        [self setUpLayers: (void*)description];
+        [self setUpMap: description];
     }
     return self;
 }
@@ -59,8 +60,22 @@
 #pragma mark ============================ private ==============================
 #pragma mark ===================================================================
 
-- (void)setUpLayers:(void*)layerDescription{
-    SXTilesLayer* simpleLayer   = [[SXTilesLayer alloc] initTilesLayerWithLayerDescription: layerDescription];
+#pragma mark - setup
+
+- (void)setUpMap:(SXMapAtlasDescription*)mapDescription{
+    const _SXMapDescription* des = mapDescription.data;
+    printf("get ---> %u\n", des->layersCount);
+    for (int i = 0; i < des->layersCount; i++) {
+        printf("%p\n", des->layers + i);
+        _SXTilesLayerDescription* const test = des->layers + i;
+        printf("XXX %u [%u %u]\n", test->layerId, test->sizeGrid.row, test->sizeGrid.column);
+        [self setUpLayers: mapDescription withId: test->layerId];
+    }
+}
+
+- (void)setUpLayers:(SXMapAtlasDescription*)mapDescription withId:(uint)layerId{
+    SXTilesLayer* simpleLayer   = [[SXTilesLayer alloc] initTilesLayerWithLayerDescription: mapDescription
+                                                                                   layerId: layerId];
     simpleLayer.mapAtlas        = self;
 
     self.allLayers = @[simpleLayer];

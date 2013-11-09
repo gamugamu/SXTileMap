@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SXMapAtlasDescription.h" // for SXPoint
 #import "SXTypes.h"
+#import "SXTypes_private.h"
 
 @class SXMapTile;
 @class SXMapAtlasDescription;
@@ -21,7 +22,8 @@
 /**
     Create a MapTile builder
  */
-- (SXMapTileBuilder*)initFromDescription:(SXMapAtlasDescription*)mapDescription;
+- (SXMapTileBuilder*)initFromDescription:(SXMapAtlasDescription*)layerDescription
+                             withLayerId:(uint)layerId;
 
 /**
     Generate all the tiles from the SXMapAtlasDescription*.
