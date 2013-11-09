@@ -36,7 +36,7 @@
 #pragma mark - alloc / dealloc
 
 - (void)dealloc{
-    [self freedDataSpace];
+    [self releaseMapData];
 }
 
 #pragma mark ============================ private ==============================
@@ -45,15 +45,10 @@
 #pragma mark - description
 
 - (void)fakeADescription{
-    char _test[] = "0015001500300030|011bonjour.png000200020_1_2_3_|013bonjouiur.png000300032_3_1_2_2_1_3_4_5_\0";
+    char _test[] = "0005000500900090|011bonjour.png000200020_1_2_3_|013bonjouiur.png000300032_3_1_2_2_1_3_4_5_\0";
 
     struct decodedMapData data = [SXDecoder decodeMapData: _test];
-    logMapData(data);
     [self allocAndinitMapData: data];
-    
-    _description.sizeGrid = (_SXGridSize){5, 5};
-    _description.sizeTile = (_SXTileSize){60, 60};
-    _data = &_description;
 }
 
 - (NSString*)description{
@@ -65,24 +60,32 @@
 #pragma mark - memoryManagement
 
 - (void)allocAndinitMapData:(const struct decodedMapData&)data{
-    _description.layers = (_SXTilesLayerDescription*)malloc(sizeof(_SXTilesLayerDescription) * 2);
-    int test[] = {1, 2 ,3, 0, 4, 3, 9, 0, 1203};
+    logMapData(data);
     
-    for (int i = 0; i < 2; i++) {
-        _SXTilesLayerDescription* des = (_description.layers + i);
+    size_t totalLayer   = data.allDataLayers.size();
+    _description.layers = (_SXTilesLayerDescription*)malloc(sizeof(_SXTilesLayerDescription) * totalLayer);
+    
+    _description.sizeGrid = data.gridSize;
+    _description.sizeTile = data.tileSize;
+    
+    for (int i = 0; i < totalLayer; i++){
+        const decodedLayerData& layerData = data.allDataLayers[i];
+        const std::vector<int>& lr        = layerData.layerRepresentation;
+        _SXTilesLayerDescription* des     = (_description.layers + i);
         
-        des->TRID_list      = (TRId*)malloc(sizeof(50));
-        des->TRID_list[0]   = (int)test[0];
-        des->TRID_list[1]   = test[1];
-        des->TRID_list[2]   = test[2];
+        des->TRID_list = (TRId*)malloc(sizeof(uint) * lr.size());
+        TRId* trid     = (TRId*)des->TRID_list; // uncast constantness
+        
+        for (size_t i = 0; i < lr.size(); ++i)
+            trid[i] = lr[i];
     };
+    
+    _data = &_description;
 }
 
-- (void)freedDataSpace{
- /*   for (int i = 0; i < 2; i++) {
-        _SXTilesLayerDescription* des = *(_description.layers + i);
-        free((void*)des->TRID_list);
-    };
+- (void)releaseMapData{
+ /*  
+    free ***
    */
     free(_description.layers);
 }

@@ -26,11 +26,12 @@ struct decodedMapData{
     std::vector<const struct decodedLayerData> allDataLayers;
 };
 
-inline void logMapData(decodedMapData& mapData){
+inline void logMapData(const decodedMapData& mapData){
     printf("gridSize %u %u\n", mapData.gridSize.row, mapData.gridSize.column);
     printf("gridSize %u %u\n", mapData.tileSize.width, mapData.tileSize.height);
     
     for(const struct decodedLayerData& layer : mapData.allDataLayers){
+        printf("================\n");
         printf("layer %u\n", layer.level);
         printf("layerTexture %s\n", layer.layerTextureFile.c_str());
         printf("layer Size %u %u\n", layer.layerSize.row, layer.layerSize.column);

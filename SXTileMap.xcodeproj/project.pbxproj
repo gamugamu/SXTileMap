@@ -127,10 +127,10 @@
 		795780F9182E56E70011A196 /* private header */ = {
 			isa = PBXGroup;
 			children = (
+				EB469D4E1829076B003CDC9A /* SX2DMatrice_private.h */,
 				EB102D3418293305009039BF /* SXTypes_private.h */,
 				D3C33B1D18140D32008AED54 /* SXMapTile_private.h */,
 				79578106182E58FA0011A196 /* SXTilesLayer_private.h */,
-				EB469D4E1829076B003CDC9A /* SX2DMatrice_private.h */,
 				795780F8182E56DB0011A196 /* SXDecoder_private.h */,
 			);
 			name = "private header";
