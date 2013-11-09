@@ -10,6 +10,7 @@
 		795780FC182E58490011A196 /* SXDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 795780FB182E58490011A196 /* SXDecoder.mm */; };
 		795780FF182E585D0011A196 /* SXMapTileBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 795780FE182E585D0011A196 /* SXMapTileBuilder.m */; };
 		79578102182E58780011A196 /* SXMapAtlasDescription.mm in Sources */ = {isa = PBXBuildFile; fileRef = 79578101182E58780011A196 /* SXMapAtlasDescription.mm */; };
+		79578108182E61A10011A196 /* liblzxf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79578107182E61A10011A196 /* liblzxf.a */; };
 		D3C33AC81812B2AA008AED54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C33AC71812B2AA008AED54 /* Foundation.framework */; };
 		D3C33ACA1812B2AA008AED54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C33AC91812B2AA008AED54 /* CoreGraphics.framework */; };
 		D3C33ACC1812B2AA008AED54 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C33ACB1812B2AA008AED54 /* UIKit.framework */; };
@@ -32,7 +33,6 @@
 		D3C33B191812CAA0008AED54 /* rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = D3C33B181812CAA0008AED54 /* rgb.png */; };
 		EB469D4A1828E2AF003CDC9A /* SXTilesLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB469D491828E2AF003CDC9A /* SXTilesLayer.mm */; };
 		EB469D4D1828EAF4003CDC9A /* SX2DMatrice.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB469D4C1828EAF4003CDC9A /* SX2DMatrice.mm */; };
-		EB6541B5182BF41000CC6BD5 /* liblzxf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6541B4182BF41000CC6BD5 /* liblzxf.a */; };
 		EB7C7567182D0B2000DE1A06 /* SXConverser.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7C7566182D0B2000DE1A06 /* SXConverser.m */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +56,7 @@
 		79578101182E58780011A196 /* SXMapAtlasDescription.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SXMapAtlasDescription.mm; path = SXTileMap/SXLib/SXMapAtlasDescription.mm; sourceTree = "<group>"; };
 		79578105182E58E70011A196 /* lzfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzfx.h; path = SXTileMap/SXLib/libs/lzfx/lzfx.h; sourceTree = "<group>"; };
 		79578106182E58FA0011A196 /* SXTilesLayer_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXTilesLayer_private.h; path = SXTileMap/SXLib/SXTilesLayer_private.h; sourceTree = "<group>"; };
+		79578107182E61A10011A196 /* liblzxf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblzxf.a; path = SXTileMap/SXLib/libs/lzfx/liblzxf.a; sourceTree = "<group>"; };
 		D3C33AC41812B2AA008AED54 /* SXTileMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SXTileMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C33AC71812B2AA008AED54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D3C33AC91812B2AA008AED54 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -93,7 +94,6 @@
 		EB469D4B1828EAF4003CDC9A /* SX2DMatrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SX2DMatrice.h; path = SXTileMap/SXLib/SX2DMatrice.h; sourceTree = "<group>"; };
 		EB469D4C1828EAF4003CDC9A /* SX2DMatrice.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SX2DMatrice.mm; path = SXTileMap/SXLib/SX2DMatrice.mm; sourceTree = "<group>"; };
 		EB469D4E1829076B003CDC9A /* SX2DMatrice_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SX2DMatrice_private.h; path = SXTileMap/SXLib/SX2DMatrice_private.h; sourceTree = "<group>"; };
-		EB6541B4182BF41000CC6BD5 /* liblzxf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblzxf.a; path = SXTileMap/libs/lzfx/liblzxf.a; sourceTree = "<group>"; };
 		EB7C7565182D0B2000DE1A06 /* SXConverser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXConverser.h; path = SXTileMap/SXLib/SXConverser.h; sourceTree = "<group>"; };
 		EB7C7566182D0B2000DE1A06 /* SXConverser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXConverser.m; path = SXTileMap/SXLib/SXConverser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,7 +105,7 @@
 			files = (
 				D3C33ACA1812B2AA008AED54 /* CoreGraphics.framework in Frameworks */,
 				D3C33ACC1812B2AA008AED54 /* UIKit.framework in Frameworks */,
-				EB6541B5182BF41000CC6BD5 /* liblzxf.a in Frameworks */,
+				79578108182E61A10011A196 /* liblzxf.a in Frameworks */,
 				D3C33ACE1812B2AA008AED54 /* SpriteKit.framework in Frameworks */,
 				D3C33AC81812B2AA008AED54 /* Foundation.framework in Frameworks */,
 			);
@@ -175,7 +175,7 @@
 		D3C33AC61812B2AA008AED54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EB6541B4182BF41000CC6BD5 /* liblzxf.a */,
+				79578107182E61A10011A196 /* liblzxf.a */,
 				D3C33AC71812B2AA008AED54 /* Foundation.framework */,
 				D3C33AC91812B2AA008AED54 /* CoreGraphics.framework */,
 				D3C33ACB1812B2AA008AED54 /* UIKit.framework */,
@@ -565,7 +565,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SXTileMap/SXTileMap-Prefix.pch";
 				INFOPLIST_FILE = "SXTileMap/SXTileMap-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/SXTileMap/SXLib/libs/lzfx";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/SXTileMap/SXLib/libs/lzfx",
+					/Users/loicabadie/Desktop/SXTileMap/SXTileMap/SXLib/libs/lzfx,
+				);
 				PRODUCT_NAME = SXTileMap;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
@@ -580,7 +583,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SXTileMap/SXTileMap-Prefix.pch";
 				INFOPLIST_FILE = "SXTileMap/SXTileMap-Info.plist";
-				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/SXTileMap/SXLib/libs/lzfx";
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)/SXTileMap/SXLib/libs/lzfx",
+					/Users/loicabadie/Desktop/SXTileMap/SXTileMap/SXLib/libs/lzfx,
+				);
 				PRODUCT_NAME = SXTileMap;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;

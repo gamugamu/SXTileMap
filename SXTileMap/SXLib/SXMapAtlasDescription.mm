@@ -51,8 +51,8 @@
     logMapData(data);
     [self allocAndinitMapData: data];
     
-    _description.sizeGrid = (_SXGridSize){2, 2};
-    _description.sizeTile = (_SXTileSize){10, 10};
+    _description.sizeGrid = (_SXGridSize){5, 5};
+    _description.sizeTile = (_SXTileSize){60, 60};
     _data = &_description;
 }
 

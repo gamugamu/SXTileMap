@@ -76,27 +76,33 @@ inline SXRect getTextureRectForTRIDInMap(TRId* trid,
 #pragma mark - logic
 
 - (NSArray*)createTilesFromMapAtlasDesctiptor:(SXMapAtlasDescription*)mapDescription{
-    _SXMapDescription* des      = (_SXMapDescription*)mapDescription.data;
-    NSMutableArray* nodeList    = [NSMutableArray new];
-    _texture  = [SKTexture textureWithImageNamed: mapDescription.fileName];
+    _SXMapDescription* des   = (_SXMapDescription*)mapDescription.data;
+    NSMutableArray* nodeList = [NSMutableArray new];
     
+    _texture = [SKTexture textureWithImageNamed: mapDescription.fileName];
+    
+    // texture file is expressed in term of ratio.
     float g_w   = 1.f / des->sizeGrid.column;   // grid width
     float g_h   = 1.f / des->sizeGrid.row;      // grid height
-    float t_w   = des->sizeTile.width;          // tile width
-    float t_h   = des->sizeTile.width;          // tile height
+
+    // Since textures in sprite are expressed in ratio,
+    // we need then to compute the ratio for the tiles.
+    CGSize ratioTM = (CGSize){
+         (des->sizeTile.width * des->sizeGrid.row) / _texture.size.width,
+         (des->sizeTile.height * des->sizeGrid.column) / _texture.size.height};
     
     for (int i = 0; i < des->sizeGrid.row; ++i){
         for (int j = 0; j < des->sizeGrid.column; ++j){
-            SXMapTile* tiles    = [SXMapTile new];
-            CGRect area         = CGRectMake(i * g_w, j * g_h, g_w, g_h);
-            //printf("[x:%u, y:%u] - id: %u (%u)\n", j, i, i * des->sizeGrid.column + j, des->sizeGrid.column);
+            SXMapTile* tiles = [SXMapTile new];
+            CGRect area      = CGRectMake(i * g_w, j * g_h, g_w, g_h);
+
             tiles.sprite = [self createNodeFromRect: area
                                             atPoint: (_SXGridSize){i, j}
-                                               size: (CGSize){t_w, t_h}
+                                     tileSizeRatioX: ratioTM.width
+                                     tileSizeRatioY: ratioTM.height
                                             texture: _texture];
             
             UInt32 tid = i * des->sizeGrid.column + j;
-#warning * should be taken from mapAtlasDescription
             UInt32 rid = tid;
             
             _SXTileDescription tDescription = {tid, rid, {j, i}};
@@ -111,15 +117,15 @@ inline SXRect getTextureRectForTRIDInMap(TRId* trid,
 
 SXRect getTextureRectForTRIDInMap(TRId* trid,
                                   _SXMapDescription* const md){
-    float g_w   = 1.f / md->sizeGrid.column;   // grid width
-    float g_h   = 1.f / md->sizeGrid.row;      // grid height
+    float g_w = 1.f / md->sizeGrid.column;   // grid width
+    float g_h = 1.f / md->sizeGrid.row;      // grid height
     
     float currentRowSubOne = (*trid % md->sizeGrid.row) * g_w;
     
-    // should not outBound
+    // should not outBound.
     *trid %= md->sizeGrid.column * md->sizeGrid.row;
 
-    // could crash if trid and md->sizeGrid.column are null
+    // could crash if trid and md->sizeGrid.column are null.
     return (SXRect){ currentRowSubOne,
                     ((uint)(*trid / md->sizeGrid.column) * g_h),
                     g_w,
@@ -133,10 +139,14 @@ SXRect getTextureRectForTRIDInMap(TRId* trid,
 
 - (SKSpriteNode*)createNodeFromRect: (SXRect)rect
                             atPoint: (_SXGridSize)pnt
-                               size: (CGSize)size
+                     tileSizeRatioX: (float)tileSizeRatioX
+                     tileSizeRatioY: (float)tileSizeRatioY
                             texture: (SKTexture*)texture{
     SKTexture* crop     = [self texture: texture fromRect: rect];
     SKSpriteNode* node  = [SKSpriteNode spriteNodeWithTexture: crop];
+    // we're assuming that a tile could be rectangle based shape != squared.
+    node.xScale         = tileSizeRatioX;
+    node.yScale         = tileSizeRatioY;
     CGPoint pos         = CGPointMake(node.size.width * pnt.row,
                                       node.size.height * pnt.column);
     node.position = pos;
