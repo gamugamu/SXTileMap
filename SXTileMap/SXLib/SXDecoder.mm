@@ -24,19 +24,19 @@
 #pragma mark -------------------------- public ---------------------------------
 #pragma mark -------------------------------------------------------------------
 
-+ (void)testRepresentation{
++ (struct decodedMapData)decodeMapData:(char*)data{
     /*
         sizeGrid_sizeTile_NBcharFileName_( | n time)_fileName_layerSize_layerRep
      */
-    char _test[] = "0015001500300030|011bonjour.png000200020_1_2_3_|013bonjouiur.png000300032_3_1_2_2_1_3_4_5_\0";
-    struct decodedMapData data = [self analyseRepresentation: _test];
-    logMapData(data);
+    return [self makeDataDecoding: data];
 }
 
 #pragma mark -------------------------- private --------------------------------
 #pragma mark -------------------------------------------------------------------
 
-+ (struct decodedMapData)analyseRepresentation:(char*)data{
+#pragma mark - logic
+    
++ (struct decodedMapData)makeDataDecoding:(char*)data{
     NSString* rawRepresentation = [NSString stringWithCString: data
                                                      encoding: NSUTF8StringEncoding];
     @try {

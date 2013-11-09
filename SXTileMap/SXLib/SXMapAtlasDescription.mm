@@ -7,6 +7,7 @@
 //
 
 #import "SXMapAtlasDescription.h"
+#import "SXDecoder_private.h"
 #import "SXTypes_private.h"
 
 @interface SXMapAtlasDescription(){
@@ -42,12 +43,16 @@
 #pragma mark ===================================================================
 
 #pragma mark - description
-#warning a enlever
+
 - (void)fakeADescription{
-    [self allocDataSpace];
+    char _test[] = "0015001500300030|011bonjour.png000200020_1_2_3_|013bonjouiur.png000300032_3_1_2_2_1_3_4_5_\0";
+
+    struct decodedMapData data = [SXDecoder decodeMapData: _test];
+    logMapData(data);
+    [self allocAndinitMapData: data];
     
-    _description.sizeGrid = (_SXGridSize){5, 5};
-    _description.sizeTile = (_SXTileSize){20, 20};
+    _description.sizeGrid = (_SXGridSize){2, 2};
+    _description.sizeTile = (_SXTileSize){10, 10};
     _data = &_description;
 }
 
@@ -59,14 +64,14 @@
 
 #pragma mark - memoryManagement
 
-- (void)allocDataSpace{
-    _description.layers = malloc(sizeof(_SXTilesLayerDescription) * 2);
+- (void)allocAndinitMapData:(const struct decodedMapData&)data{
+    _description.layers = (_SXTilesLayerDescription*)malloc(sizeof(_SXTilesLayerDescription) * 2);
     int test[] = {1, 2 ,3, 0, 4, 3, 9, 0, 1203};
     
     for (int i = 0; i < 2; i++) {
         _SXTilesLayerDescription* des = (_description.layers + i);
         
-        des->TRID_list      = malloc(sizeof(50));
+        des->TRID_list      = (TRId*)malloc(sizeof(50));
         des->TRID_list[0]   = (int)test[0];
         des->TRID_list[1]   = test[1];
         des->TRID_list[2]   = test[2];

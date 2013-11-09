@@ -10,7 +10,4 @@
 #import "SXTypes_private.h"
 
 @interface SXDecoder : NSObject
-
-+ (void)testRepresentation;
-
 @end

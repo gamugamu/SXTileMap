@@ -35,7 +35,7 @@ struct _SXMapDescription;
 typedef struct{
     _SXGridSize sizeGrid;                              // Because a layer grid can be smaller than his mapAtlas grid.
     struct _SXMapDescription* const mapDescription;    // A pointer to the mapDescription.
-    int* TRID_list;                                    // An opaque list of trid. Designed to fill the layer of tiles.
+    TRId* TRID_list;                                    // An opaque list of trid. Designed to fill the layer of tiles.
 }_SXTilesLayerDescription;
 
 typedef struct _SXMapDescription{

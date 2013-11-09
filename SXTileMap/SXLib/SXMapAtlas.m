@@ -62,13 +62,9 @@
 - (void)setUpLayers:(void*)layerDescription{
     SXTilesLayer* simpleLayer   = [[SXTilesLayer alloc] initTilesLayerWithLayerDescription: layerDescription];
     simpleLayer.mapAtlas        = self;
-    
-    SXTilesLayer* simpleLayer_2   = [[SXTilesLayer alloc] initTilesLayerWithLayerDescription: layerDescription];
-    simpleLayer_2.mapAtlas        = self;
 
     self.allLayers = @[simpleLayer];
     [self addChild: simpleLayer];
-    [self addChild: simpleLayer_2];
 }
 
 @end

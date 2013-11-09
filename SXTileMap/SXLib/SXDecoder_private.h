@@ -11,6 +11,7 @@
 
 #include <vector>
 #include <string>
+#include "SXDecoder.h"
 
 struct decodedLayerData{
     std::string layerTextureFile;
@@ -44,5 +45,14 @@ inline void logMapData(decodedMapData& mapData){
     printf("\n");
 }
 
+@interface SXDecoder()
+/**
+     Decode a map and return a decodedMapData representation.
+     @param data
+     An opaque data 
+ */
++ (struct decodedMapData)decodeMapData:(char*)data;
+
+@end
 
 #endif

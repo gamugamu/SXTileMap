@@ -13,7 +13,6 @@
 #import "SXTilesLayer.h"
 #import "SX2DMatrice.h"
 
-#import "SXDecoder.h"
 #import "SXConverser.h"
 
 @interface MyScene()
@@ -29,7 +28,6 @@
 - (id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        [self testDecoder];
         [self testMapAtlas];
         self.backgroundColor = [SKColor whiteColor];
     }
@@ -48,11 +46,6 @@
 
 #pragma mark - setup
 
-- (void)testDecoder{
-    [SXDecoder testRepresentation];
-    //[SXConverser archivefile: nil atPath: nil];
-}
-
 - (void)testMapAtlas{
     // note that rgb.png is not what a file is. For the moment we are still under development.
     self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"rgb.png"]];
@@ -64,24 +57,25 @@
     
     NSError* __autoreleasing error = nil;
    
-    SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@24, @24, @5, @5],
+  /*  SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@24, @24, @5, @5],
                                                                    @[@12, @12, @12, @12]]
                                                         onError: &error];
+    */
+   // SXTilesLayer* layer = [_mapAtlas allLayers][0];
+   // [layer changeTilesTextureIdWith2DMatrix: matrix];
     
-    SXTilesLayer* layer = [_mapAtlas allLayers][0];
-    [layer changeTilesTextureIdWith2DMatrix: matrix];
-    
-    // [self changeTexture];
+    [self changeTexture];
 }
 
 - (void)changeTexture{
     static int count    = 0;
-    SXMapTile* tile     = [[_mapAtlas allLayers][0] tileAtPoint:(SXPoint){4, 4}];
+    SXMapTile* tile     = [[_mapAtlas allLayers][0] tileAtPoint:(SXPoint){0, 0}];
     tile.textureId      = ++count;
     
     [self performSelector: @selector(changeTexture)
                withObject: nil
                afterDelay: 1];
+    NSLog(@"change");
 }
 
 #pragma mark - logic
