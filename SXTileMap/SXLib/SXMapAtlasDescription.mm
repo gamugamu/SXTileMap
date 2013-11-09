@@ -58,7 +58,7 @@
 #pragma mark - description
 
 - (void)fakeADescription{
-    char _test[] = "0005000500900090|007rgb.png000300031_9_1_9_1_3_7_3_7_|010flower.png000300032_3_1_2_2_1_3_4_5_\0";
+    char _test[] = "0005000500900090|010flower.png000400042_3_1_2_2_1_3_4_5_2_3_1_2_3_6_7_|007rgb.png000300031_9_1_9_1_3_7_3_7_\0";
 
     struct decodedMapData data = [SXDecoder decodeMapData: _test];
     [self allocAndinitMapData: data];
