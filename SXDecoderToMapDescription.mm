@@ -17,11 +17,7 @@
 #pragma alloc / dealloc
 
 void sxInitAndConvertDecodedToMapDescription(const _SXDecodedMapData* data, _SXMapDescription* desc){
-    
-    // Note: We are breaking here lot of constantness but since this is our ownership,
-    // everthing is OK. What we don't want is third party changing what we are constructing here.
-    size_t totalLayer   = data->allDataLayers.size();
-    
+    size_t totalLayer    = data->allDataLayers.size();
     desc->layers         = std::vector<_SXTilesLayerDescription*>(totalLayer);
     desc->layersCount    = totalLayer;
     desc->sizeGrid       = data->gridSize;

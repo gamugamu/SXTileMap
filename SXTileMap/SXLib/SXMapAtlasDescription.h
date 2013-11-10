@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SXLayerDescription.h"
 
 //----------------------------------------------------------------------------//
 // SXMapAtlasDescription define what is a MapAtlas file.
@@ -15,7 +16,9 @@
 
 + (id)mapAtlasDescription:(NSString*)fileName;
 
-- (size_t)layersCount;
+- (NSUInteger)layersCount;
+
+- (SXLayerDescription*)getLayerAtIndex:(NSUInteger)index;
 
 @property(nonatomic, readonly)NSString* fileName;
 

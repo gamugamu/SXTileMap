@@ -25,6 +25,27 @@
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
 
+#pragma mark - public
+
+- (NSUInteger)layersCount{
+    return _description.layersCount;
+}
+
+- (SXLayerDescription*)getLayerAtIndex:(NSUInteger)index{
+    return nil;
+}
+
+#pragma mark - override
+
+- (NSString*)description{
+    return [NSString stringWithFormat: @"[SXMapAtlasDescription %p] fileName %@ - size %u %u - tileSize %u %u - numbers of layers %u",
+            self, _fileName, _description.sizeGrid.column, _description.sizeGrid.row,
+            _description.sizeTile.width, _description.sizeTile.height,
+            [self layersCount]];
+}
+
+#pragma mark - alloc / dealloc
+
 + (id)mapAtlasDescription:(NSString*)fileName{
     return [[SXMapAtlasDescription alloc] initWithDescription: fileName];
 }
@@ -36,14 +57,6 @@
     }
     return self;
 }
-
-#pragma mark - public
-
-- (size_t)layersCount{
-    return _description.layersCount;
-}
-
-#pragma mark - alloc / dealloc
 
 - (void)dealloc{
     [self releaseMapData];
@@ -74,17 +87,11 @@
     [self allocAndinitMapData: data];
 }
 
-- (NSString*)description{
-    return [NSString stringWithFormat: @"[SXMapDescription %p] size %u %u, tileSize %u %u",
-            self, _description.sizeGrid.column, _description.sizeGrid.row,
-            _description.sizeTile.width, _description.sizeTile.height];
-}
-
 #pragma mark - memoryManagement
 
 - (void)allocAndinitMapData:(const _SXDecodedMapData&)data{
     logMapData(data);
-    sxInitAndConvertDecodedToMapDescription(&data, &(_description));
+    sxInitAndConvertDecodedToMapDescription(&data, &_description);
 }
 
 - (void)releaseMapData{

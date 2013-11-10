@@ -48,7 +48,11 @@
 
 - (void)testMapAtlas{
     // note that rgb.png is not what a file is. For the moment we are still under development.
-    self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: [SXMapAtlasDescription mapAtlasDescription: @"blablabla.sx"]];
+    SXMapAtlasDescription* description = [SXMapAtlasDescription mapAtlasDescription: @"blablabla.sx"];
+    
+    self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: description];
+    NSLog(@"des %@", description);
+    
     _mapAtlas.xScale    = .5f;
     _mapAtlas.yScale    = .5f;
     _mapAtlas.position  = CGPointMake(50, 100);
