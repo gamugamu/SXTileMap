@@ -75,8 +75,8 @@ inline SXRect getTextureRectForTRIDInMap(TRId trid,
 
 #warning  we should can change the texture at runtime. Not what expected for the moment
 - (void)setUpMap:(const _SXTilesLayerDescription*)layerDescription{
-    NSString* fileName = [NSString stringWithUTF8String: layerDescription->textureName.c_str()];
-    self.texture = [SKTexture textureWithImageNamed: fileName];
+    NSString* fileName  = [NSString stringWithUTF8String: layerDescription->textureName.c_str()];
+    self.texture        = [SKTexture textureWithImageNamed: fileName];
 }
 
 #pragma mark - logic

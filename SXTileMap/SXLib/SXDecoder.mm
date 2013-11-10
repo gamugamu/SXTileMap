@@ -24,7 +24,7 @@
 #pragma mark -------------------------- public ---------------------------------
 #pragma mark -------------------------------------------------------------------
 
-+ (decodedMapData)decodeMapData:(char*)data{
++ (_SXDecodedMapData)decodeMapData:(char*)data{
     /*
         sizeGrid_sizeTile_NBcharFileName_( | n time)_fileName_layerSize_layerRep
      */
@@ -36,14 +36,14 @@
 
 #pragma mark - logic
     
-+ (decodedMapData)makeDataDecoding:(char*)data{
++ (_SXDecodedMapData)makeDataDecoding:(char*)data{
     NSString* rawRepresentation = [NSString stringWithCString: data
                                                      encoding: NSUTF8StringEncoding];
     @try {
         _SXGridSize gridSize;
         _SXTileSize tileSize;
 
-        decodedMapData mapData;
+        _SXDecodedMapData mapData;
         
         NSRange range   = (NSRange){0, GRID_PER_RANGE};
         
@@ -69,7 +69,7 @@
         // for the rest
         for(int i = 0; i < layers.count; i++){
             NSString* layer = layers[i];
-            decodedLayerData layerData;
+            _SXDecodedLayerData layerData;
             
             NSRange range           = (NSRange){0, MAX_LENGHT_TEXT_FORMAT};
             NSUInteger textLenght   = [[layer substringWithRange: range] integerValue];

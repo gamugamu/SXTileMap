@@ -14,24 +14,24 @@
 #include "SXDecoder.h"
 #include "SXTypes_private.h"
 
-struct decodedLayerData{
+struct _SXDecodedLayerData{
     std::string layerTextureFile;
     _SXGridSize layerSize;
     unsigned level;
     std::vector<int> layerRepresentation;
 };
 
-struct decodedMapData{
+struct _SXDecodedMapData{
     _SXGridSize gridSize;
     _SXTileSize tileSize;
-    std::vector<const decodedLayerData> allDataLayers;
+    std::vector<const _SXDecodedLayerData> allDataLayers;
 };
 
-inline void logMapData(const decodedMapData& mapData){
+inline void logMapData(const _SXDecodedMapData& mapData){
     printf("gridSize %u %u\n", mapData.gridSize.row, mapData.gridSize.column);
     printf("gridSize %u %u\n", mapData.tileSize.width, mapData.tileSize.height);
     
-    for(const decodedLayerData& layer : mapData.allDataLayers){
+    for(const _SXDecodedLayerData& layer : mapData.allDataLayers){
         printf("================\n");
         printf("layer %u\n", layer.level);
         printf("layerTexture %s\n", layer.layerTextureFile.c_str());
@@ -53,7 +53,7 @@ inline void logMapData(const decodedMapData& mapData){
      @param data
      An opaque data 
  */
-+ (decodedMapData)decodeMapData:(char*)data;
++ (_SXDecodedMapData)decodeMapData:(char*)data;
 
 @end
 

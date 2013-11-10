@@ -69,7 +69,7 @@
 - (void)fakeADescription{
     char _test[] = "0005000500900090|010flower.png000400042_3_1_2_2_1_3_4_5_2_3_1_2_3_6_7_|007rgb.png000300031_9_1_9_1_3_7_3_7_\0";
 
-    decodedMapData data = [SXDecoder decodeMapData: _test];
+    _SXDecodedMapData data = [SXDecoder decodeMapData: _test];
     [self allocAndinitMapData: data];
 }
 
@@ -81,7 +81,7 @@
 
 #pragma mark - memoryManagement
 
-- (void)allocAndinitMapData:(const decodedMapData&)data{
+- (void)allocAndinitMapData:(const _SXDecodedMapData&)data{
     logMapData(data);
     
     // Note: We are breaking here lot of constantness but since this is our ownership,
@@ -94,7 +94,7 @@
     _description.sizeTile       = data.tileSize;
     
     for (int i = 0; i < totalLayer; i++){
-        const decodedLayerData& layerData = data.allDataLayers[i];
+        const _SXDecodedLayerData& layerData = data.allDataLayers[i];
         
         const std::vector<int>& lr  = layerData.layerRepresentation;
         _description.layers[i]      = new _SXTilesLayerDescription;
