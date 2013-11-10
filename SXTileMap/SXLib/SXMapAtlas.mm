@@ -62,13 +62,10 @@
 #pragma mark - setup
 
 - (void)setUpMap:(SXMapAtlasDescription*)mapDescription{
-    const _SXMapDescription* des = mapDescription.data;
-
     NSMutableArray* listLayers = [NSMutableArray array];
     
-    for (int i = 0; i < des->layersCount; i++) {
-        _SXTilesLayerDescription* const test = des->layers + i;
-        SXTilesLayer* tileLayer = [self createLayers: mapDescription withId: test->layerId];
+    for (int i = 0; i < [mapDescription layersCount]; i++) {
+        SXTilesLayer* tileLayer = [self createLayers: mapDescription withId: i];
         
         [listLayers addObject: tileLayer];
         [self addChild: tileLayer];

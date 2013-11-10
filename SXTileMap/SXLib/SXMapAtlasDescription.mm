@@ -36,6 +36,12 @@
     return self;
 }
 
+#pragma mark - public
+
+- (size_t)layersCount{
+    return _description.layersCount;
+}
+
 #pragma mark - alloc / dealloc
 
 - (void)dealloc{

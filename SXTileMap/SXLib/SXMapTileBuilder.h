@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SXMapAtlasDescription.h" // for SXPoint
 #import "SXTypes.h"
-#import "SXTypes_private.h"
 
 @class SXMapTile;
 @class SXMapAtlasDescription;

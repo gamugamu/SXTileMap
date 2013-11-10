@@ -83,34 +83,36 @@ inline SXRect getTextureRectForTRIDInMap(TRId trid,
 #pragma mark - logic
 
 - (NSArray*)createTilesFromMapAtlasDesctiptor:(SXMapAtlasDescription*)mapDescription{
-    _SXMapDescription* des              = (_SXMapDescription*)mapDescription.data;
-    _SXTilesLayerDescription* t_des     = [mapDescription layerDescriptionForId: _layerId];
+    _SXMapDescription* mDes              = (_SXMapDescription*)mapDescription.data;
+    _SXTilesLayerDescription* tDes     = [mapDescription layerDescriptionForId: _layerId];
 
     NSMutableArray* nodeList = [NSMutableArray new];
-    [self setUpMap: t_des];
+    [self setUpMap: tDes];
 
     // Since textures in sprite are expressed in ratio,
     // we need then to compute the ratio for the tiles.
     CGSize ratioTM = (CGSize){
-         (des->sizeTile.width * des->sizeGrid.row) / _texture.size.width,
-         (des->sizeTile.height * des->sizeGrid.column) / _texture.size.height};
+         (mDes->sizeTile.width * mDes->sizeGrid.row) / _texture.size.width,
+         (mDes->sizeTile.height * mDes->sizeGrid.column) / _texture.size.height};
     
     // We create the row first, and go up throught the columns.
-    for (int i = 0; i < t_des->sizeGrid.column; ++i){
-        for (int j = 0; j < t_des->sizeGrid.row; ++j){
+    for (int i = 0; i < tDes->sizeGrid.column; ++i){
+        for (int j = 0; j < tDes->sizeGrid.row; ++j){
             
             SXMapTile* tiles    = [SXMapTile new];
-            UInt32 tid          = i * des->sizeGrid.column + j;
-            TRId rid            = t_des->TRID_list[i * t_des->sizeGrid.column + j];
-            CGRect area         = getTextureRectForTRIDInMap(rid, des);
+            UInt32 tid          = i * mDes->sizeGrid.column + j;
+            TRId rid            = tDes->TRID_list[i * tDes->sizeGrid.column + j];
+            CGRect area         = getTextureRectForTRIDInMap(rid, mDes);
 
             tiles.sprite = [self createNodeFromRect: area
-                                            atPoint: (_SXGridSize){j, i}
+                                            atPoint: (_SXGridSize){ static_cast<uint_fast8_t>(j),
+                                                                    static_cast<uint_fast8_t>(i)}
                                      tileSizeRatioX: ratioTM.width
                                      tileSizeRatioY: ratioTM.height
                                             texture: _texture];
           
-            _SXTileDescription tDescription = {tid, rid, {j, i}};
+            _SXTileDescription tDescription = {tid, rid, {  static_cast<uint_fast8_t>(j),
+                                                            static_cast<uint_fast8_t>(i)}};
             tiles.tileDescription           = tDescription;
             
             [nodeList addObject: tiles];
@@ -131,10 +133,10 @@ SXRect getTextureRectForTRIDInMap(TRId trid,
     trid %= md->sizeGrid.column * md->sizeGrid.row;
 
     // could crash if trid and md->sizeGrid.column are null.
-    return (SXRect){ currentRowSubOne,
-                    ((uint)(trid / md->sizeGrid.column) * g_h),
-                    g_w,
-                    g_h};
+    return {    currentRowSubOne,
+                ((uint)(trid / md->sizeGrid.column) * g_h),
+                g_w,
+                g_h};;
 }
 
 - (SKTexture*)texture:(SKTexture*)texture fromRect:(SXRect)rect{

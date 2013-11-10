@@ -10,6 +10,7 @@
 #define SXTileMap_SXTypes_private_h
 
 #import "SXTypes.h"
+#include <vector>
 
 // A with and height of a mapGrid.
 typedef struct{

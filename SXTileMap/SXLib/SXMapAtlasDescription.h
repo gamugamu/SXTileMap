@@ -15,6 +15,8 @@
 
 + (id)mapAtlasDescription:(NSString*)fileName;
 
+- (size_t)layersCount;
+
 @property(nonatomic, readonly)NSString* fileName;
 
 @end

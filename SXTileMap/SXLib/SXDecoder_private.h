@@ -12,6 +12,7 @@
 #include <vector>
 #include <string>
 #include "SXDecoder.h"
+#include "SXTypes_private.h"
 
 struct decodedLayerData{
     std::string layerTextureFile;

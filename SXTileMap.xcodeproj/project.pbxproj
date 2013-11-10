@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		795780FC182E58490011A196 /* SXDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 795780FB182E58490011A196 /* SXDecoder.mm */; };
-		795780FF182E585D0011A196 /* SXMapTileBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 795780FE182E585D0011A196 /* SXMapTileBuilder.m */; };
+		795780FF182E585D0011A196 /* SXMapTileBuilder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 795780FE182E585D0011A196 /* SXMapTileBuilder.mm */; };
 		79578102182E58780011A196 /* SXMapAtlasDescription.mm in Sources */ = {isa = PBXBuildFile; fileRef = 79578101182E58780011A196 /* SXMapAtlasDescription.mm */; };
 		79578108182E61A10011A196 /* liblzxf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79578107182E61A10011A196 /* liblzxf.a */; };
 		7963FA90182EC7EA00AE145A /* flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 7963FA8F182EC7EA00AE145A /* flower.png */; };
@@ -28,8 +28,8 @@
 		D3C33AF31812B2AB008AED54 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C33ACB1812B2AA008AED54 /* UIKit.framework */; };
 		D3C33AFB1812B2AB008AED54 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D3C33AF91812B2AB008AED54 /* InfoPlist.strings */; };
 		D3C33AFD1812B2AB008AED54 /* SX_TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33AFC1812B2AB008AED54 /* SX_TestTests.m */; };
-		D3C33B081812B316008AED54 /* SXMapAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B071812B316008AED54 /* SXMapAtlas.m */; };
-		D3C33B0B1812B8F5008AED54 /* SXMapTile.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B0A1812B8F5008AED54 /* SXMapTile.m */; };
+		D3C33B081812B316008AED54 /* SXMapAtlas.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B071812B316008AED54 /* SXMapAtlas.mm */; };
+		D3C33B0B1812B8F5008AED54 /* SXMapTile.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B0A1812B8F5008AED54 /* SXMapTile.mm */; };
 		D3C33B0E1812C0C9008AED54 /* SXMutableMapAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B0D1812C0C9008AED54 /* SXMutableMapAtlas.m */; };
 		D3C33B191812CAA0008AED54 /* rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = D3C33B181812CAA0008AED54 /* rgb.png */; };
 		EB469D4A1828E2AF003CDC9A /* SXTilesLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB469D491828E2AF003CDC9A /* SXTilesLayer.mm */; };
@@ -52,7 +52,7 @@
 		795780FA182E58490011A196 /* SXDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXDecoder.h; path = SXTileMap/SXLib/SXDecoder.h; sourceTree = "<group>"; };
 		795780FB182E58490011A196 /* SXDecoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SXDecoder.mm; path = SXTileMap/SXLib/SXDecoder.mm; sourceTree = "<group>"; };
 		795780FD182E585D0011A196 /* SXMapTileBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapTileBuilder.h; path = SXTileMap/SXLib/SXMapTileBuilder.h; sourceTree = "<group>"; };
-		795780FE182E585D0011A196 /* SXMapTileBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMapTileBuilder.m; path = SXTileMap/SXLib/SXMapTileBuilder.m; sourceTree = "<group>"; };
+		795780FE182E585D0011A196 /* SXMapTileBuilder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SXMapTileBuilder.mm; path = SXTileMap/SXLib/SXMapTileBuilder.mm; sourceTree = "<group>"; };
 		79578100182E58780011A196 /* SXMapAtlasDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapAtlasDescription.h; path = SXTileMap/SXLib/SXMapAtlasDescription.h; sourceTree = "<group>"; };
 		79578101182E58780011A196 /* SXMapAtlasDescription.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SXMapAtlasDescription.mm; path = SXTileMap/SXLib/SXMapAtlasDescription.mm; sourceTree = "<group>"; };
 		79578105182E58E70011A196 /* lzfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzfx.h; path = SXTileMap/SXLib/libs/lzfx/lzfx.h; sourceTree = "<group>"; };
@@ -83,9 +83,9 @@
 		D3C33AFA1812B2AB008AED54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D3C33AFC1812B2AB008AED54 /* SX_TestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SX_TestTests.m; sourceTree = "<group>"; };
 		D3C33B061812B316008AED54 /* SXMapAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapAtlas.h; path = SXTileMap/SXLib/SXMapAtlas.h; sourceTree = "<group>"; };
-		D3C33B071812B316008AED54 /* SXMapAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMapAtlas.m; path = SXTileMap/SXLib/SXMapAtlas.m; sourceTree = "<group>"; };
+		D3C33B071812B316008AED54 /* SXMapAtlas.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SXMapAtlas.mm; path = SXTileMap/SXLib/SXMapAtlas.mm; sourceTree = "<group>"; };
 		D3C33B091812B8F5008AED54 /* SXMapTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapTile.h; path = SXTileMap/SXLib/SXMapTile.h; sourceTree = "<group>"; };
-		D3C33B0A1812B8F5008AED54 /* SXMapTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMapTile.m; path = SXTileMap/SXLib/SXMapTile.m; sourceTree = "<group>"; };
+		D3C33B0A1812B8F5008AED54 /* SXMapTile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SXMapTile.mm; path = SXTileMap/SXLib/SXMapTile.mm; sourceTree = "<group>"; };
 		D3C33B0C1812C0C9008AED54 /* SXMutableMapAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMutableMapAtlas.h; path = SXTileMap/SXLib/SXMutableMapAtlas.h; sourceTree = "<group>"; };
 		D3C33B0D1812C0C9008AED54 /* SXMutableMapAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXMutableMapAtlas.m; path = SXTileMap/SXLib/SXMutableMapAtlas.m; sourceTree = "<group>"; };
 		D3C33B181812CAA0008AED54 /* rgb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rgb.png; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 			children = (
 				EB0BCF4B181AAEF70026ABD3 /* SXTypes.h */,
 				D3C33B061812B316008AED54 /* SXMapAtlas.h */,
-				D3C33B071812B316008AED54 /* SXMapAtlas.m */,
+				D3C33B071812B316008AED54 /* SXMapAtlas.mm */,
 				EB469D481828E2AF003CDC9A /* SXTilesLayer.h */,
 				EB469D491828E2AF003CDC9A /* SXTilesLayer.mm */,
 				EB469D4B1828EAF4003CDC9A /* SX2DMatrice.h */,
@@ -268,7 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				D3C33B091812B8F5008AED54 /* SXMapTile.h */,
-				D3C33B0A1812B8F5008AED54 /* SXMapTile.m */,
+				D3C33B0A1812B8F5008AED54 /* SXMapTile.mm */,
 			);
 			name = SWMapTile;
 			sourceTree = "<group>";
@@ -289,7 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				795780FD182E585D0011A196 /* SXMapTileBuilder.h */,
-				795780FE182E585D0011A196 /* SXMapTileBuilder.m */,
+				795780FE182E585D0011A196 /* SXMapTileBuilder.mm */,
 				795780F9182E56E70011A196 /* private header */,
 			);
 			name = SXPrivate;
@@ -425,14 +425,14 @@
 				EB469D4D1828EAF4003CDC9A /* SX2DMatrice.mm in Sources */,
 				795780FC182E58490011A196 /* SXDecoder.mm in Sources */,
 				EB7C7567182D0B2000DE1A06 /* SXConverser.m in Sources */,
-				D3C33B0B1812B8F5008AED54 /* SXMapTile.m in Sources */,
+				D3C33B0B1812B8F5008AED54 /* SXMapTile.mm in Sources */,
 				D3C33AE31812B2AB008AED54 /* ViewController.m in Sources */,
 				D3C33ADA1812B2AB008AED54 /* AppDelegate.m in Sources */,
-				795780FF182E585D0011A196 /* SXMapTileBuilder.m in Sources */,
+				795780FF182E585D0011A196 /* SXMapTileBuilder.mm in Sources */,
 				EB469D4A1828E2AF003CDC9A /* SXTilesLayer.mm in Sources */,
 				D3C33AD61812B2AB008AED54 /* main.m in Sources */,
 				79578102182E58780011A196 /* SXMapAtlasDescription.mm in Sources */,
-				D3C33B081812B316008AED54 /* SXMapAtlas.m in Sources */,
+				D3C33B081812B316008AED54 /* SXMapAtlas.mm in Sources */,
 				D3C33B0E1812C0C9008AED54 /* SXMutableMapAtlas.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
