@@ -8,8 +8,20 @@
 
 #ifndef SXTileMap_SXDecoderToMapAtlasDescription_h
 #define SXTileMap_SXDecoderToMapAtlasDescription_h
+class _SXDecodedMapData;
+class _SXMapDescription;
 
 // Convert opaque type _SXDecodedMapData to opaque type _SXMapDescription
 
+/**
+    Convert opaque type _SXDecodedMapData to opaque type _SXMapDescription
+    @param
+*/
+void sxInitAndConvertDecodedToMapDescription(const _SXDecodedMapData*, _SXMapDescription*);
+
+/**
+    free **
+ */
+void sxReleaseMapDescription(_SXMapDescription*);
 
 #endif

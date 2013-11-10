@@ -10,6 +10,7 @@
 #import "SXMapAtlasDescription_private.h"
 #import "SXDecoder_private.h"
 #import "SXTypes_private.h"
+#import "SXDecoderToMapDescription.h"
 
 @interface SXMapAtlasDescription(){
     _SXMapDescription _description;
@@ -83,40 +84,11 @@
 
 - (void)allocAndinitMapData:(const _SXDecodedMapData&)data{
     logMapData(data);
-    
-    // Note: We are breaking here lot of constantness but since this is our ownership,
-    // everthing is OK. What we don't want is third party changing what we are constructing here.
-    size_t totalLayer   = data.allDataLayers.size();
-
-    _description.layers         = std::vector<_SXTilesLayerDescription*>(totalLayer);
-    _description.layersCount    = totalLayer;
-    _description.sizeGrid       = data.gridSize;
-    _description.sizeTile       = data.tileSize;
-    
-    for (int i = 0; i < totalLayer; i++){
-        const _SXDecodedLayerData& layerData = data.allDataLayers[i];
-        
-        const std::vector<int>& lr  = layerData.layerRepresentation;
-        _description.layers[i]      = new _SXTilesLayerDescription;
-       
-        _SXTilesLayerDescription& currentLayer = *(_description.layers[i]);
-        
-        currentLayer.layerId        = i;
-        currentLayer.sizeGrid       = layerData.layerSize;
-        currentLayer.textureName    = std::string(layerData.layerTextureFile.c_str());
-        currentLayer.TRID_list      = std::vector<TRId>(lr.size());
-        
-        for (size_t i = 0; i < lr.size(); ++i)
-            currentLayer.TRID_list[i] = lr[i];
-    };
+    sxInitAndConvertDecodedToMapDescription(&data, &(_description));
 }
 
 - (void)releaseMapData{
- /*  
-    free ***
-    should free every layer->textureName and Tlayyer->RID_list
-    + mapLayer->layers
-   */
-#warning don't forget to freed
+    sxReleaseMapDescription(&_description);
 }
+
 @end
