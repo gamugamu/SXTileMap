@@ -10,4 +10,5 @@
 
 @interface SXLayerDescription : NSObject
 
+@property(nonatomic, readonly)NSUInteger index;
 @end

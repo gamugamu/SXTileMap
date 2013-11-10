@@ -20,6 +20,8 @@
 
 - (SXLayerDescription*)getLayerAtIndex:(NSUInteger)index;
 
+- (NSString*)deepDescription;
+
 @property(nonatomic, readonly)NSString* fileName;
 
 @end

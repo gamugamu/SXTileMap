@@ -8,6 +8,7 @@
 
 #import "SXMapAtlasDescription.h"
 #import "SXMapAtlasDescription_private.h"
+#import "SXLayerDescription_private.h"
 #import "SXDecoder_private.h"
 #import "SXConverser.h"
 #import "SXTypes_private.h"
@@ -16,12 +17,12 @@
 @interface SXMapAtlasDescription(){
     _SXMapDescription _description;
 }
-@property(nonatomic, strong)NSMutableArray* layersTextureFileName;
+@property(nonatomic, strong)NSMutableArray* layersDescription;
 @property(nonatomic, strong)NSString* fileName;
 @end
 
 @implementation SXMapAtlasDescription
-@synthesize layersTextureFileName = _layersTextureFileName;
+@synthesize layersDescription = _layersDescription;
 
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
@@ -37,7 +38,10 @@
 }
 
 - (NSString*)deepDescription{
-    return [NSString stringWithFormat: @"%@", self];
+    NSMutableString* deepDescription = [NSMutableString string];
+    [deepDescription appendString: [NSString stringWithFormat: @"%@ - %@", self, _layersDescription]];
+    
+    return deepDescription;
 }
 
 #pragma mark - override
@@ -58,6 +62,7 @@
 - (id)initWithDescription:(NSString*)description{
     if(self = [super init]){
         self.fileName = description;
+        [self setUpGlobal];
         [self setUpDescription: description];
     }
     return self;
@@ -85,6 +90,10 @@
 
 #pragma mark - setUp
 
+- (void)setUpGlobal{
+    self.layersDescription = [NSMutableArray array];
+}
+
 - (void)setUpDescription:(NSString*)description{
     NSString* rawData = nil;
     [SXConverser decompressSXDataAtPath: description data: &rawData];
@@ -95,8 +104,14 @@
 #pragma mark - memoryManagement
 
 - (void)allocAndinitMapData:(const _SXDecodedMapData&)data{
-    logMapData(data);
     sxInitAndConvertDecodedToMapDescription(&data, &_description);
+    [_layersDescription removeAllObjects];
+
+#warning TODO check
+    for (const _SXTilesLayerDescription* des : _description.layers) {
+        SXLayerDescription* description = [[SXLayerDescription alloc] initWithLayerDescription: des];
+        [_layersDescription addObject: description];
+    }
 }
 
 - (void)releaseMapData{

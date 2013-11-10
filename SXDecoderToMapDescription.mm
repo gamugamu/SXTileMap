@@ -31,7 +31,7 @@ void sxInitAndConvertDecodedToMapDescription(const _SXDecodedMapData* data, _SXM
         
         _SXTilesLayerDescription& currentLayer = *(desc->layers[i]);
         
-        currentLayer.layerId        = i;
+        currentLayer.index          = i;
         currentLayer.sizeGrid       = layerData.layerSize;
         currentLayer.textureName    = std::string(layerData.layerTextureFile.c_str());
         currentLayer.TRID_list      = std::vector<TRId>(lr.size());

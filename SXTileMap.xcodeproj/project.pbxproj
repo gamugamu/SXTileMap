@@ -13,7 +13,7 @@
 		79578108182E61A10011A196 /* liblzxf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79578107182E61A10011A196 /* liblzxf.a */; };
 		7963FA90182EC7EA00AE145A /* flower.png in Resources */ = {isa = PBXBuildFile; fileRef = 7963FA8F182EC7EA00AE145A /* flower.png */; };
 		79913C40182FB20400C086FB /* SXDecoderToMapDescription.mm in Sources */ = {isa = PBXBuildFile; fileRef = 79913C3F182FB20400C086FB /* SXDecoderToMapDescription.mm */; };
-		79913C46182FBA4200C086FB /* SXLayerDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 79913C45182FBA4200C086FB /* SXLayerDescription.m */; };
+		79913C46182FBA4200C086FB /* SXLayerDescription.mm in Sources */ = {isa = PBXBuildFile; fileRef = 79913C45182FBA4200C086FB /* SXLayerDescription.mm */; };
 		D3C33AC81812B2AA008AED54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C33AC71812B2AA008AED54 /* Foundation.framework */; };
 		D3C33ACA1812B2AA008AED54 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C33AC91812B2AA008AED54 /* CoreGraphics.framework */; };
 		D3C33ACC1812B2AA008AED54 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3C33ACB1812B2AA008AED54 /* UIKit.framework */; };
@@ -65,7 +65,8 @@
 		79913C3F182FB20400C086FB /* SXDecoderToMapDescription.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SXDecoderToMapDescription.mm; sourceTree = "<group>"; };
 		79913C41182FB22F00C086FB /* SXDecoderToMapDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXDecoderToMapDescription.h; sourceTree = "<group>"; };
 		79913C44182FBA4200C086FB /* SXLayerDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXLayerDescription.h; path = SXTileMap/SXLib/SXLayerDescription.h; sourceTree = "<group>"; };
-		79913C45182FBA4200C086FB /* SXLayerDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXLayerDescription.m; path = SXTileMap/SXLib/SXLayerDescription.m; sourceTree = "<group>"; };
+		79913C45182FBA4200C086FB /* SXLayerDescription.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SXLayerDescription.mm; path = SXTileMap/SXLib/SXLayerDescription.mm; sourceTree = "<group>"; };
+		79913C4A182FCCED00C086FB /* SXLayerDescription_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXLayerDescription_private.h; path = SXTileMap/SXLib/SXLayerDescription_private.h; sourceTree = "<group>"; };
 		D3C33AC41812B2AA008AED54 /* SXTileMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SXTileMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C33AC71812B2AA008AED54 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D3C33AC91812B2AA008AED54 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -141,6 +142,7 @@
 				D3C33B1D18140D32008AED54 /* SXMapTile_private.h */,
 				79578106182E58FA0011A196 /* SXTilesLayer_private.h */,
 				795780F8182E56DB0011A196 /* SXDecoder_private.h */,
+				79913C4A182FCCED00C086FB /* SXLayerDescription_private.h */,
 				7963FA8E182EA06700AE145A /* SXMapAtlasDescription_private.h */,
 			);
 			name = "private header";
@@ -186,7 +188,7 @@
 				79578100182E58780011A196 /* SXMapAtlasDescription.h */,
 				79578101182E58780011A196 /* SXMapAtlasDescription.mm */,
 				79913C44182FBA4200C086FB /* SXLayerDescription.h */,
-				79913C45182FBA4200C086FB /* SXLayerDescription.m */,
+				79913C45182FBA4200C086FB /* SXLayerDescription.mm */,
 			);
 			name = SXMapDescription;
 			sourceTree = "<group>";
@@ -474,7 +476,7 @@
 				D3C33AE61812B2AB008AED54 /* MyScene.m in Sources */,
 				EB469D4D1828EAF4003CDC9A /* SX2DMatrice.mm in Sources */,
 				795780FC182E58490011A196 /* SXDecoder.mm in Sources */,
-				79913C46182FBA4200C086FB /* SXLayerDescription.m in Sources */,
+				79913C46182FBA4200C086FB /* SXLayerDescription.mm in Sources */,
 				EB7C7567182D0B2000DE1A06 /* SXConverser.m in Sources */,
 				D3C33B0B1812B8F5008AED54 /* SXMapTile.mm in Sources */,
 				D3C33AE31812B2AB008AED54 /* ViewController.m in Sources */,

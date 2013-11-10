@@ -78,7 +78,6 @@
     SXTilesLayer* simpleLayer   = [[SXTilesLayer alloc] initTilesLayerWithLayerDescription: mapDescription
                                                                                    layerId: layerId];
     simpleLayer.mapAtlas        = self;
-    NSLog(@"create layer %@", simpleLayer);
     return simpleLayer;
 }
 

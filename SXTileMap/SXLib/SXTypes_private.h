@@ -37,7 +37,7 @@ struct _SXMapDescription;
 struct _SXTilesLayerDescription{
     _SXGridSize sizeGrid;                               // Because a layer grid can be smaller than his mapAtlas grid.
     _SXMapDescription*  mapDescription;                 // A pointer to the mapDescription.
-    unsigned layerId;
+    unsigned index;
     std::string textureName;
     std::vector<TRId> TRID_list;                        // An list of trid. Designed to fill the layer of tiles.
                                                         // hold sizeGrid.row * sizeGrid.column

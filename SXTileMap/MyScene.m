@@ -52,7 +52,7 @@
     SXMapAtlasDescription* description_2 = [SXMapAtlasDescription mapAtlasDescription: @"blablabla.sx"];
 
     self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: description];
-    NSLog(@"des %@", description);
+    NSLog(@"des %@", [description deepDescription]);
     
     _mapAtlas.xScale    = .5f;
     _mapAtlas.yScale    = .5f;
