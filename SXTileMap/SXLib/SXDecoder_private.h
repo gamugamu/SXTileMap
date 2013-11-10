@@ -28,23 +28,27 @@ struct _SXDecodedMapData{
 };
 
 inline void logMapData(const _SXDecodedMapData& mapData){
+    printf("===== _SXDecodedMapData =====\n");
+    printf("%p\n", &mapData);
     printf("gridSize %u %u\n", mapData.gridSize.row, mapData.gridSize.column);
     printf("gridSize %u %u\n", mapData.tileSize.width, mapData.tileSize.height);
-    
+    printf("contains %zu layers\n", mapData.allDataLayers.size());
+
     for(const _SXDecodedLayerData& layer : mapData.allDataLayers){
-        printf("================\n");
+        printf("---- _SXDecodedLayerData ----\n");
+        printf("%p\n", &layer);
         printf("layer %u\n", layer.level);
         printf("layerTexture %s\n", layer.layerTextureFile.c_str());
         printf("layer Size %u %u\n", layer.layerSize.row, layer.layerSize.column);
         
         for (int i = 0;  i < layer.layerSize.row; i++) {
             for (int j = 0;  j < layer.layerSize.column; j++) {
-                printf("%u", layer.layerRepresentation[i * layer.layerSize.column + j]);
+                printf("%03u ", layer.layerRepresentation[i * layer.layerSize.column + j]);
             }
             printf("\n");
         }
     }
-    printf("\n");
+    printf("=============================\n");
 }
 
 @interface SXDecoder()
@@ -53,7 +57,7 @@ inline void logMapData(const _SXDecodedMapData& mapData){
      @param data
      An opaque data 
  */
-+ (_SXDecodedMapData)decodeMapData:(char*)data;
++ (_SXDecodedMapData)decodeMapData:(NSString*)data;
 
 @end
 

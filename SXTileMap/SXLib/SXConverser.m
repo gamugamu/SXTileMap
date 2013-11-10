@@ -28,14 +28,42 @@
     success = lzfx_decompress(output, lenght,
                               &test,  &lenght);
     
+    printf("\n");
     // insert code here...
     
     printf("[%i] decompress result_2 ---> %s %u\n", success, test, lenght);
     return NO;
 }
 
-+ (BOOL)unarchivefile:(NSString*)dcumentPath{
-    return NO;
++ (BOOL)decompressSXDataAtPath:(NSString*)dcumentPath data:(NSString**)data{
+    // "0005000500900090|010flower.png000400042_3_1_2_2_1_3_4_5_2_3_12_22_12_12_12_|007rgb.png000300031_9_1_9_1_3_7_3_7_\0"
+    // TODO remove help comment
+
+    unsigned lenght = 200;
+
+    char test[]     = "0005000500900090|010flower.png000400042_3_1_2_2_1_3_4_5_2_3_12_22_12_12_12_|007rgb.png000300031_9_1_9_1_3_7_3_7_\0";
+    char* output    = (char*)calloc(lenght, sizeof(char));
+    
+    if(output == NULL)
+        printf("failed\n");
+
+    printf("size %zu vs %zu\n", strlen(test), sizeof(test) / sizeof(*test));
+    int success = lzfx_compress(&test, sizeof(test) / sizeof(*test),
+                                output, &lenght);
+    
+    printf("[%i] decompress result_2 ---> %s %u\n", success, test, lenght);
+    
+    success = lzfx_decompress(output, lenght,
+                              &test,  &lenght);
+    if(success < 0){
+        NSLog(@"not a seuuce");
+        return NO;
+    }
+    else{
+        *data = [NSString stringWithUTF8String: test];
+        NSLog(@"get data %@ %u", *data, (*data).length);
+        return (*data).length;
+    }
 }
 
 @end

@@ -24,7 +24,7 @@
 #pragma mark -------------------------- public ---------------------------------
 #pragma mark -------------------------------------------------------------------
 
-+ (_SXDecodedMapData)decodeMapData:(char*)data{
++ (_SXDecodedMapData)decodeMapData:(NSString*)data{
     /*
         sizeGrid_sizeTile_NBcharFileName_( | n time)_fileName_layerSize_layerRep
      */
@@ -36,9 +36,7 @@
 
 #pragma mark - logic
     
-+ (_SXDecodedMapData)makeDataDecoding:(char*)data{
-    NSString* rawRepresentation = [NSString stringWithCString: data
-                                                     encoding: NSUTF8StringEncoding];
++ (_SXDecodedMapData)makeDataDecoding:(NSString*)rawRepresentation{
     @try {
         _SXGridSize gridSize;
         _SXTileSize tileSize;

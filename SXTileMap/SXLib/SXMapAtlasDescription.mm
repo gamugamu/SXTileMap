@@ -9,6 +9,7 @@
 #import "SXMapAtlasDescription.h"
 #import "SXMapAtlasDescription_private.h"
 #import "SXDecoder_private.h"
+#import "SXConverser.h"
 #import "SXTypes_private.h"
 #import "SXDecoderToMapDescription.h"
 
@@ -35,6 +36,10 @@
     return nil;
 }
 
+- (NSString*)deepDescription{
+    return [NSString stringWithFormat: @"%@", self];
+}
+
 #pragma mark - override
 
 - (NSString*)description{
@@ -53,7 +58,7 @@
 - (id)initWithDescription:(NSString*)description{
     if(self = [super init]){
         self.fileName = description;
-        [self fakeADescription];
+        [self setUpDescription: description];
     }
     return self;
 }
@@ -78,12 +83,12 @@
     return &_description;
 }
 
-#pragma mark - description
+#pragma mark - setUp
 
-- (void)fakeADescription{
-    char _test[] = "0005000500900090|010flower.png000400042_3_1_2_2_1_3_4_5_2_3_1_2_3_6_7_|007rgb.png000300031_9_1_9_1_3_7_3_7_\0";
-
-    _SXDecodedMapData data = [SXDecoder decodeMapData: _test];
+- (void)setUpDescription:(NSString*)description{
+    NSString* rawData = nil;
+    [SXConverser decompressSXDataAtPath: description data: &rawData];
+    _SXDecodedMapData data = [SXDecoder decodeMapData: rawData];
     [self allocAndinitMapData: data];
 }
 

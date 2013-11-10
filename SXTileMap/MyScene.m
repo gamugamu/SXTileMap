@@ -49,7 +49,8 @@
 - (void)testMapAtlas{
     // note that rgb.png is not what a file is. For the moment we are still under development.
     SXMapAtlasDescription* description = [SXMapAtlasDescription mapAtlasDescription: @"blablabla.sx"];
-    
+    SXMapAtlasDescription* description_2 = [SXMapAtlasDescription mapAtlasDescription: @"blablabla.sx"];
+
     self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: description];
     NSLog(@"des %@", description);
     

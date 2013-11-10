@@ -42,7 +42,7 @@ void sxInitAndConvertDecodedToMapDescription(const _SXDecodedMapData* data, _SXM
 
 }
 
-void sxReleaseMapDescription(_SXMapDescription*){
-#warning don't forget to freed
-
+void sxReleaseMapDescription(_SXMapDescription* mDes){
+    for (const _SXTilesLayerDescription* tDesc : mDes->layers)
+        delete tDesc;
 }
