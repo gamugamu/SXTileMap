@@ -24,14 +24,14 @@ struct decodedLayerData{
 struct decodedMapData{
     _SXGridSize gridSize;
     _SXTileSize tileSize;
-    std::vector<const struct decodedLayerData> allDataLayers;
+    std::vector<const decodedLayerData> allDataLayers;
 };
 
 inline void logMapData(const decodedMapData& mapData){
     printf("gridSize %u %u\n", mapData.gridSize.row, mapData.gridSize.column);
     printf("gridSize %u %u\n", mapData.tileSize.width, mapData.tileSize.height);
     
-    for(const struct decodedLayerData& layer : mapData.allDataLayers){
+    for(const decodedLayerData& layer : mapData.allDataLayers){
         printf("================\n");
         printf("layer %u\n", layer.level);
         printf("layerTexture %s\n", layer.layerTextureFile.c_str());
@@ -53,7 +53,7 @@ inline void logMapData(const decodedMapData& mapData){
      @param data
      An opaque data 
  */
-+ (struct decodedMapData)decodeMapData:(char*)data;
++ (decodedMapData)decodeMapData:(char*)data;
 
 @end
 

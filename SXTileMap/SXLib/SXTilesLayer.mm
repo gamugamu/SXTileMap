@@ -30,7 +30,8 @@ using namespace std;
 #pragma mark -------------------------- public ---------------------------------
 #pragma mark -------------------------------------------------------------------
 
-- (id)initTilesLayerWithLayerDescription:(SXMapAtlasDescription*)description layerId:(uint)layerId{
+- (id)initTilesLayerWithLayerDescription:(SXMapAtlasDescription*)description
+                                 layerId:(uint)layerId{
     if(self = [super init]){
         [self setUpMapBuilder: description withLayerId: layerId];
         [self setUpTiles: description fromBuilder: _mapBuilder];

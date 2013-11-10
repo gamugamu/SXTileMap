@@ -53,11 +53,15 @@
 
 #pragma mark - hidden
 
-- (_SXTilesLayerDescription* const)layerDescriptionForId:(uint)idLayer{
+- (const _SXTilesLayerDescription*)layerDescriptionForId:(uint)idLayer{
     if(idLayer < _description.layersCount)
         return _description.layers[idLayer];
     else
         return nil;
+}
+
+- (const _SXMapDescription*)dataDescription{
+    return &_description;
 }
 
 #pragma mark - description
@@ -65,7 +69,7 @@
 - (void)fakeADescription{
     char _test[] = "0005000500900090|010flower.png000400042_3_1_2_2_1_3_4_5_2_3_1_2_3_6_7_|007rgb.png000300031_9_1_9_1_3_7_3_7_\0";
 
-    struct decodedMapData data = [SXDecoder decodeMapData: _test];
+    decodedMapData data = [SXDecoder decodeMapData: _test];
     [self allocAndinitMapData: data];
 }
 
@@ -77,11 +81,12 @@
 
 #pragma mark - memoryManagement
 
-- (void)allocAndinitMapData:(const struct decodedMapData&)data{
+- (void)allocAndinitMapData:(const decodedMapData&)data{
     logMapData(data);
     
+    // Note: We are breaking here lot of constantness but since this is our ownership,
+    // everthing is OK. What we don't want is third party changing what we are constructing here.
     size_t totalLayer   = data.allDataLayers.size();
-    std::vector<const _SXTilesLayerDescription*> layers;    // Layers description
 
     _description.layers         = std::vector<_SXTilesLayerDescription*>(totalLayer);
     _description.layersCount    = totalLayer;
@@ -91,30 +96,19 @@
     for (int i = 0; i < totalLayer; i++){
         const decodedLayerData& layerData = data.allDataLayers[i];
         
-        const std::vector<int>& lr      = layerData.layerRepresentation;
-        _SXTilesLayerDescription** des  = &(_description.layers[i]);
-        *des = new _SXTilesLayerDescription;
+        const std::vector<int>& lr  = layerData.layerRepresentation;
+        _description.layers[i]      = new _SXTilesLayerDescription;
+       
+        _SXTilesLayerDescription& currentLayer = *(_description.layers[i]);
         
-        (*des)->layerId  = i;
-        (*des)->sizeGrid = layerData.layerSize;
-        
-        // des->textureName is a const pointer to const and yeah I cheated.
-        // But don't forget this is the SXMapAtlasDescription ownership, and should
-        // be totally opaque to others. This is guaranteed that nobody can actually
-        // get the pointer before it is initialized by SXMapDescription. And
-        // moreover _SXTilesLayerDescription is private to client side.
-        (*des)->textureName = std::string(layerData.layerTextureFile.c_str());
-
-        (*des)->TRID_list           = std::vector<TRId>(lr.size());
-        std::vector<TRId>& trid     = (*des)->TRID_list; // uncast constantness
-        (*des)->layerId  = i;
-        (*des)->sizeGrid = layerData.layerSize;
+        currentLayer.layerId        = i;
+        currentLayer.sizeGrid       = layerData.layerSize;
+        currentLayer.textureName    = std::string(layerData.layerTextureFile.c_str());
+        currentLayer.TRID_list      = std::vector<TRId>(lr.size());
         
         for (size_t i = 0; i < lr.size(); ++i)
-            trid[i] = lr[i];
+            currentLayer.TRID_list[i] = lr[i];
     };
-    
-    _data = &_description;
 }
 
 - (void)releaseMapData{
@@ -123,5 +117,6 @@
     should free every layer->textureName and Tlayyer->RID_list
     + mapLayer->layers
    */
+#warning don't forget to freed
 }
 @end

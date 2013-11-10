@@ -13,8 +13,8 @@
 
 @interface SXMapAtlasDescription()
 
-- (_SXTilesLayerDescription* const)layerDescriptionForId:(uint)idLayer;
-@property(nonatomic, readonly)_SXMapDescription* data;
+- (const _SXTilesLayerDescription*)layerDescriptionForId:(uint)idLayer;
+- (const _SXMapDescription*)dataDescription;
 
 @end
 
