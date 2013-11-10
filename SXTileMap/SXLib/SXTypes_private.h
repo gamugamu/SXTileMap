@@ -14,15 +14,15 @@
 
 // A with and height of a mapGrid.
 typedef struct{
-    uint_fast8_t row;
-    uint_fast8_t column;
+    unsigned row;
+    unsigned column;
 }_SXGridSize;
 
 // Represent the size of all tiles into a SXMapAtlas. They are all of the same
 // size. Note that a square is not required to be a square size.
 typedef struct{
-    uint_fast8_t width;
-    uint_fast8_t height;
+    unsigned width;
+    unsigned height;
 }_SXTileSize;
 
 typedef struct{
@@ -36,7 +36,7 @@ struct _SXMapDescription;
 typedef struct{
     _SXGridSize sizeGrid;                              // Because a layer grid can be smaller than his mapAtlas grid.
     struct _SXMapDescription* const mapDescription;    // A pointer to the mapDescription.
-    uint layerId;
+    unsigned layerId;
     const char* const textureName;
     const TRId* TRID_list;                             // An list of trid. Designed to fill the layer of tiles.
                                                        // hold sizeGrid.row * sizeGrid.column

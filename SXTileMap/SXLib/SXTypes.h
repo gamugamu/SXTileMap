@@ -15,14 +15,14 @@ typedef CGRect SXRect;
 typedef unsigned TRId;
 
 typedef struct{
-    uint_fast8_t row;
-    uint_fast8_t column;
+    unsigned row;
+    unsigned column;
 }SXMatrixSize;
 
-// Represent the coordinate system.
+// Represent the Map Atlas coordinate system.
 typedef struct{
-    uint_fast8_t x;
-    uint_fast8_t y;
+    unsigned x;
+    unsigned y;
 }SXPoint;
 
 // Represent the coordinate space. By default bottomLeft.

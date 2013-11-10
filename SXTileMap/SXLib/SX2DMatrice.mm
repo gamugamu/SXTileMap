@@ -104,8 +104,8 @@
     }
 
     if(!error)
-        _size = {static_cast<uint_fast8_t>(vectorSize),
-                 static_cast<uint_fast8_t>(array.count)};
+        _size = {static_cast<unsigned>(static_cast<int>(vectorSize)),
+                 static_cast<unsigned>(array.count)};
     
     return error;
 }
