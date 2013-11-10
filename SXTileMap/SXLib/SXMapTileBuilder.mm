@@ -75,16 +75,16 @@ inline SXRect getTextureRectForTRIDInMap(TRId trid,
 #pragma mark - setUp
 
 #warning  we should can change the texture at runtime. Not what expected for the moment
-- (void)setUpMap:(_SXTilesLayerDescription*)layerDescription{
-    NSString* fileName = [NSString stringWithUTF8String: layerDescription->textureName];
+- (void)setUpMap:(_SXTilesLayerDescription* const)layerDescription{
+    NSString* fileName = [NSString stringWithUTF8String: layerDescription->textureName.c_str()];
     self.texture = [SKTexture textureWithImageNamed: fileName];
 }
 
 #pragma mark - logic
 
 - (NSArray*)createTilesFromMapAtlasDesctiptor:(SXMapAtlasDescription*)mapDescription{
-    _SXMapDescription* mDes              = (_SXMapDescription*)mapDescription.data;
-    _SXTilesLayerDescription* tDes     = [mapDescription layerDescriptionForId: _layerId];
+    _SXMapDescription* mDes          = (_SXMapDescription*)mapDescription.data;
+    _SXTilesLayerDescription* tDes   = [mapDescription layerDescriptionForId: _layerId];
 
     NSMutableArray* nodeList = [NSMutableArray new];
     [self setUpMap: tDes];

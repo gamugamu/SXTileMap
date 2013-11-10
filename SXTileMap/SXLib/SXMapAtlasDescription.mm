@@ -54,9 +54,8 @@
 #pragma mark - hidden
 
 - (_SXTilesLayerDescription* const)layerDescriptionForId:(uint)idLayer{
-    if(idLayer < _description.layersCount){
-        return _description.layers + idLayer;
-    }
+    if(idLayer < _description.layersCount)
+        return _description.layers[idLayer];
     else
         return nil;
 }
@@ -82,7 +81,9 @@
     logMapData(data);
     
     size_t totalLayer   = data.allDataLayers.size();
-    _description.layers = (_SXTilesLayerDescription*)malloc(sizeof(_SXTilesLayerDescription) * totalLayer);
+    std::vector<const _SXTilesLayerDescription*> layers;    // Layers description
+
+    _description.layers         = std::vector<_SXTilesLayerDescription*>(totalLayer);
     _description.layersCount    = totalLayer;
     _description.sizeGrid       = data.gridSize;
     _description.sizeTile       = data.tileSize;
@@ -90,24 +91,24 @@
     for (int i = 0; i < totalLayer; i++){
         const decodedLayerData& layerData = data.allDataLayers[i];
         
-        const std::vector<int>& lr        = layerData.layerRepresentation;
-        _SXTilesLayerDescription* des     = (_description.layers + i);
+        const std::vector<int>& lr      = layerData.layerRepresentation;
+        _SXTilesLayerDescription** des  = &(_description.layers[i]);
+        *des = new _SXTilesLayerDescription;
+        
+        (*des)->layerId  = i;
+        (*des)->sizeGrid = layerData.layerSize;
         
         // des->textureName is a const pointer to const and yeah I cheated.
         // But don't forget this is the SXMapAtlasDescription ownership, and should
         // be totally opaque to others. This is guaranteed that nobody can actually
         // get the pointer before it is initialized by SXMapDescription. And
         // moreover _SXTilesLayerDescription is private to client side.
-        char** test     = (char**)&(des->textureName);
-        *test           = (char*)malloc(sizeof(char) * layerData.layerTextureFile.size());
+        (*des)->textureName = std::string(layerData.layerTextureFile.c_str());
 
-        if (*test != NULL)
-            strcpy(*test, layerData.layerTextureFile.c_str());        
-
-        des->TRID_list      = (TRId*)malloc(sizeof(uint) * lr.size());
-        TRId* trid          = (TRId*)des->TRID_list; // uncast constantness
-        des->layerId        = i;
-        des->sizeGrid       = layerData.layerSize;
+        (*des)->TRID_list           = std::vector<TRId>(lr.size());
+        std::vector<TRId>& trid     = (*des)->TRID_list; // uncast constantness
+        (*des)->layerId  = i;
+        (*des)->sizeGrid = layerData.layerSize;
         
         for (size_t i = 0; i < lr.size(); ++i)
             trid[i] = lr[i];
@@ -122,6 +123,5 @@
     should free every layer->textureName and Tlayyer->RID_list
     + mapLayer->layers
    */
-    free(_description.layers);
 }
 @end

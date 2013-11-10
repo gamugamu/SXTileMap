@@ -11,6 +11,7 @@
 
 #import "SXTypes.h"
 #include <vector>
+#include <string>
 
 // A with and height of a mapGrid.
 typedef struct{
@@ -26,33 +27,33 @@ typedef struct{
 }_SXTileSize;
 
 typedef struct{
-    unsigned tileId;            // a unique id for each tile.
-    TRId    textureRegionId;    // an id representing the region of the texture.
-    SXPoint position;           // where the tile is into the map coordinate.
+    unsigned tileId;                                    // a unique id for each tile.
+    TRId    textureRegionId;                            // an id representing the region of the texture.
+    SXPoint position;                                   // where the tile is into the map coordinate.
 }_SXTileDescription;
 
 struct _SXMapDescription;
 
-typedef struct{
-    _SXGridSize sizeGrid;                              // Because a layer grid can be smaller than his mapAtlas grid.
-    struct _SXMapDescription* const mapDescription;    // A pointer to the mapDescription.
+struct _SXTilesLayerDescription{
+    _SXGridSize sizeGrid;                               // Because a layer grid can be smaller than his mapAtlas grid.
+    struct _SXMapDescription*  mapDescription;          // A pointer to the mapDescription.
     unsigned layerId;
-    const char* const textureName;
-    const TRId* TRID_list;                             // An list of trid. Designed to fill the layer of tiles.
-                                                       // hold sizeGrid.row * sizeGrid.column
-}_SXTilesLayerDescription;
+    std::string textureName;
+    std::vector<TRId> TRID_list;                        // An list of trid. Designed to fill the layer of tiles.
+                                                        // hold sizeGrid.row * sizeGrid.column
+};
 
 typedef struct _SXMapDescription{
     _SXGridSize sizeGrid;
     _SXTileSize sizeTile;
-    unsigned layersCount;                  // Number of layer.
-    _SXTilesLayerDescription* layers;      // Layers description
+    unsigned layersCount;                              // Number of layer.
+    std::vector<_SXTilesLayerDescription*> layers;     // Layers description
 }_SXMapDescription;
 
 // Those types are forward declared because they use c++ template.
 // Defined in SXTypes_encodage.hh
 
-struct decodedMapData;      // an opaque decoded mapData type.
-struct decodedLayerData;    // an opaque decoded LayerData type.
+struct decodedMapData;                                  // an opaque decoded mapData type.
+struct decodedLayerData;                                // an opaque decoded LayerData type.
 
 #endif
