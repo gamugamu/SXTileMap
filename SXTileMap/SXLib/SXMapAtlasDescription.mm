@@ -33,6 +33,11 @@
     return _description.layersCount;
 }
 
+- (CGSize)mapSize{
+    return (CGSize){(float)(_description.sizeGrid.row * _description.sizeTile.width),
+                    (float)(_description.sizeGrid.column * _description.sizeTile.height)};
+}
+
 - (SXLayerDescription*)getLayerAtIndex:(NSUInteger)index{
     return nil;
 }

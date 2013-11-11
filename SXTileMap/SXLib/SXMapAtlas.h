@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Abadie Loic. All rights reserved.
 //
 
-#import <SpriteKit/SKNode.h>
+#import <SpriteKit/SKSpriteNode.h>
 #import "SXMapAtlasDescription.h" // for SXPoint
 #import "SXTypes.h"
 
@@ -16,7 +16,7 @@
 //----------------------------------------------------------------------------//
 // SXMapAtlas holds collection of tiles.
 //----------------------------------------------------------------------------//
-@interface SXMapAtlas : SKNode
+@interface SXMapAtlas : SKSpriteNode
 
 /**
     Create a mapAtlas

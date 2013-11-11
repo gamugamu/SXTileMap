@@ -91,11 +91,21 @@ inline SXRect getTextureRectForTRIDInMap(TRId trid,
     NSMutableArray* nodeList = [NSMutableArray new];
     [self setUpMap: tDes];
 
+    CGSize mapSize = (CGSize){
+        static_cast<CGFloat>(mDes->sizeTile.width * mDes->sizeGrid.row),
+        static_cast<CGFloat>(mDes->sizeTile.height * mDes->sizeGrid.column)};
+    
     // Since textures in sprite are expressed in ratio,
     // we need then to compute the ratio for the tiles.
     CGSize ratioTM = (CGSize){
-         (mDes->sizeTile.width * mDes->sizeGrid.row) / _texture.size.width,
-         (mDes->sizeTile.height * mDes->sizeGrid.column) / _texture.size.height};
+         mapSize.width / _texture.size.width,
+         mapSize.height / _texture.size.height};
+    
+    // "0006000601000100|010flower.png000600062_3_1_2_2_1_3_4_5_2_3_12_22_12_12_12_|007rgb.png000300030_-1_1_2_3_3_7_3_7_\0";
+    
+    CGPoint offsetTiles = (CGPoint){
+        static_cast<CGFloat>(mDes->sizeTile.width * mDes->sizeGrid.row / 2 - mDes->sizeTile.width / 2),
+        static_cast<CGFloat>(mDes->sizeTile.height * mDes->sizeGrid.column / 2 - mDes->sizeTile.height / 2)};
     
     // We create the row first, and go up throught the columns.
     for (int i = 0; i < tDes->sizeGrid.column; ++i){
@@ -110,6 +120,7 @@ inline SXRect getTextureRectForTRIDInMap(TRId trid,
                                                                     static_cast<uint_fast8_t>(i)}
                                      tileSizeRatioX: ratioTM.width
                                      tileSizeRatioY: ratioTM.height
+                                           atOffset: offsetTiles
                                             texture: _texture];
           
             _SXTileDescription tDescription = {tid, rid, {  static_cast<uint_fast8_t>(j),
@@ -152,14 +163,16 @@ SXRect getTextureRectForTRIDInMap(TRId trid,
                             atPoint: (_SXGridSize)pnt
                      tileSizeRatioX: (float)tileSizeRatioX
                      tileSizeRatioY: (float)tileSizeRatioY
+                           atOffset: (CGPoint)offset
                             texture: (SKTexture*)texture{
     SKTexture* crop     = [self texture: texture fromRect: rect];
     SKSpriteNode* node  = [SKSpriteNode spriteNodeWithTexture: crop];
     // we're assuming that a tile could be rectangle based shape != squared.
     node.xScale         = tileSizeRatioX;
     node.yScale         = tileSizeRatioY;
-    CGPoint pos         = CGPointMake(node.size.width * pnt.row,
-                                      node.size.height * pnt.column);
+
+    CGPoint pos         = CGPointMake(node.size.width * pnt.row - offset.x,
+                                      node.size.height * pnt.column - offset.y);
     node.position = pos;
     
     return node;

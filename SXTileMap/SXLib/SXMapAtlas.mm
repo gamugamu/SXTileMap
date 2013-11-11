@@ -29,6 +29,7 @@
 - (id)initWithDescription:(SXMapAtlasDescription*)description{
     if(self = [super init]){
         [self setUpMap: description];
+        self.color = [UIColor blueColor];
     }
     return self;
 }
@@ -49,11 +50,11 @@
 }
 
 #pragma mark - override
-
+/*
 - (CGRect)calculateAccumulatedFrame{
     // note: should take care. Not implemented Yet.
     return CGRectMake(0, 0, 0, 0);
-}
+}*/
 
 
 #pragma mark ============================ private ==============================
@@ -71,7 +72,8 @@
         [self addChild: tileLayer];
     }
     
-    self.allLayers = listLayers;
+    self.size       = [mapDescription mapSize];
+    self.allLayers  = listLayers;    
 }
 
 - (SXTilesLayer*)createLayers:(SXMapAtlasDescription*)mapDescription withId:(uint)layerId{

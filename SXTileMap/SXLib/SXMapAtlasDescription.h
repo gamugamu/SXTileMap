@@ -18,6 +18,8 @@
 
 - (NSUInteger)layersCount;
 
+- (CGSize)mapSize;
+
 - (SXLayerDescription*)getLayerAtIndex:(NSUInteger)index;
 
 - (NSString*)deepDescription;
