@@ -39,12 +39,12 @@
     
     // Note that the safest way would be to take the TRID_list lenght. We
     // are assuming that there are as much data as there are row * column data.
-    for (int i = 0;  i < description.sizeGrid.row; i++) {
+    for (int i = description.sizeGrid.row - 1;  i >= 0; --i) {
         [matrixData appendString: [NSString stringWithFormat: @"\r      "]];
         for (int j = 0;  j < description.sizeGrid.column; j++) {
             int trid = description.TRID_list[i * description.sizeGrid.column + j];
             [matrixData appendString: trid != SXBlankTileTRID?
-             [NSString stringWithFormat: @"%03u ", trid] : @"    "];
+             [NSString stringWithFormat: @"%03u ", trid] : @"--- "];
         }
     }
     return matrixData;
@@ -56,7 +56,7 @@
 #pragma mark - hidden
 
 - (id)initWithLayerDescription:(const _SXTilesLayerDescription*)description{
-    if(self = [super init]){
+    if(self = [super init]) {
         _description = *description;
     }
     return self;
