@@ -12,7 +12,7 @@
 typedef CGRect SXRect;
 
 // Texture region id
-typedef unsigned TRId;
+typedef int TRId;
 
 typedef struct{
     unsigned row;
@@ -32,5 +32,10 @@ typedef enum{
     SXCoordinateTopLeft,
     SXCoordinateTopRight
 }SXCoordinateSpace;
+
+// Represent a tile without any trid.
+extern const int SXBlankTileTRID;
+// a blank Rect.
+extern const SXRect SXBlankRect;
 
 #endif

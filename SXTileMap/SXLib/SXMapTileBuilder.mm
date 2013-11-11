@@ -13,6 +13,9 @@
 #import "SXMapTile.h"
 #import "SXMapTile_private.h"
 
+const int SXBlankTileTRID   = -1;
+const SXRect SXBlankRect    = CGRectZero;
+
 inline SXRect getTextureRectForTRIDInMap(TRId trid,
                                          const _SXMapDescription*);
 
@@ -122,6 +125,9 @@ inline SXRect getTextureRectForTRIDInMap(TRId trid,
 
 SXRect getTextureRectForTRIDInMap(TRId trid,
                                   const _SXMapDescription* md){
+    if(trid == SXBlankTileTRID)
+        return SXBlankRect;
+    
     float g_w = 1.f / md->sizeGrid.column;   // grid width
     float g_h = 1.f / md->sizeGrid.row;      // grid height
     

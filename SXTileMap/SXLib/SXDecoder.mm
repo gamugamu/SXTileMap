@@ -100,10 +100,10 @@
                 if(*allValues == '_'){
                     layerData.layerRepresentation.push_back(atoi(&scanner[0]));
                     j = 0;
-                    scanner[0] = '\0';
-                }else{
+                    std::fill_n(scanner, MAX_CHAR_SCANNER_BUFFER_LENGHT, '\0');
+                }else
                     scanner[j++] = allValues[0];
-                }
+
                 allValues++;
             }
 

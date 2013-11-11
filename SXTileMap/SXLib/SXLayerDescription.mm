@@ -43,7 +43,8 @@
         [matrixData appendString: [NSString stringWithFormat: @"\r      "]];
         for (int j = 0;  j < description.sizeGrid.column; j++) {
             int trid = description.TRID_list[i * description.sizeGrid.column + j];
-            [matrixData appendString: [NSString stringWithFormat: @"%03u ", trid]];
+            [matrixData appendString: trid != SXBlankTileTRID?
+             [NSString stringWithFormat: @"%03u ", trid] : @"    "];
         }
     }
     return matrixData;

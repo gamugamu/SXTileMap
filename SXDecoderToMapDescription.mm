@@ -22,7 +22,7 @@ void sxInitAndConvertDecodedToMapDescription(const _SXDecodedMapData* data, _SXM
     desc->layersCount    = totalLayer;
     desc->sizeGrid       = data->gridSize;
     desc->sizeTile       = data->tileSize;
-    
+
     for (int i = 0; i < totalLayer; i++){
         const _SXDecodedLayerData& layerData = data->allDataLayers[i];
         
@@ -39,7 +39,6 @@ void sxInitAndConvertDecodedToMapDescription(const _SXDecodedMapData* data, _SXM
         for (size_t i = 0; i < lr.size(); ++i)
             currentLayer.TRID_list[i] = lr[i];
     };
-
 }
 
 void sxReleaseMapDescription(_SXMapDescription* mDes){
