@@ -625,10 +625,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SXTileMap/SXTileMap-Prefix.pch";
 				INFOPLIST_FILE = "SXTileMap/SXTileMap-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(SRCROOT)/SXTileMap/SXLib/libs/lzfx",
-					/Users/loicabadie/Desktop/SXTileMap/SXTileMap/SXLib/libs/lzfx,
-				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/SXTileMap/SXLib/libs/lzfx";
 				PRODUCT_NAME = SXTileMap;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
@@ -643,10 +640,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SXTileMap/SXTileMap-Prefix.pch";
 				INFOPLIST_FILE = "SXTileMap/SXTileMap-Info.plist";
-				LIBRARY_SEARCH_PATHS = (
-					"$(SRCROOT)/SXTileMap/SXLib/libs/lzfx",
-					/Users/loicabadie/Desktop/SXTileMap/SXTileMap/SXLib/libs/lzfx,
-				);
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/SXTileMap/SXLib/libs/lzfx";
 				PRODUCT_NAME = SXTileMap;
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
