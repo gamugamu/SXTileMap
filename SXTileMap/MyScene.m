@@ -48,10 +48,7 @@
 
 - (void)testMapAtlas{
     // note that rgb.png is not what a file is. For the moment we are still under development.
-    SXMapAtlasDescription* description = [SXMapAtlasDescription mapAtlasDescription: @"blablabla.sx"];
-    SKSpriteNode* sprite = [SKSpriteNode spriteNodeWithImageNamed: @"rgb.png"];
-    sprite.position = CGPointMake(0, 0);
-    //[self addChild: sprite];
+    SXMapAtlasDescription* description = [SXMapAtlasDescription mapAtlasDescriptionFromRessourceFolder: @"media_2"];
     
     self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: description];
     
@@ -62,7 +59,7 @@
     [self addChild: _mapAtlas];
     NSLog(@"mapAtla %@", [description deepDescription]);
     
-    NSError* __autoreleasing error = nil;
+   // NSError* __autoreleasing error = nil;
    
   /*  SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@24, @24, @5, @5],
                                                                    @[@12, @12, @12, @12]]

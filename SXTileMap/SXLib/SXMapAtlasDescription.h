@@ -14,7 +14,7 @@
 //----------------------------------------------------------------------------//
 @interface SXMapAtlasDescription : NSObject
 
-+ (id)mapAtlasDescription:(NSString*)fileName;
++ (id)mapAtlasDescriptionFromRessourceFolder:(NSString*)fileName;
 
 - (NSUInteger)layersCount;
 

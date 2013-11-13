@@ -34,6 +34,8 @@
 		D3C33B0B1812B8F5008AED54 /* SXMapTile.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B0A1812B8F5008AED54 /* SXMapTile.mm */; };
 		D3C33B0E1812C0C9008AED54 /* SXMutableMapAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C33B0D1812C0C9008AED54 /* SXMutableMapAtlas.m */; };
 		D3C33B191812CAA0008AED54 /* rgb.png in Resources */ = {isa = PBXBuildFile; fileRef = D3C33B181812CAA0008AED54 /* rgb.png */; };
+		EB25E3EE1833DCE50051BF47 /* media_2 in Resources */ = {isa = PBXBuildFile; fileRef = EB25E3ED1833DCE50051BF47 /* media_2 */; };
+		EB25E3F21833DEDD0051BF47 /* SXFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EB25E3F11833DEDD0051BF47 /* SXFileManager.m */; };
 		EB469D4A1828E2AF003CDC9A /* SXTilesLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB469D491828E2AF003CDC9A /* SXTilesLayer.mm */; };
 		EB469D4D1828EAF4003CDC9A /* SX2DMatrice.mm in Sources */ = {isa = PBXBuildFile; fileRef = EB469D4C1828EAF4003CDC9A /* SX2DMatrice.mm */; };
 		EB7C7567182D0B2000DE1A06 /* SXConverser.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7C7566182D0B2000DE1A06 /* SXConverser.m */; };
@@ -99,6 +101,9 @@
 		D3C33B1D18140D32008AED54 /* SXMapTile_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXMapTile_private.h; path = SXTileMap/SXLib/SXMapTile_private.h; sourceTree = "<group>"; };
 		EB0BCF4B181AAEF70026ABD3 /* SXTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXTypes.h; path = SXTileMap/SXLib/SXTypes.h; sourceTree = "<group>"; };
 		EB102D3418293305009039BF /* SXTypes_private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SXTypes_private.h; path = SXTileMap/SXLib/SXTypes_private.h; sourceTree = "<group>"; };
+		EB25E3ED1833DCE50051BF47 /* media_2 */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media_2; sourceTree = "<group>"; };
+		EB25E3F01833DEDD0051BF47 /* SXFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXFileManager.h; path = SXTileMap/SXLib/libs/SXFileManager.h; sourceTree = "<group>"; };
+		EB25E3F11833DEDD0051BF47 /* SXFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXFileManager.m; path = SXTileMap/SXLib/libs/SXFileManager.m; sourceTree = "<group>"; };
 		EB469D481828E2AF003CDC9A /* SXTilesLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXTilesLayer.h; path = SXTileMap/SXLib/SXTilesLayer.h; sourceTree = "<group>"; };
 		EB469D491828E2AF003CDC9A /* SXTilesLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SXTilesLayer.mm; path = SXTileMap/SXLib/SXTilesLayer.mm; sourceTree = "<group>"; };
 		EB469D4B1828EAF4003CDC9A /* SX2DMatrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SX2DMatrice.h; path = SXTileMap/SXLib/SX2DMatrice.h; sourceTree = "<group>"; };
@@ -263,11 +268,13 @@
 		D3C33AD01812B2AB008AED54 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EB25E3ED1833DCE50051BF47 /* media_2 */,
 				EB0BCF4A181AA6200026ABD3 /* img */,
 				D3C33AD11812B2AB008AED54 /* SXTileMap-Info.plist */,
 				D3C33AD21812B2AB008AED54 /* InfoPlist.strings */,
 				D3C33AD51812B2AB008AED54 /* main.m */,
 				D3C33AD71812B2AB008AED54 /* SXTileMap-Prefix.pch */,
+				7963FA8F182EC7EA00AE145A /* flower.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -340,6 +347,7 @@
 			children = (
 				795780F9182E56E70011A196 /* private header */,
 				EB654135182BE06000CC6BD5 /* compressor */,
+				EB25E3EF1833DE970051BF47 /* fileManager */,
 				EB654136182BE06900CC6BD5 /* encoder/Decoder */,
 				79913C42182FB28400C086FB /* tilefactory */,
 				79913C43182FB29800C086FB /* helper */,
@@ -350,10 +358,18 @@
 		EB0BCF4A181AA6200026ABD3 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				7963FA8F182EC7EA00AE145A /* flower.png */,
 				D3C33B181812CAA0008AED54 /* rgb.png */,
 			);
 			name = img;
+			sourceTree = "<group>";
+		};
+		EB25E3EF1833DE970051BF47 /* fileManager */ = {
+			isa = PBXGroup;
+			children = (
+				EB25E3F01833DEDD0051BF47 /* SXFileManager.h */,
+				EB25E3F11833DEDD0051BF47 /* SXFileManager.m */,
+			);
+			name = fileManager;
 			sourceTree = "<group>";
 		};
 		EB654135182BE06000CC6BD5 /* compressor */ = {
@@ -450,6 +466,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB25E3EE1833DCE50051BF47 /* media_2 in Resources */,
 				D3C33AE01812B2AB008AED54 /* Main_iPad.storyboard in Resources */,
 				D3C33B191812CAA0008AED54 /* rgb.png in Resources */,
 				D3C33ADD1812B2AB008AED54 /* Main_iPhone.storyboard in Resources */,
@@ -473,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB25E3F21833DEDD0051BF47 /* SXFileManager.m in Sources */,
 				D3C33AE61812B2AB008AED54 /* MyScene.m in Sources */,
 				EB469D4D1828EAF4003CDC9A /* SX2DMatrice.mm in Sources */,
 				795780FC182E58490011A196 /* SXDecoder.mm in Sources */,

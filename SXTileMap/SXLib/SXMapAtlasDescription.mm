@@ -13,12 +13,14 @@
 #import "SXConverser.h"
 #import "SXTypes_private.h"
 #import "SXDecoderToMapDescription.h"
+#import "SXFileManager.h"
 
 @interface SXMapAtlasDescription(){
     _SXMapDescription _description;
 }
 @property(nonatomic, strong)NSMutableArray* layersDescription;
 @property(nonatomic, strong)NSString* fileName;
+@property(nonatomic, strong)SXFileManager* fileManager;
 @end
 
 @implementation SXMapAtlasDescription
@@ -60,13 +62,14 @@
 
 #pragma mark - alloc / dealloc
 
-+ (id)mapAtlasDescription:(NSString*)fileName{
++ (id)mapAtlasDescriptionFromRessourceFolder:(NSString*)fileName{
     return [[SXMapAtlasDescription alloc] initWithDescription: fileName];
 }
 
 - (id)initWithDescription:(NSString*)description{
     if(self = [super init]){
         self.fileName = description;
+        [self setUpFileManager: _fileName];
         [self setUpGlobal];
         [self setUpDescription: description];
     }
@@ -97,6 +100,11 @@
 
 - (void)setUpGlobal{
     self.layersDescription = [NSMutableArray array];
+}
+
+- (void)setUpFileManager:(NSString*)ressourcePath{
+    SXFileManager* fileManager = [[SXFileManager alloc] initFileManagerWithRelativeFolderRessource: ressourcePath];
+    self.fileManager = fileManager;
 }
 
 - (void)setUpDescription:(NSString*)description{
