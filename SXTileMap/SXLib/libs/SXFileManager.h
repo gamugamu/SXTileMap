@@ -12,4 +12,5 @@
 
 - (id)initFileManagerWithRelativeFolderRessource:(NSString*)relativeRessource;
 
+- (NSString*)pathForRessource:(NSString*)ressourceName;
 @end

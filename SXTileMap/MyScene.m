@@ -57,7 +57,6 @@
     _mapAtlas.position  = CGPointMake(150, 300);
 
     [self addChild: _mapAtlas];
-    NSLog(@"mapAtla %@", [description deepDescription]);
     
    // NSError* __autoreleasing error = nil;
    

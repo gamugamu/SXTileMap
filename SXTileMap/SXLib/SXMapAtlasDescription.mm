@@ -122,7 +122,8 @@
 
 #warning TODO check
     for (const _SXTilesLayerDescription* des : _description.layers) {
-        SXLayerDescription* description = [[SXLayerDescription alloc] initWithLayerDescription: des];
+        SXLayerDescription* description = [[SXLayerDescription alloc] initWithLayerDescription: des
+                                                                                andFileManager: _fileManager];
         [_layersDescription addObject: description];
     }
 }

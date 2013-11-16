@@ -8,13 +8,17 @@
 
 #import "SXLayerDescription.h"
 #import "SXLayerDescription_private.h"
+#import "SXFileManager.h"
 
 @interface SXLayerDescription(){
     _SXTilesLayerDescription _description;
 }
+@property(nonatomic, strong)SXFileManager* fileManager;
+
 @end
 
 @implementation SXLayerDescription
+@synthesize fileManager = _fileManager;
 
 #pragma mark -------------------------- public ---------------------------------
 #pragma mark -------------------------------------------------------------------
@@ -55,11 +59,26 @@
 
 #pragma mark - hidden
 
-- (id)initWithLayerDescription:(const _SXTilesLayerDescription*)description{
+- (id)initWithLayerDescription:(const _SXTilesLayerDescription*)description
+                andFileManager:(SXFileManager *)fileManager{
     if(self = [super init]) {
-        _description = *description;
+        self.fileManager    = fileManager;
+        [self setUpTexturePathAsAbsolutePath: const_cast<_SXTilesLayerDescription*>(description)];
     }
     return self;
+}
+
+#pragma mark - setup
+
+- (void)setUpTexturePathAsAbsolutePath:(_SXTilesLayerDescription*)description{
+    if(description){
+        NSString* absolutePath = [_fileManager pathForRessource: @((char*)description->textureName.c_str())];
+
+        if(absolutePath)
+            description->textureName = [absolutePath UTF8String];
+        
+        _description = *description;
+    }
 }
 
 @end

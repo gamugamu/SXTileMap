@@ -101,8 +101,6 @@ inline SXRect getTextureRectForTRIDInMap(TRId trid,
          mapSize.width / _texture.size.width,
          mapSize.height / _texture.size.height};
     
-    // "0006000601000100|010flower.png000600062_3_1_2_2_1_3_4_5_2_3_12_22_12_12_12_|007rgb.png000300030_-1_1_2_3_3_7_3_7_\0";
-    
     CGPoint offsetTiles = (CGPoint){
         static_cast<CGFloat>(mDes->sizeTile.width * mDes->sizeGrid.row / 2 - mDes->sizeTile.width / 2),
         static_cast<CGFloat>(mDes->sizeTile.height * mDes->sizeGrid.column / 2 - mDes->sizeTile.height / 2)};
@@ -125,7 +123,7 @@ inline SXRect getTextureRectForTRIDInMap(TRId trid,
           
             _SXTileDescription tDescription = {tid, rid, {  static_cast<uint_fast8_t>(j),
                                                             static_cast<uint_fast8_t>(i)}};
-            tiles.tileDescription           = tDescription;
+            tiles.tileDescription = tDescription;
             
             [nodeList addObject: tiles];
         }

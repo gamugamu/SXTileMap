@@ -9,8 +9,10 @@
 #import "AppDelegate.h"
 #import "SXTypes_private.h"
 
+@class SXFileManager;
+
 @interface SXLayerDescription ()
 
-- (id)initWithLayerDescription:(const _SXTilesLayerDescription*)description;
-
+- (id)initWithLayerDescription:(const _SXTilesLayerDescription*)description
+                andFileManager:(SXFileManager*)fileManager;
 @end

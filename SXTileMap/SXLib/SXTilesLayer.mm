@@ -95,7 +95,7 @@ using namespace std;
 }
 
 - (void)changeTileTextureFromMatrix:(const vector<vector<unsigned> >&)m{
-    // Note that it is poorly designed. Improvement will be made later if necessary.
+    // it is poorly designed. Should be improved later.
     for (int i = 0; i < m.size(); ++i) {
         for(int j = 0; j < m[i].size(); ++j){
             SXMapTile* tile = [self tileAtPoint:(SXPoint){static_cast<uint_fast8_t>(i),

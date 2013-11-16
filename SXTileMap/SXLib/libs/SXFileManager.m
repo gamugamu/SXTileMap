@@ -25,12 +25,15 @@
     return self;
 }
 
+- (NSString*)pathForRessource:(NSString*)ressourceName{
+    return [NSString stringWithFormat: @"%@/%@", _relativePath, ressourceName];
+}
+
 #pragma mark -------------------------- private --------------------------------
 #pragma mark -------------------------------------------------------------------
 
-- (void)setUpRelativePath:(NSString*)relativeRessource{
-    NSString* path = [NSString stringWithFormat: @"%@/rgb_2.png", relativeRessource];
-    NSLog(@"test 2 %@",  [[NSBundle mainBundle] pathForResource: path ofType: nil]);
+- (void)setUpRelativePath:(NSString*)relativePath{
+    self.relativePath = relativePath;
 }
 
 @end
