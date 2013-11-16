@@ -14,6 +14,8 @@
 @interface SXConverser : NSObject
 
 + (BOOL)archivefile:(NSString*)file atPath:(NSString*)dcumentPath;
-+ (BOOL)decompressSXDataAtPath:(NSString*)dcumentPath data:(NSString* __strong*)data;
++ (BOOL)decompressSXDataAtPath: (NSString*)dcumentPath
+                          data: (NSString* __strong*)data
+                         error: (NSError* __autoreleasing*)error;
 
 @end

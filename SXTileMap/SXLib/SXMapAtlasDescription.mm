@@ -62,16 +62,19 @@
 
 #pragma mark - alloc / dealloc
 
-+ (id)mapAtlasDescriptionFromRessourceFolder:(NSString*)fileName{
-    return [[SXMapAtlasDescription alloc] initWithDescription: fileName];
++ (id)mapAtlasDescriptionFromRessourceFolder: (NSString*)fileName
+                                   withError: (NSError* __autoreleasing*)error{
+    return [[SXMapAtlasDescription alloc] initWithDescription: fileName
+                                                    withError: error];
 }
 
-- (id)initWithDescription:(NSString*)description{
+- (id)initWithDescription: (NSString*)description
+                withError: (NSError* __autoreleasing*)error{
     if(self = [super init]){
         self.fileName = description;
         [self setUpFileManager: _fileName];
         [self setUpGlobal];
-        [self setUpDescription: description];
+        [self setUpDescription: description withError: error];
     }
     return self;
 }
@@ -107,9 +110,13 @@
     self.fileManager = fileManager;
 }
 
-- (void)setUpDescription:(NSString*)description{
+- (void)setUpDescription: (NSString*)description
+               withError: (NSError* __autoreleasing*)error{
     NSString* rawData = nil;
-    [SXConverser decompressSXDataAtPath: description data: &rawData];
+    [SXConverser decompressSXDataAtPath: description
+                                   data: &rawData
+                                  error: error];
+    
     _SXDecodedMapData data = [SXDecoder decodeMapData: rawData];
     [self allocAndinitMapData: data];
 }

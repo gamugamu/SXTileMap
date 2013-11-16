@@ -7,8 +7,9 @@
 //
 
 #import "SXConverser.h"
-#import "lzfx.h"
 #import "SXTypes_private.h"
+#import "SXErrorFromType.h"
+#import "lzfx.h"
 
 NSString* const dataGenericMapName = @"data";
 NSString* const dataGenericMapNameExtension = @"txt";
@@ -43,71 +44,76 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode);
     return NO;
 }
 
-+ (BOOL)decompressSXDataAtPath:(NSString*)documentPath data:(NSString* __strong*)data{
++ (BOOL)decompressSXDataAtPath: (NSString*)documentPath
+                          data: (NSString* __strong*)data
+                         error: (NSError* __autoreleasing*)error{
     unsigned compressedLenght   = 0;
     unsigned outputBufferLenght = 0;
     char* outputBuffer          = NULL;
     bool didSucceed             = false;
-    SXError error               = SXError_None;
+    char* compressedData        = NULL;
+    SXError errorType           = SXError_None;
     
     NSString* dataPath = [NSString stringWithFormat:@"%@/%@", documentPath, dataGenericMapName];
     NSString* fullPath = [[NSBundle mainBundle] pathForResource: dataPath
                                                          ofType: dataGenericMapNameExtension];
     
     // error invalid Path
-    if(!fullPath)
-        error = SXError_WrongPath;
-    
-    char* compressedData = readFile([fullPath UTF8String], &compressedLenght, NULL);
-    
-    if(!compressedData){
-        error = SXError_InvalidFile;
-        goto decompressionError;
-
+    if(!fullPath){
+        errorType = SXError_WrongPath;
     }else{
-        // first we need to konw the buffer size. According to the doc, it's very
-        // fast. It say also to send an output buffer null to get the actual size,
-        // wich is not actually what i see. We need to send a valid pointer.
-        int success = lzfx_decompress(compressedData, compressedLenght,
-                                      &outputBuffer,  // we're faking a pointer an order to get the length.
-                                      // It's not actually used into the implementation. If
-                                      // we don't, we'll get an error parameter return value.
-                                      // Since outputBufferLenght is 0, it's ok.
-                                      &outputBufferLenght);
         
-        if(success > -1){
-            outputBuffer = (char*)malloc(sizeof(char) * outputBufferLenght);
-            
-            // that should never happen.
-            if(!outputBuffer){
-                error = SXError_outOfMemory;
-                goto decompressionError;
-            }
-            
-            // if everything is ok, we can decompress the data.
-            success = lzfx_decompress(compressedData, compressedLenght,
-                                      outputBuffer,  &outputBufferLenght);
+        compressedData = readFile([fullPath UTF8String], &compressedLenght, NULL);
+        
+        if(!compressedData){
+            errorType = SXError_InvalidFile;
+        }else{
+            // first we need to konw the buffer size. According to the doc, it's very
+            // fast. It say also to send an output buffer null to get the actual size,
+            // wich is not actually what i see. We need to send a valid pointer.
+            int success = lzfx_decompress(compressedData, compressedLenght,
+                                          &outputBuffer,  // we're faking a pointer an order to get the length.
+                                          // It's not actually used into the implementation. If
+                                          // we don't, we'll get an error parameter return value.
+                                          // Since outputBufferLenght is 0, it's ok.
+                                          &outputBufferLenght);
             
             if(success > -1){
-                *data = [NSString stringWithUTF8String: outputBuffer];
-                didSucceed = (*data).length;
+                outputBuffer = (char*)malloc(sizeof(char) * outputBufferLenght);
                 
-                if(!didSucceed)
-                    error = SXError_InvalidFile;
-            }
-            else{
-                error = SXError_InvalidFile;
-                goto decompressionError;
-            }
-        }else
-            error = SXError_InvalidFile;
-        goto decompressionError;
+                // that should never happen.
+                if(!outputBuffer){
+                    errorType = SXError_outOfMemory;
+                    goto decompressionError;
+                }
+                
+                // if everything is ok, we can decompress the data.
+                success = lzfx_decompress(compressedData, compressedLenght,
+                                          outputBuffer,  &outputBufferLenght);
+                
+                if(success > -1){
+                    *data = [NSString stringWithUTF8String: outputBuffer];
+                    didSucceed = (*data).length;
+                    
+                    if(!didSucceed)
+                        errorType = SXError_InvalidFile;
+                }
+                else
+                    errorType = SXError_InvalidFile;
+            }else
+                errorType = SXError_InvalidFile;
+        }
     }
     
     decompressionError:
     
     free(outputBuffer);
     free(compressedData);
+    
+    if(error && errorType != SXError_None)
+        *error = [SXErrorFromType errorFromType: errorType
+                               withSuppliedInfo: [NSString stringWithFormat:@"%@.%@",
+                                                  dataPath, dataGenericMapNameExtension]];
     
     return didSucceed;
 }

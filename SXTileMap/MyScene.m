@@ -48,7 +48,11 @@
 
 - (void)testMapAtlas{
     // note that rgb.png is not what a file is. For the moment we are still under development.
-    SXMapAtlasDescription* description = [SXMapAtlasDescription mapAtlasDescriptionFromRessourceFolder: @"media_2"];
+    NSError* error = nil;
+    SXMapAtlasDescription* description = [SXMapAtlasDescription mapAtlasDescriptionFromRessourceFolder: @"media_2"
+                                                                                             withError: &error];
+    
+    NSLog(@"--> error %@", error);
     
     self.mapAtlas = [SXMapAtlas mapAtlasWithDescription: description];
     
