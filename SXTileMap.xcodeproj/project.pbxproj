@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79114E4B1837758600DDF59E /* test.txt in Resources */ = {isa = PBXBuildFile; fileRef = 79114E4A1837758600DDF59E /* test.txt */; };
 		795780FC182E58490011A196 /* SXDecoder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 795780FB182E58490011A196 /* SXDecoder.mm */; };
 		795780FF182E585D0011A196 /* SXMapTileBuilder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 795780FE182E585D0011A196 /* SXMapTileBuilder.mm */; };
 		79578102182E58780011A196 /* SXMapAtlasDescription.mm in Sources */ = {isa = PBXBuildFile; fileRef = 79578101182E58780011A196 /* SXMapAtlasDescription.mm */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		79114E4A1837758600DDF59E /* test.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = test.txt; sourceTree = "<group>"; };
 		795780F8182E56DB0011A196 /* SXDecoder_private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXDecoder_private.h; path = SXTileMap/SXLib/SXDecoder_private.h; sourceTree = "<group>"; };
 		795780FA182E58490011A196 /* SXDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXDecoder.h; path = SXTileMap/SXLib/SXDecoder.h; sourceTree = "<group>"; };
 		795780FB182E58490011A196 /* SXDecoder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SXDecoder.mm; path = SXTileMap/SXLib/SXDecoder.mm; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				D3C33AD51812B2AB008AED54 /* main.m */,
 				D3C33AD71812B2AB008AED54 /* SXTileMap-Prefix.pch */,
 				7963FA8F182EC7EA00AE145A /* flower.png */,
+				79114E4A1837758600DDF59E /* test.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				D3C33B191812CAA0008AED54 /* rgb.png in Resources */,
 				D3C33ADD1812B2AB008AED54 /* Main_iPhone.storyboard in Resources */,
 				7963FA90182EC7EA00AE145A /* flower.png in Resources */,
+				79114E4B1837758600DDF59E /* test.txt in Resources */,
 				D3C33AD41812B2AB008AED54 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
