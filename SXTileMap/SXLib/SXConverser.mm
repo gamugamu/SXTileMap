@@ -57,7 +57,7 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode);
     NSString* dataPath = [NSString stringWithFormat:@"%@/%@", documentPath, dataGenericMapName];
     NSString* fullPath = [[NSBundle mainBundle] pathForResource: dataPath
                                                          ofType: dataGenericMapNameExtension];
-    
+#warning if the file is not found, let's find the global file then.
     // error invalid Path
     if(!fullPath){
         errorType = SXError_WrongPath;
