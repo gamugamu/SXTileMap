@@ -57,7 +57,7 @@
     
     _mapAtlas.xScale    = .25f;
     _mapAtlas.yScale    = .25f;
-    _mapAtlas.position  = CGPointMake(150, 300);
+    _mapAtlas.position  = CGPointMake(0, 0);
 
     [self addChild: _mapAtlas];
     NSLog(@"mapAtla %@", [description deepDescription]);

@@ -40,7 +40,7 @@
 #warning TODO and unsafe
     unsigned lenght = 200;
 
-    char test[]     = "0009000901000100|010flower.png00040004_3_1_2_2_1_3_4_5_2_3_12_22_12_12_12_|007rgb.png000300030_-1_1_2_3_3_7_3_7_\0";
+    char test[]     = "0006000601000100|010flower.png000400040_3_1_2_2_1_3_4_5_2_3_12_22_12_12_12_|007rgb.png000300030_-1_1_2_3_3_7_3_7_\0";
     char* output    = (char*)calloc(lenght, sizeof(char));
     
     if(output == NULL)

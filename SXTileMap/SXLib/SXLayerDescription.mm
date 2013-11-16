@@ -44,7 +44,7 @@
         for (int j = 0;  j < description.sizeGrid.column; j++) {
             int trid = description.TRID_list[i * description.sizeGrid.column + j];
             [matrixData appendString: trid != SXBlankTileTRID?
-             [NSString stringWithFormat: @"%03u ", trid] : @"--- "];
+             [NSString stringWithFormat: @"%04u ", trid] : @"---- "];
         }
     }
     return matrixData;
