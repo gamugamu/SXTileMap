@@ -40,14 +40,14 @@
     unsigned lll = 0;
     int success = -1;
     
-    char test[]     = "0009000901000100|010flower.png00040004_3_1_2_2_1_3_4_5_2_3_12_22_12_12_12_|007rgb.png000300030_-1_1_2_3_3_7_3_7_\0";
-    unsigned lenght = sizeof(test) / sizeof(*test) + 5;
+    char test[]     = "0009000901000100|010flower.png00040004_3_1_2_2_1_3_4_5_2_3_12_22_12_12_12_|007rgb.png000300030_-1_1_2_3_3_7_3_7_";
+    unsigned lenght = sizeof(test) / sizeof(*test);
     char* test_2    = malloc(lenght);
     char output[200];
     
-    // char path[] = "/Users/loicabadie/Documents/temp/SXTileMap/SXTileMap/test.txt";
-    
-    success = lzfx_compress(test, sizeof(test) / sizeof(*test) + 1,
+     char path[] = "/Users/loicabadie/Documents/temp/SXTileMap/SXTileMap/test.txt";
+  
+    success = lzfx_compress(test, sizeof(test) / sizeof(*test),
                             &output, &lenght);
     
     printf("\n\n\nDid success %i - %u\n\n\n", success, lenght);
@@ -56,19 +56,20 @@
         printf("%c", (output[i]));
     }
     
-    // writeToFile(path, output, lenght);
     
-    /*   char* aaa = readFile(path, &lenght, NULL);
-     printf("\n\n****** lenght %u\n", lenght);
+     writeToFile(path, output, lenght);
+    
+    char* aaa = readFile(path, &lenght, NULL);
+     printf("\n\n UUU ****** lenght %u\n", lenght);
      
      for (int i = 0; i < lenght; i++) {
-     printf("%c", (aaa[i]));
+         printf("%c", (aaa[i]));
      }
      
      printf("\n\n******\n");
-     */
+
     lenght = 114 + 1;
-    success = lzfx_decompress(output, 101,
+    success = lzfx_decompress(aaa, 100,
                               test_2,  &lenght);
     printf("\n\n\n 2 Did success %i - %u \n\n\n", success, lenght);
 
@@ -125,7 +126,7 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode){
     }else{
         if(errorCode)
             *errorCode = 100; // file not found
-    readFileFailed:
+        readFileFailed:
         *lenght = 0;
         printf("error\n");
     }
