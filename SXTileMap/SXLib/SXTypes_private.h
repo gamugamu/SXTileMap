@@ -58,9 +58,15 @@ struct decodedLayerData;                                // an opaque decoded Lay
 
 // error
 typedef enum{
-    SXError_WrongPath,
-    SXError_InvalidFile,
-    SXError_outOfMemory
+    SXError_None,
+    SXError_WrongPath,      // the path of the SXData is not found
+    SXError_InvalidFile,    // SXData is invalid
+    SXError_outOfMemory     // there was not enought memory for malloc.
 }SXError;
+
+// Every map folder contains a dataGenericMapName wich hold all the data
+// in order to construct a map.
+extern NSString* const dataGenericMapName;
+extern NSString* const dataGenericMapNameExtension;
 
 #endif
