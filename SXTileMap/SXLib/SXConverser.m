@@ -36,56 +36,45 @@
     return NO;
 }
 
-+ (BOOL)decompressSXDataAtPath:(NSString*)dcumentPath data:(NSString**)data{
-    unsigned lll = 0;
-    int success = -1;
++ (BOOL)decompressSXDataAtPath:(NSString*)dcumentPath data:(NSString* __strong*)data{
+    unsigned compressedLenght   = 0;
+    unsigned outputBufferLenght = 0;
+    char* outputBuffer          = NULL;
+    bool didSucceed             = false;
     
-    char test[]     = "0009000901000100|010flower.png00040004_3_1_2_2_1_3_4_5_2_3_12_22_12_12_12_|007rgb.png000300030_-1_1_2_3_3_7_3_7_";
-    unsigned lenght = sizeof(test) / sizeof(*test);
-    char* test_2    = malloc(lenght);
-    char output[200];
+    char path[] = "/Users/loicabadie/Documents/temp/SXTileMap/SXTileMap/test.txt";
     
-     char path[] = "/Users/loicabadie/Documents/temp/SXTileMap/SXTileMap/test.txt";
-  
-    success = lzfx_compress(test, sizeof(test) / sizeof(*test),
-                            &output, &lenght);
-    
-    printf("\n\n\nDid success %i - %u\n\n\n", success, lenght);
+    char* compressedData = readFile(path, &compressedLenght, NULL);
 
-    for (int i = 0; i < lenght; i++) {
-        printf("%c", (output[i]));
-    }
+    // first we need to konw the buffer size. According to the doc, it's very
+    // fast. It say also to send an output buffer null to get the actual size,
+    // wich is actually false. We need to send a valid pointer.
+    int success = lzfx_decompress(compressedData, compressedLenght,
+                    &outputBuffer,  // we're faking a pointer an order to get the length.
+                                    // It's not actually used into the implementation. If
+                                    // we don't, we'll get an error parameter return value.
+                                    // Even if it is what was specified into the documentation (i believe).
+                    &outputBufferLenght);
     
+    if(success > -1){
+        outputBuffer = malloc(sizeof(char) * outputBufferLenght);
     
-     writeToFile(path, output, lenght);
+        success = lzfx_decompress(compressedData, compressedLenght,
+                                  outputBuffer,  &outputBufferLenght);
+        
+        if(success > -1){
+            *data = [NSString stringWithUTF8String: outputBuffer];
+            didSucceed = (*data).length;
+        }
+        else
+            goto decompressionError;
+    }else
+        goto decompressionError;
+        
+    decompressionError:
+    free(outputBuffer);
     
-    char* aaa = readFile(path, &lenght, NULL);
-     printf("\n\n UUU ****** lenght %u\n", lenght);
-     
-     for (int i = 0; i < lenght; i++) {
-         printf("%c", (aaa[i]));
-     }
-     
-     printf("\n\n******\n");
-
-    lenght = 114 + 1;
-    success = lzfx_decompress(aaa, 100,
-                              test_2,  &lenght);
-    printf("\n\n\n 2 Did success %i - %u \n\n\n", success, lenght);
-
-    for (int i = 0; i < lenght; i++) {
-        printf("%c", (test_2[i]));
-    }
-    printf("\n\n** %u *\n\n", lenght);
-    printf("final %u - %zu", lenght, sizeof(test) / sizeof(*test));
-    
-    if(success < 0){
-        return NO;
-    }
-    else{
-        *data = [NSString stringWithUTF8String: test_2];
-        return (*data).length;
-    }
+    return didSucceed;
 }
 
 void writeToFile(char *filename, const char* input, unsigned lenght){
