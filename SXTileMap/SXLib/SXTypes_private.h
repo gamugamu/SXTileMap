@@ -56,4 +56,11 @@ struct _SXMapDescription{
 struct decodedMapData;                                  // an opaque decoded mapData type.
 struct decodedLayerData;                                // an opaque decoded LayerData type.
 
+// error
+typedef enum{
+    SXError_WrongPath,
+    SXError_InvalidFile,
+    SXError_outOfMemory
+}SXError;
+
 #endif

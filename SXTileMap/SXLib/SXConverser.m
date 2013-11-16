@@ -43,36 +43,54 @@
     bool didSucceed             = false;
     
     char path[] = "/Users/loicabadie/Documents/temp/SXTileMap/SXTileMap/test.txt";
+    // error invalid Path
     
     char* compressedData = readFile(path, &compressedLenght, NULL);
-
+    
+    if(!compressedData){
+        // error: invalid file
+        goto decompressionError;
+    }
+    
     // first we need to konw the buffer size. According to the doc, it's very
     // fast. It say also to send an output buffer null to get the actual size,
-    // wich is actually false. We need to send a valid pointer.
+    // wich is not actually what i see. We need to send a valid pointer.
     int success = lzfx_decompress(compressedData, compressedLenght,
                     &outputBuffer,  // we're faking a pointer an order to get the length.
                                     // It's not actually used into the implementation. If
                                     // we don't, we'll get an error parameter return value.
-                                    // Even if it is what was specified into the documentation (i believe).
+                                    // Since outputBufferLenght is 0, it's ok.
                     &outputBufferLenght);
     
     if(success > -1){
         outputBuffer = malloc(sizeof(char) * outputBufferLenght);
-    
+       
+        // that should never happen.
+        if(!outputBuffer){
+            // error: outOfMemory
+            goto decompressionError;
+        }
         success = lzfx_decompress(compressedData, compressedLenght,
                                   outputBuffer,  &outputBufferLenght);
         
         if(success > -1){
             *data = [NSString stringWithUTF8String: outputBuffer];
             didSucceed = (*data).length;
+            // if !didSucceed error: invalide dataFile
+
         }
-        else
+        else{
+            // error: invalide dataFile
             goto decompressionError;
+        }
     }else
+        // error: invalide dataFile
         goto decompressionError;
         
     decompressionError:
+    
     free(outputBuffer);
+    free(compressedData);
     
     return didSucceed;
 }
@@ -101,7 +119,6 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode){
         
         buffer      = (char*)malloc(sizeof(char) * (*lenght + 1) );
         read_size   = fread(buffer,sizeof(char), *lenght, handler);
-        //   buffer[*lenght + 1] = '\0';
         
         if(*lenght != read_size){
             free(buffer);
@@ -114,10 +131,10 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode){
         }
     }else{
         if(errorCode)
-            *errorCode = 100; // file not found
+            *errorCode = 100;
+        
         readFileFailed:
         *lenght = 0;
-        printf("error\n");
     }
     
     return buffer;
