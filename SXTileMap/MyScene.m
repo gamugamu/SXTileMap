@@ -63,7 +63,7 @@
     _mapAtlas.position  = CGPointMake(150, 300);
 
     [self addChild: _mapAtlas];
-    
+
     SXMapAtlasDescription* description_2 = [SXMapAtlasDescription
                                             mapAtlasDescriptionFromRessourceFolder: @"media_2"
                                             fileName: @"data_2.txt"

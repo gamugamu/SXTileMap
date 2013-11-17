@@ -27,6 +27,10 @@ struct _SXDecodedMapData{
     std::vector<const _SXDecodedLayerData> allDataLayers;
 };
 
+inline _SXDecodedMapData _SXDecodeMapDataNull(){
+    return {0, 0, 0, 0, std::vector<const _SXDecodedLayerData>()};
+};
+
 inline void logMapData(const _SXDecodedMapData& mapData){
     printf("===== _SXDecodedMapData =====\n");
     printf("%p\n", &mapData);
@@ -43,7 +47,7 @@ inline void logMapData(const _SXDecodedMapData& mapData){
         
         for (int i = 0;  i < layer.layerSize.row; i++) {
             for (int j = 0;  j < layer.layerSize.column; j++) {
-                printf("%03u ", layer.layerRepresentation[i * layer.layerSize.column + j]);
+                printf("%03i ", layer.layerRepresentation[i * layer.layerSize.column + j]);
             }
             printf("\n");
         }

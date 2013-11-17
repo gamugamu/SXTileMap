@@ -164,7 +164,8 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode){
 }
 
 + (void)testArchive{
-    char test[]     = "0002000200300030|010flower.png000200020_1_2_3_\n";
+    // [00]0009000901000100|010flower.png00040004_3_1_2_2_1_3_4_5_2_3_12_22_12_12_12_|007rgb.png000300030_-1_1_2_3_3_7_3_7_
+    char test[]     = "010002000200300030|010flower.png000200020_1_2_3_\n";
     unsigned lenght =  sizeof(test) / sizeof(*test);
     unsigned lenght_2 = 200;
 
@@ -202,7 +203,6 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode){
     for (int i = 0; i < lenght; i++) {
         printf("%c", outputBuffer[i]);
     }
-    
  
     printf("\n\n******* \n");
 }
