@@ -19,12 +19,12 @@
     _SXMapDescription _description;
 }
 @property(nonatomic, strong)NSMutableArray* layersDescription;
+@property(nonatomic, strong)NSString* fileFolder;
 @property(nonatomic, strong)NSString* fileName;
 @property(nonatomic, strong)SXFileManager* fileManager;
 @end
 
 @implementation SXMapAtlasDescription
-@synthesize layersDescription = _layersDescription;
 
 #pragma mark ============================ public ===============================
 #pragma mark ===================================================================
@@ -51,6 +51,14 @@
     return deepDescription;
 }
 
+#pragma mark - getter / setter
+
+- (NSString*)filePath{
+    return [NSString stringWithFormat: @"%@/%@",
+            _fileFolder,
+            _fileName];
+}
+
 #pragma mark - override
 
 - (NSString*)description{
@@ -62,19 +70,25 @@
 
 #pragma mark - alloc / dealloc
 
-+ (id)mapAtlasDescriptionFromRessourceFolder: (NSString*)fileName
-                                   withError: (NSError* __autoreleasing*)error{
-    return [[SXMapAtlasDescription alloc] initWithDescription: fileName
++ (id)mapAtlasDescriptionFromRessourceFolder: (NSString*)folderName
+                                    fileName: (NSString*)fileName
+                                   withError: (NSError* __autoreleasing*)error{    
+    return [[SXMapAtlasDescription alloc] initWithDescription: folderName
+                                                     fileName: fileName
                                                     withError: error];
 }
 
-- (id)initWithDescription: (NSString*)description
+- (id)initWithDescription: (NSString*)fileFolder
+                 fileName: (NSString*)fileName
                 withError: (NSError* __autoreleasing*)error{
     if(self = [super init]){
-        self.fileName = description;
-        [self setUpFileManager: _fileName];
+        self.fileFolder = fileFolder;
+        self.fileName   = fileName;
+        [self setUpFileManager: _fileFolder];
         [self setUpGlobal];
-        [self setUpDescription: description withError: error];
+        [self setUpDescription: _fileFolder
+                  withFilePath: _fileName
+                     withError: error];
     }
     return self;
 }
@@ -110,10 +124,13 @@
     self.fileManager = fileManager;
 }
 
-- (void)setUpDescription: (NSString*)description
+- (void)setUpDescription: (NSString*)fileFolder
+            withFilePath: (NSString*)fileName
                withError: (NSError* __autoreleasing*)error{
     NSString* rawData = nil;
-    [SXConverser decompressSXDataAtPath: description
+    
+    [SXConverser decompressSXDataAtPath: fileFolder
+                               fileName: fileName
                                    data: &rawData
                                   error: error];
     

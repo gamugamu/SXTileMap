@@ -14,7 +14,8 @@
 //----------------------------------------------------------------------------//
 @interface SXMapAtlasDescription : NSObject
 
-+ (id)mapAtlasDescriptionFromRessourceFolder: (NSString*)fileName
++ (id)mapAtlasDescriptionFromRessourceFolder: (NSString*)folderName
+                                    fileName: (NSString*)fileName
                                    withError: (NSError* __autoreleasing*)error;
 
 - (NSUInteger)layersCount;
@@ -25,6 +26,6 @@
 
 - (NSString*)deepDescription;
 
-@property(nonatomic, readonly)NSString* fileName;
+@property(nonatomic, readonly)NSString* filePath;
 
 @end

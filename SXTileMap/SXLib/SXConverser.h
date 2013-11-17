@@ -15,6 +15,7 @@
 
 + (BOOL)archivefile:(NSString*)file atPath:(NSString*)dcumentPath;
 + (BOOL)decompressSXDataAtPath: (NSString*)dcumentPath
+                      fileName: (NSString*)fileName
                           data: (NSString* __strong*)data
                          error: (NSError* __autoreleasing*)error;
 

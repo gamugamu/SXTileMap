@@ -45,8 +45,10 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode);
 }
 
 + (BOOL)decompressSXDataAtPath: (NSString*)documentPath
+                      fileName: (NSString*)fileName
                           data: (NSString* __strong*)data
                          error: (NSError* __autoreleasing*)error{
+
     unsigned compressedLenght   = 0;
     unsigned outputBufferLenght = 0;
     char* outputBuffer          = NULL;
@@ -54,9 +56,9 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode);
     char* compressedData        = NULL;
     SXError errorType           = SXError_None;
     
-    NSString* dataPath = [NSString stringWithFormat:@"%@/%@", documentPath, dataGenericMapName];
+    NSString* dataPath = [NSString stringWithFormat:@"%@/%@", documentPath, fileName];
     NSString* fullPath = [[NSBundle mainBundle] pathForResource: dataPath
-                                                         ofType: dataGenericMapNameExtension];
+                                                         ofType: nil];
 #warning if the file is not found, let's find the global file then.
     // error invalid Path
     if(!fullPath){
@@ -112,8 +114,7 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode);
     
     if(error && errorType != SXError_None)
         *error = [SXErrorFromType errorFromType: errorType
-                               withSuppliedInfo: [NSString stringWithFormat:@"%@.%@",
-                                                  dataPath, dataGenericMapNameExtension]];
+                               withSuppliedInfo: dataPath];
     
     return didSucceed;
 }
