@@ -64,6 +64,15 @@
 
     [self addChild: _mapAtlas];
     
+    SXMapAtlasDescription* description_2 = [SXMapAtlasDescription
+                                            mapAtlasDescriptionFromRessourceFolder: @"media_2"
+                                            fileName: @"data_2.txt"
+                                            withError: &error];
+
+    SXMapAtlas* mapAtlas2   = [SXMapAtlas mapAtlasWithDescription: description_2];
+    mapAtlas2.position      = CGPointMake(100, 100);
+    [self addChild: mapAtlas2];
+    
    // NSError* __autoreleasing error = nil;
    
   /*  SX2DMatrice* matrix = [[SX2DMatrice alloc] initWith2DMatrix: @[@[@24, @24, @5, @5],

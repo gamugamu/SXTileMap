@@ -23,7 +23,7 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode);
     unsigned lenght = 200;
 #warning TODO and unsafe
     
-    char test[]     = "0015001500300030|011bonjour.png000200020_1_2_3|013bonjouiur.png000300032_3_1_2_2_1_3_4_5\0\n";
+    char test[]     = "0015001500300030|010flower.png000200020_1_2_3_\0";
     char* output    = (char*)calloc(lenght, sizeof(char));
     
     if(output == NULL)
@@ -48,7 +48,6 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode);
                       fileName: (NSString*)fileName
                           data: (NSString* __strong*)data
                          error: (NSError* __autoreleasing*)error{
-
     unsigned compressedLenght   = 0;
     unsigned outputBufferLenght = 0;
     char* outputBuffer          = NULL;
@@ -59,7 +58,7 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode);
     NSString* dataPath = [NSString stringWithFormat:@"%@/%@", documentPath, fileName];
     NSString* fullPath = [[NSBundle mainBundle] pathForResource: dataPath
                                                          ofType: nil];
-#warning if the file is not found, let's find the global file then.
+
     // error invalid Path
     if(!fullPath){
         errorType = SXError_WrongPath;
@@ -79,7 +78,7 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode);
                                           // we don't, we'll get an error parameter return value.
                                           // Since outputBufferLenght is 0, it's ok.
                                           &outputBufferLenght);
-            
+
             if(success > -1){
                 outputBuffer = (char*)malloc(sizeof(char) * outputBufferLenght);
                 
@@ -162,6 +161,50 @@ char* readFile(const char *filename, unsigned* lenght, unsigned* errorCode){
     }
     
     return buffer;
+}
+
++ (void)testArchive{
+    char test[]     = "0002000200300030|010flower.png000200020_1_2_3_\n";
+    unsigned lenght =  sizeof(test) / sizeof(*test);
+    unsigned lenght_2 = 200;
+
+    char* output    = (char*)calloc(lenght_2, sizeof(char));
+    
+    if(output == NULL)
+        printf("failed\n");
+    
+    int success = lzfx_compress(test, lenght,
+                                output, &lenght_2);
+    
+    printf("\n\n******* %i %u\n", success, lenght_2);
+
+    for (int i = 0; i < lenght_2; i++) {
+        printf("%c", output[i]);
+    }
+    
+    char file[] = "/Users/loicabadie/Desktop/test.txt";
+    writeToFile(file, output, lenght_2);
+    
+    char* outputBuffer = NULL;
+    unsigned outputBufferLenght = 0;
+
+    success = lzfx_decompress(output, lenght_2,
+                            &outputBuffer, &outputBufferLenght);
+
+    outputBuffer = (char*)malloc(sizeof(char) * outputBufferLenght);
+    printf("\noutputBufferLenght %i %i \n", success, outputBufferLenght);
+    
+    success = lzfx_decompress(output, lenght_2,
+                              outputBuffer, &outputBufferLenght);
+    
+    printf("\n\n******* %i %u\n", success, lenght);
+
+    for (int i = 0; i < lenght; i++) {
+        printf("%c", outputBuffer[i]);
+    }
+    
+ 
+    printf("\n\n******* \n");
 }
 
 @end
